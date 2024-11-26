@@ -1,0 +1,121 @@
+.context {
+    margin-left: 260px;
+    margin-top: 5rem;
+    overflow-y: auto;
+    height: calc(100vh - 50px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: flex-end;
+}
+
+.section {
+    width: 80%;
+    height: 100%;
+}
+
+.text-area {
+    height: 350px;
+    width: 80%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+.botMessage {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.userMessage {
+    margin-top: 2rem;
+    display: flex;
+    float: right;
+    text-align: end;
+    align-items: center;
+}
+
+.tooltip-card {
+    padding: 10px 8px 10px 8px;
+    max-width: 250px;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid grey;
+    border-radius: 75px;
+    justify-content: center;
+    align-items: center;
+    font-size: 16;
+    font-weight: 500;
+}
+
+.tooltips {
+    max-width: 1200px;
+    min-width: 600px;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+input {
+    background-color: #f1f1f1;
+    border: 0;
+    border-radius: 30px;
+    color: white;
+    padding: 20px;
+    width: 100%;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.send-btn {
+    background: grey;
+    border: 0;
+    border-radius: 17px;
+    color: white;
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    display: flex;
+    padding: 7px;
+}
+
+.pt-site-footer__submit {
+    position: relative;
+    display: inline-block;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 3rem;
+}
+
+input.searchKeyText::-webkit-input-placeholder,
+textarea.searchKeyText::-webkit-input-placeholder {
+    color: gray;
+}
+
+@media only screen and (max-width: 768px) {
+    .context {
+        margin-left: 0px;
+        height: calc(100vh - 70px);
+        margin-top: 70px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .tooltips {
+        display: none;
+    }
+}

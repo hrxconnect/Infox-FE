@@ -1,0 +1,27 @@
+.ul,li{
+    margin: 0px 10px;
+}
+.container{
+    max-width: 1100px;
+}
+.btn-login{
+    height: 40px;
+    width: 90px;
+    background-color: #027BFF;
+    margin: 10px 10px;
+    font-weight: 500;
+    color: white;
+}
+.btn-signup{
+    height: 40px;
+    width: 90px;
+    background-color: whitesmoke;
+    box-shadow: none;
+    border: 1px solid black;
+    margin: 10px 10px;
+    font-weight: 500;
+}
+.nav-item{
+    display: flex;
+    align-items: center;
+}

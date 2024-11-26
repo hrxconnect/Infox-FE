@@ -1,0 +1,149 @@
+.sectionFooter {
+    background: linear-gradient(360deg, #FFA500 0%, rgba(2, 123, 255, 0) 95.15%);
+    width: 100%;
+    display: flex;
+    margin-top: 2rem;
+}
+
+.footerLeft {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+}
+
+.btn-section {
+    display: flex;
+    width: 100%;
+}
+
+.footerRight {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-work {
+    height: 40px;
+    width: 40%;
+    background-color: #027BFF;
+    margin: 0px 10px;
+    font-weight: 500;
+    color: white;
+}
+
+.btn-sub {
+    height: 40px;
+    width: 60%;
+    background-color: transparent;
+    box-shadow: none;
+    border: 1px solid black;
+    margin: 0px 10px;
+    font-weight: 500;
+}
+
+.product-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.products {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+ul.no-bullets {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.product-li {
+    margin-top: 10px;
+}
+.product-li-active {
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.terms-list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.terms {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 2rem;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .sectionFooter {
+        background: linear-gradient(180deg, rgba(2, 123, 255, 0) 0%, rgba(129, 144, 128, 0.22) 50%, #FFA500 100%);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footerLeft {
+        margin-top: 5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .footerRight {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .product-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .products {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 1rem;
+    }
+
+    .terms-list {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .terms {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 2rem;
+        margin-bottom: 3rem;
+    }
+}

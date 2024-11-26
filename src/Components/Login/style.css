@@ -1,0 +1,63 @@
+.login {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(../../Assets/login-background.png) no-repeat fixed;
+    margin: 0;
+    background-size: cover;
+}
+form{
+    width: 100%;
+}
+.login-container {
+    background: white;
+    padding: 40px 20px 40px 20px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+}
+
+.login-logo {
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-top: 1.2rem;
+    width: 100%;
+}
+
+.forgot-pass {
+    margin-top: 1rem;
+    width: 100%;
+    margin-bottom: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        background: white;
+        padding: 20px;
+        width: 90%;
+        display: flex;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+    .login-container {
+        background: white;
+        padding: 40px 20px 40px 20px;
+        width: 60%;
+        display: flex;
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    .login-container {
+        background: white;
+        padding: 40px 20px 40px 20px;
+        width: 50%;
+        display: flex;
+    }
+}
