@@ -24,7 +24,9 @@ export default function Queries() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        mode: 'cors',
         body: JSON.stringify({ query: userQuery })
       })
       .then(response => {
@@ -67,9 +69,13 @@ export default function Queries() {
       })
       .catch(error => {
         console.error('Fetch error:', error);
+        const errorMessage = error.message === 'Failed to fetch' 
+          ? 'Unable to connect to the server. Please check your internet connection or try again later.'
+          : `An error occurred: ${error.message}`;
+        
         setBotMessages((prev) => [
           ...prev,
-          { type: "bot", message: `An error occurred: ${error.message}` }
+          { type: "bot", message: errorMessage }
         ]);
         reject(error);
       });

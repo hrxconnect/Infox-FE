@@ -25,14 +25,14 @@ export default function Home() {
                             <div className="card-body">
                                 <FaBalanceScale color="#027BFF" size={24} />
                                 <h5 className="card-title">Grants Assist</h5>
-                                <p className="card-text">Offer expert resources and real-time compliance alerts</p>
+                                <p className="card-text">Access a curated list of grants you may qualify for.</p>
                             </div>
                         </div>
                         <div className="topicCard card" onClick={() => navigate('/queries')}>
                             <div className="card-body">
                                 <LiaHandshakeSolid color="#24CA71" size={24} />
                                 <h5 className="card-title">HR Queries</h5>
-                                <p className="card-text">Provide creative employee engagement ideas to strengthen connections.</p>
+                                <p className="card-text">Get answers to HR legislation and compliance questions.</p>
                             </div>
                         </div>
                     </div>
