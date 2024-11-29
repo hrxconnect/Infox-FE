@@ -139,10 +139,10 @@ export default function Landing() {
                     <span className="text4 text-center">Our Trusted Partners</span>
                 </div>
                 <div className="cards2">
-                <img src={logo1} className="card-img-top2" alt="..." />
-                <img src={logo2} className="card-img-top2" alt="..." />
-                <img src={logo3} className="card-img-top2" alt="..." />
-                <img src={logo4} className="card-img-top2" alt="..." />
+                    <img src={logo1} className="card-img-top2" alt="..." />
+                    <img src={logo2} className="card-img-top2" alt="..." />
+                    <img src={logo3} className="card-img-top2" alt="..." />
+                    <img src={logo4} className="card-img-top2" alt="..." />
                 </div>
             </div>
             <LandingFooter></LandingFooter>
