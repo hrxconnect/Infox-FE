@@ -22,14 +22,14 @@ export default function ChatHistoryDetails() {
             <div className="chat-message">
               <img src={Fox} alt="" style={{ marginRight: '1rem' }} height={36} width={36} />
               <p>
-                Building a strong company culture in a small, remote creative agency can be both fun and impactful. With a team of 12 people, you can foster close-knit relationships and a positive environment with tailored games and events. Here are some ideas to consider:
+              Building a strong company culture in a small agency can be both fun and impactful. With a team of 12 people, you can foster close-knit relationships and a positive environment with tailored games and events. Here are some ideas to consider:
               </p>
             </div>
             <section className="section">
               <h2 className="section-heading">Virtual Team-Building Games</h2>
               <ol className="list">
                 <li className="list-item">
-                  Online Escape Room: Participate in a virtual escape room challenge. It’s a great way to encourage problem-solving and collaboration while having fun.
+                Online Escape Room: Participate in a virtual escape room challenge. It’s a great way to encourage problem-solving and collaboration while having fun.
                 </li>
               </ol>
               <GoCopy size={22}/>
