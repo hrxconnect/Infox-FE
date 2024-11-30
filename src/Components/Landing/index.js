@@ -25,8 +25,8 @@ export default function Landing() {
                 <div className="container getStartedSection">
                     <div className="Section">
                         <div className="leftSection">
-                            <span className="text1">Your HR Wing's New MVP:</span>
-                            <span className="text2">A chatbot that just gets it done.</span>
+                            <span className="text1">Your HR wing's new MVP: </span>
+                            <span className="text2">A chatbot that gets it done.</span>
                             <p className="text3">Our AI chatbot is designed to quickly answer legal HR-related questions, saving you time. By using this tool, you can instantly access the information and answers you need without the hassle of extensive research or processes.</p>
                             <button className="btn btn-toogle shadow pl-3 pr-3" type="submit">Get Started</button>
                         </div>
@@ -119,16 +119,16 @@ export default function Landing() {
                     <div className="cardpic shadow-none rounded">
                         <img src={pic2} className="card-img-top" alt="..." />
                         <div className="card-body mt-3">
-                            <h5 className="card-title">The Expense of Employing a Worker in Canada</h5>
-                            <p className="card-text">Initiating the employment of new staff primarily incurs costs through their initial...</p>
+                            <h5 className="card-title">Your Guide to Engaging Independent Contractors</h5>
+                            <p className="card-text">The distinction between independent contractors and employees marks...</p>
                             <span className="click_able">Read more</span>
                         </div>
                     </div>
                     <div className="cardpic shadow-none rounded">
                         <img src={pic3} className="card-img-top" alt="..." />
                         <div className="card-body mt-3">
-                            <h5 className="card-title">The Expense of Employing a Worker in Canada</h5>
-                            <p className="card-text">Initiating the employment of new staff primarily incurs costs through their initial...</p>
+                            <h5 className="card-title">Transitioning International Contractors to Employees</h5>
+                            <p className="card-text">What steps are involved in changing the status of an independent contractor to...</p>
                             <span className="click_able">Read more</span>
                         </div>
                     </div>
@@ -139,10 +139,10 @@ export default function Landing() {
                     <span className="text4 text-center">Our Trusted Partners</span>
                 </div>
                 <div className="cards2">
-                <img src={logo1} className="card-img-top2" alt="..." />
-                <img src={logo2} className="card-img-top2" alt="..." />
-                <img src={logo3} className="card-img-top2" alt="..." />
-                <img src={logo4} className="card-img-top2" alt="..." />
+                    <img src={logo1} className="card-img-top2" alt="..." />
+                    <img src={logo2} className="card-img-top2" alt="..." />
+                    <img src={logo3} className="card-img-top2" alt="..." />
+                    <img src={logo4} className="card-img-top2" alt="..." />
                 </div>
             </div>
             <LandingFooter></LandingFooter>

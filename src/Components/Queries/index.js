@@ -1,136 +1,156 @@
 import { useNavigate } from "react-router-dom";
-import './style.css';
+import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
-import { useState, useEffect } from "react";
-import Fox from '../../Assets/Fox.png';
+import { useState } from "react";
+import Fox from '../../Assets/Fox.png'
 import { FaArrowRight } from "react-icons/fa";
 
 export default function Queries() {
-  const navigate = useNavigate();
-  const [botMessages, setBotMessages] = useState([
-    { type: "bot", message: "Welcome to HR Queries! What can I help you with today?" }
-  ]);
-  const [userMessage, setUserMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  // const [context, setContext] = useState('');
-  // const [reformulated, setReformulated] = useState('');
+    const navigate = useNavigate();
+    const [inputText, setInputText] = useState('');
+    const [botMessages, setBotMessages] = useState([
+        { type: "bot", message: "Welcome to HR Queries! What can I help you with today?" }
+    ]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [tooltips, setTooltips] = useState([
+        "Vacation", "Payroll", "Insurance", "Terminations & Layoffs", "Maternity & Paternity Leaves"
+    ]);
 
-  const handleEventStream = (userQuery) => {
-    return new Promise((resolve, reject) => {
-      const url = 'http://app.infox.bot/api/relay_chat/';
-      let fullMessage = '';
-      
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        mode: 'cors',
-        body: JSON.stringify({ query: userQuery })
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        
-        function readStream() {
-          return reader.read().then(({done, value}) => {
-            if (done) {
-              resolve(fullMessage);
-              return;
-            }
-            
-            const chunk = decoder.decode(value);
-            const lines = chunk.split('\n').filter(line => line.trim());
-            
-            lines.forEach(line => {
-              try {
-                const data = JSON.parse(line);
-                if (data.data) {
-                  fullMessage += data.data;
-                  setBotMessages(prev => [
-                    ...prev.slice(0, -1),
-                    { type: "bot", message: fullMessage }
-                  ]);
-                }
-              } catch (e) {
-                console.error('Parsing chunk failed:', e, line);
-              }
+    const handleEventStream = async (userQuery, use_case) => {
+        const url = 'http://app.infox.bot/api/relay_chat/';
+        let fullMessage = '';
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                mode: 'cors',
+                body: JSON.stringify({ query: userQuery, use_case })
             });
-            
-            return readStream();
-          });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value);
+                try {
+                    const data = JSON.parse(chunk);
+                    if (data.data) {
+                        fullMessage += data.data;
+                        setBotMessages(prev => [
+                            ...prev.slice(0, -1),
+                            { type: "bot", message: fullMessage }
+                        ]);
+                    }
+                } catch (e) {
+                    const lines = chunk.split('\n').filter(line => line.trim());
+                    for (const line of lines) {
+                        try {
+                            const data = JSON.parse(line);
+                            if (data.data) {
+                                fullMessage += data.data;
+                                setBotMessages(prev => [
+                                    ...prev.slice(0, -1),
+                                    { type: "bot", message: fullMessage }
+                                ]);
+                            }
+                        } catch (innerError) {
+                            console.error('Parsing line failed:', innerError);
+                        }
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Stream error:', error);
+            setBotMessages(prev => [
+                ...prev,
+                { type: "bot", message: "Sorry, I encountered an error. Please try again." }
+            ]);
         }
+    };
 
-        return readStream();
-      })
-      .catch(error => {
-        console.error('Fetch error:', error);
-        const errorMessage = error.message === 'Failed to fetch' 
-          ? 'Unable to connect to the server. Please check your internet connection or try again later.'
-          : `An error occurred: ${error.message}`;
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!inputText.trim() || isLoading) return;
+
+        setBotMessages(prev => [...prev, { type: "user", message: inputText }]);
+        setBotMessages(prev => [...prev, { type: "bot", message: "..." }]);
+        setIsLoading(true);
         
-        setBotMessages((prev) => [
-          ...prev,
-          { type: "bot", message: errorMessage }
-        ]);
-        reject(error);
-      });
-    });
-  };
+        try {
+            await handleEventStream(inputText, "queries");
+        } catch (error) {
+            console.error('Submit error:', error);
+        } finally {
+            setIsLoading(false);
+        }
+        setInputText('');
+    };
 
-  const handleSubmit = async () => {
-    if (!userMessage) return;
-    
-    setLoading(true);
-    setBotMessages((prev) => [...prev, { type: "user", message: userMessage }]);
-    
-    try {
-      await handleEventStream(userMessage);
-    } catch (error) {
-      console.error('Error in handleSubmit:', error);
-    } finally {
-      setUserMessage('');
-      setLoading(false);
-    }
-  };
+    const handleTooltipClick = (tooltip) => {
+        setBotMessages(prev => [...prev, { type: "user", message: tooltip }]);
+        setTooltips(prev => prev.filter(t => t !== tooltip));
+    };
 
-  return (
-    <div>
-      <CommonHeader />
-      <div className="context">
-        <div className="text-area">
-          {botMessages.map((ele, index) => (
-            <div key={index}>
-              {ele.type === "bot" ? (
-                <div className="botMessage">
-                  <img src={Fox} alt="" height={36} width={36} />
-                  {ele.message}
+    return (
+        <div>
+            <CommonHeader />
+            <div className="context">
+                <div className="text-area">
+                    {botMessages.map((ele, index) => (
+                        <div key={index}>
+                            {ele.type === "bot" ? (
+                                <div className="botMessage">
+                                    <img src={Fox} alt="" height={36} width={36} />
+                                    {ele.message}
+                                </div>
+                            ) : (
+                                <div className="userMessage">
+                                    {ele.message}
+                                </div>
+                            )}
+                        </div>
+                    ))}
                 </div>
-              ) : (
-                <div className="userMessage">
-                  {ele.message}
+                <div className="tooltips">
+                    {tooltips.map((tooltip, index) => (
+                        <button 
+                            key={index} 
+                            className="tooltip-card" 
+                            onClick={() => handleTooltipClick(tooltip)}
+                        >
+                            {tooltip}
+                        </button>
+                    ))}
                 </div>
-              )}
+                <div className="pt-site-footer__submit">
+                    <input
+                        type="text"
+                        placeholder="Message Infox"
+                        className="searchKeyText"
+                        value={inputText}
+                        onChange={(e) => setInputText(e.target.value)}
+                        disabled={isLoading}
+                    />
+                    <button 
+                        className="send-btn" 
+                        onClick={handleSubmit} 
+                        disabled={isLoading}
+                    >
+                        <FaArrowRight />
+                    </button>
+                </div>
             </div>
-          ))}
         </div>
-        <div className="pt-site-footer__submit">
-          <input
-            type="text"
-            value={userMessage}
-            onChange={(e) => setUserMessage(e.target.value)}
-            placeholder="Message Infox"
-            className="searchKeyText"
-          />
-          <button className="send-btn" onClick={handleSubmit}>
-            {loading ? 'Sending...' : <FaArrowRight />}
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
