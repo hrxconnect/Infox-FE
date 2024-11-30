@@ -24,14 +24,26 @@
     flex-direction: column;
 }
 
+.message-container {
+    margin: 10px 0; /* Add margin between messages */
+}
+
+.botMessage, .userMessage {
+    padding: 10px 15px; /* Add padding for better spacing */
+    border-radius: 10px; /* Rounded corners */
+    max-width: 80%; /* Limit width for better alignment */
+}
+
 .botMessage {
+    background-color: #f1f1f1; /* Light background for bot messages */
     display: flex;
     gap: 1rem;
     align-items: center;
 }
 
 .userMessage {
-    margin-top: 2rem;
+    background-color: #007bff; /* Blue background for user messages */
+    color: white; /* White text for user messages */
     display: flex;
     float: right;
     text-align: end;
@@ -106,6 +118,7 @@ input.searchKeyText::-webkit-input-placeholder,
 textarea.searchKeyText::-webkit-input-placeholder {
     color: gray;
 }
+
 @media only screen and (max-width: 768px) {
     .context {
         margin-left: 0px;

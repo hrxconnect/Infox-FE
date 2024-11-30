@@ -81,7 +81,6 @@ export default function Assists() {
         if (!inputText.trim() || isLoading) return;
 
         setMessages(prev => [...prev, { type: "user", message: inputText }]);
-        
         setMessages(prev => [...prev, { type: "bot", message: "..." }]);
         
         setIsLoading(true);
@@ -125,23 +124,6 @@ export default function Assists() {
                         </div>
                     ))}
                 </div>
-                {/* <div className="tooltips">
-                    <div className="tooltip-card">
-                        <span>Vacation</span>
-                    </div>
-                    <div className="tooltip-card">
-                        <span>Payroll</span>
-                    </div>
-                    <div className="tooltip-card">
-                        <span>Insurance</span>
-                    </div>
-                    <div className="tooltip-card">
-                        <span>Terminations & Layoffs</span>
-                    </div>
-                    <div className="tooltip-card">
-                        <span>Maternity & Paternity Leaves</span>
-                    </div>
-                </div> */}
                 <form onSubmit={handleSubmit} className="pt-site-footer__submit">
                     <input
                         type="text"

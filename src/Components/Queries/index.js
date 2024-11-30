@@ -99,7 +99,7 @@ export default function Queries() {
 
     const handleTooltipClick = (tooltip) => {
         setBotMessages(prev => [...prev, { type: "user", message: tooltip }]);
-        setTooltips(prev => prev.filter(t => t !== tooltip));
+        setTooltips([]); // Clear all tooltips after sending the message
     };
 
     return (
@@ -108,15 +108,15 @@ export default function Queries() {
             <div className="context">
                 <div className="text-area">
                     {botMessages.map((ele, index) => (
-                        <div key={index}>
+                        <div key={index} className="message-container">
                             {ele.type === "bot" ? (
                                 <div className="botMessage">
                                     <img src={Fox} alt="" height={36} width={36} />
-                                    {ele.message}
+                                    <span className="message-text">{ele.message}</span>
                                 </div>
                             ) : (
                                 <div className="userMessage">
-                                    {ele.message}
+                                    <span className="message-text">{ele.message}</span>
                                 </div>
                             )}
                         </div>

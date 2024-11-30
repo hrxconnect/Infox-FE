@@ -10,6 +10,14 @@ export default function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        // Bypass login for specific user
+        if (email === "scsd@example.com" && password === "ashdsddddddddca!") {
+            localStorage.setItem("token", "dummy-token"); // Set a dummy token
+            navigate("/home");
+            return;
+        }
+
         try {
             const response = await fetch("http://app.infox.bot/api/login/", {
                 method: "POST",
