@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import './style.css'
+import './style.css';
 import logo from '../../Assets/logo.png';
 
 export default function Login() {
@@ -11,7 +11,7 @@ export default function Login() {
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         setErrorMessage("");
 
         try {
@@ -55,7 +55,7 @@ export default function Login() {
                 <div className="login-logo">
                     <img src={logo} alt="" height={30} width={100} />
                 </div>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleLogin}> {/* Ensure onSubmit is correctly set */}
                     {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
@@ -88,5 +88,5 @@ export default function Login() {
                 </form>
             </div>
         </div>
-    )
+    );
 }
