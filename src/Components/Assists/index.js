@@ -4,6 +4,7 @@ import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
+import axios from 'axios';
 
 export default function Assists() {
     const navigate = useNavigate();
@@ -25,21 +26,17 @@ export default function Assists() {
         let fullMessage = '';
         
         try {
-            const response = await fetch(url, {
-                method: 'POST',
+            const response = await axios.post(url, {
+                query: userQuery,
+                use_case: "grants"
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                },
-                mode: 'cors',
-                body: JSON.stringify({ query: userQuery })
+                }
             });
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            const reader = response.body.getReader();
+            const reader = response.data.getReader();
             const decoder = new TextDecoder();
 
             while (true) {
