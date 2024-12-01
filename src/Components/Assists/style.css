@@ -62,8 +62,8 @@
 }
 
 .userMessage {
-    background-color: #007bff; /* Blue background for user messages */
-    color: white; /* White text for user messages */
+    background-color: #f1f1f1; /* Blue background for user messages */
+    color: black; /* White text for user messages */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -167,4 +167,31 @@ textarea.searchKeyText::-webkit-input-placeholder {
     .tooltips {
         display: none;
     }
+}
+
+.message-text {
+    margin-left: 10px; /* Space between the avatar and the message text */
+    font-size: 16px; /* Font size for the message text */
+    color: #333; /* Text color */
+}
+
+/* Style for bold text */
+strong {
+    font-weight: bold;
+}
+
+/* Style for italic text */
+em {
+    font-style: italic;
+}
+
+/* Style for lists */
+ul {
+    margin: 5px 0; /* Margin for the list */
+    padding-left: 20px; /* Indent the list */
+}
+
+/* Style for list items */
+li {
+    margin: 5px 0; /* Space between list items */
 }

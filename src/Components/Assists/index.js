@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import Fox from '../../Assets/Fox.png'
@@ -12,6 +12,13 @@ export default function Assists() {
     ]);
     const [inputText, setInputText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    
+    const messagesEndRef = useRef(null); // Create a ref for the messages container
+
+    // Scroll to the bottom whenever messages change
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
     const handleEventStream = async (userQuery) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
@@ -111,7 +118,7 @@ export default function Assists() {
                             {ele.type === "bot" ? (
                                 <div className="botMessage">
                                     <img src={Fox} alt="" height={36} width={36} />
-                                    <span className="message-text">{ele.message}</span>
+                                    <span className="message-text" dangerouslySetInnerHTML={{ __html: ele.message }} />
                                 </div>
                             ) : (
                                 <div className="userMessage">
@@ -123,6 +130,7 @@ export default function Assists() {
                             )}
                         </div>
                     ))}
+                    <div ref={messagesEndRef} /> {/* This div will be scrolled into view */}
                 </div>
                 <form onSubmit={handleSubmit} className="pt-site-footer__submit">
                     <input

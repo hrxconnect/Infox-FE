@@ -1,9 +1,8 @@
 .header-common {
     height: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Align items to the right */
     max-width: 1100px !important;
-
 }
 
 .bottomStyle {
@@ -31,19 +30,19 @@
 
 .sibebar-profile {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-right: 10px;
 }
 
 .avatar {
     width: 45px;
     height: 45px;
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: #D3D3D3;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
+    margin-right: 5px;
 }
 
 .profile-letter {
@@ -151,7 +150,6 @@
     font-weight: 500;
 }
 
-
 .menu-link2 {
     margin-left: 10px;
     font-weight: 400;
@@ -188,9 +186,6 @@
         border-radius: 0px 40px 40px 0px;
     }
 
-    /* .offcanvas-backdrop {
-        background-color: transparent !important;
-      } */
     .avatar {
         cursor: pointer;
     }

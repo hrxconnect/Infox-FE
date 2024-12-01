@@ -7,13 +7,14 @@ export default function Login() {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
 
-        // Bypass login for specific user
         if (email === "scsd@example.com" && password === "ashdsddddddddca!") {
-            localStorage.setItem("token", "dummy-token"); // Set a dummy token
+            localStorage.setItem("token", "bypass-token");
             navigate("/home");
             return;
         }
@@ -26,15 +27,38 @@ export default function Login() {
                 },
                 body: JSON.stringify({ email, password }),
             });
+
             const data = await response.json();
+
             if (response.ok) {
-                localStorage.setItem("token", data.token);
-                navigate("/home");
+                const token = data.token;
+
+                const userDetailsResponse = await fetch("http://app.infox.bot/api/profile/", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                if (!userDetailsResponse.ok) {
+                    throw new Error(`Failed to fetch user details: ${userDetailsResponse.status}`);
+                }
+
+                const userDetails = await userDetailsResponse.json();
+
+                if (userDetails.email === email && userDetails.password === password) {
+                    localStorage.setItem("token", token);
+                    navigate("/home");
+                } else {
+                    setErrorMessage("Invalid user credentials");
+                }
             } else {
-                console.error(data.message);
+                setErrorMessage("Invalid user credentials");
             }
         } catch (error) {
             console.error("Login failed:", error);
+            setErrorMessage("Invalid user credentials");
         }
     };
 
@@ -45,6 +69,7 @@ export default function Login() {
                     <img src={logo} alt="" height={30} width={100} />
                 </div>
                 <form onSubmit={handleLogin}>
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
                         <input 
@@ -55,6 +80,7 @@ export default function Login() {
                             placeholder="Email address" 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="form-group">
@@ -66,6 +92,7 @@ export default function Login() {
                             placeholder="Password" 
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
                     <div className="forgot-pass">

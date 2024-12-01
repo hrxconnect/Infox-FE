@@ -20,7 +20,9 @@ export default function CommonHeader() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div>
-                        <a className="navbar-brand" href=""> <img src={logo} alt="" height={30} width={100} /></a>
+                        <button className="navbar-brand" onClick={() => navigate('/home')} style={{ background: 'none', border: 'none' }}>
+                            <img src={logo} alt="" height={30} width={100} />
+                        </button>
                     </div>
                     <div className="sibebar-profile">
                         <div className="avatar" data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,7 +64,7 @@ export default function CommonHeader() {
                     <div className="sidebar-footer">
                         <ul className="navbar-nav me-auto mb-2 mt-1 mb-lg-0">
                             <li className="nav-item1">
-                                <button className="btn btn-help" type="submit">Get help from a HR Expert</button>
+                                <button className="btn btn-help" type="button" onClick={() => navigate('/')}>Get help from a HR Expert</button>
                             </li>
                             <li className="nav-item1">
                                 <img src={logo} alt="" height={30} width={100} />
@@ -96,7 +98,7 @@ export default function CommonHeader() {
                         <div className="sidebar-footer">
                             <ul className="navbar-nav me-auto mb-2 mt-1 mb-lg-0">
                                 <li className="nav-item1">
-                                    <button className="btn btn-help" type="submit">Get help from a HR Expert</button>
+                                    <button className="btn btn-help" type="button" onClick={() => navigate('/')}>Get help from a HR Expert</button>
                                 </li>
                                 <li className="nav-item1">
                                     <img src={logo} alt="" height={30} width={100} />

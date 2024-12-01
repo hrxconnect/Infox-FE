@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Fox from '../../Assets/Fox.png'
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaRegUser } from "react-icons/fa";
 
 export default function Queries() {
     const navigate = useNavigate();
@@ -15,6 +15,12 @@ export default function Queries() {
     const [tooltips, setTooltips] = useState([
         "Vacation", "Payroll", "Insurance", "Terminations & Layoffs", "Maternity & Paternity Leaves"
     ]);
+    
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [botMessages]);
 
     const handleEventStream = async (userQuery, use_case) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
@@ -97,6 +103,13 @@ export default function Queries() {
         setInputText('');
     };
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault(); // Prevent default behavior (new line)
+            handleSubmit(e); // Call handleSubmit
+        }
+    };
+
     const handleTooltipClick = (tooltip) => {
         setBotMessages(prev => [...prev, { type: "user", message: tooltip }]);
         setTooltips([]); // Clear all tooltips after sending the message
@@ -112,15 +125,19 @@ export default function Queries() {
                             {ele.type === "bot" ? (
                                 <div className="botMessage">
                                     <img src={Fox} alt="" height={36} width={36} />
-                                    <span className="message-text">{ele.message}</span>
+                                    <span className="message-text" dangerouslySetInnerHTML={{ __html: ele.message }} />
                                 </div>
                             ) : (
                                 <div className="userMessage">
                                     <span className="message-text">{ele.message}</span>
+                                    <div className="user-icon-container">
+                                        <FaRegUser className="user-icon" />
+                                    </div>
                                 </div>
                             )}
                         </div>
                     ))}
+                    <div ref={messagesEndRef} />
                 </div>
                 <div className="tooltips">
                     {tooltips.map((tooltip, index) => (
@@ -140,6 +157,7 @@ export default function Queries() {
                         className="searchKeyText"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
+                        onKeyPress={handleKeyPress}
                         disabled={isLoading}
                     />
                     <button 

@@ -42,8 +42,8 @@
 }
 
 .userMessage {
-    background-color: #007bff; /* Blue background for user messages */
-    color: white; /* White text for user messages */
+    background-color: #f1f1f1; /* Blue background for user messages */
+    color: black; /* White text for user messages */
     display: flex;
     float: right;
     text-align: end;
@@ -52,9 +52,8 @@
 }
 
 .tooltip-card {
-    padding: 10px 8px 10px 8px;
-    max-width: 250px;
-    width: 200px;
+    padding: 10px;
+    width: 150px;
     text-align: center;
     display: flex;
     flex-direction: row;
@@ -62,7 +61,7 @@
     border-radius: 75px;
     justify-content: center;
     align-items: center;
-    font-size: 16;
+    font-size: 14px;
     font-weight: 500;
 }
 
@@ -70,8 +69,8 @@
     max-width: 1200px;
     min-width: 600px;
     gap: 1rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
 }
 
 input {
@@ -131,4 +130,31 @@ textarea.searchKeyText::-webkit-input-placeholder {
     .tooltips {
         display: none;
     }
+}
+
+.message-text {
+    margin-left: 10px; /* Space between the avatar and the message text */
+    font-size: 16px; /* Font size for the message text */
+    color: #333; /* Text color */
+}
+
+/* Style for bold text */
+strong {
+    font-weight: bold;
+}
+
+/* Style for italic text */
+em {
+    font-style: italic;
+}
+
+/* Style for lists */
+ul {
+    margin: 5px 0; /* Margin for the list */
+    padding-left: 20px; /* Indent the list */
+}
+
+/* Style for list items */
+li {
+    margin: 5px 0; /* Space between list items */
 }
