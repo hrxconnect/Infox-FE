@@ -23,7 +23,7 @@ export default function Queries() {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [botMessages]);
 
-    const handleEventStream = async (userQuery, use_case) => {
+    const handleEventStream = async (userQuery) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
         let fullMessage = '';
 
@@ -72,8 +72,14 @@ export default function Queries() {
         return message
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold text
             .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic text
-            .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
-            .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
+            .replace(/(http[s]?:\/\/[^\s]+)/g, (url) => {
+                return `<button class="link-button" onclick="window.open('${url}', '_blank')">${url}</button>`;
+            }) // Convert URLs to buttons
+            .replace(/### (.*?)\n/g, '<h3>$1</h3>') // Convert ### to <h3>
+            .replace(/## (.*?)\n/g, '<h2>$1</h2>') // Convert ## to <h2>
+            .replace(/# (.*?)\n/g, '<h1>$1</h1>') // Convert # to <h1>
+            .replace(/\n/g, '<br/>') // Convert new lines to <br/>
+            .replace(/\\n/g, '<br/>'); // Handle escaped new lines
     };
 
     const handleSubmit = async (e) => {
@@ -85,7 +91,7 @@ export default function Queries() {
         setIsLoading(true);
         
         try {
-            await handleEventStream(inputText, "queries");
+            await handleEventStream(inputText);
         } catch (error) {
             console.error('Submit error:', error);
         } finally {
@@ -100,11 +106,11 @@ export default function Queries() {
     };
 
     const handleKeyPress = (e) => {
-        if(e.keyCode === 13) { 
+        if (e.keyCode === 13) { 
             e.preventDefault();
             handleSubmit(e);
         }
-    }
+    };
 
     return (
         <div>
@@ -149,7 +155,6 @@ export default function Queries() {
                         value={inputText}
                         onKeyDown={handleKeyPress}
                         onChange={(e) => setInputText(e.target.value)}
-                        onKeyPress={handleKeyPress}
                         disabled={isLoading}
                     />
                     <button 
