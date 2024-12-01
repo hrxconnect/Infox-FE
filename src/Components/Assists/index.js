@@ -26,15 +26,16 @@ export default function Assists() {
         let fullMessage = '';
 
         try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
+		
+	    const response = await axios.post(url, {
+                query: userQuery,
+                use_case: "grants"
+            }, {
+		    headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                },
-                mode: 'cors',
-            });
-
+			    }
+		    });
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
             }
