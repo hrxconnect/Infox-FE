@@ -16,44 +16,29 @@ export default function Landing() {
         yOperation: '',
         indigenousCert: ''
     });
+    const [userName, setUserName] = useState('');
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchProfile = async () => {
-            const token = localStorage.getItem("token"); // Retrieve the token from local storage
-            try {
-                const response = await fetch("http://app.infox.bot/api/profile/", {
-                    method: "GET",
-                    headers: {
-                        "Authorization": `Bearer ${token}`, // Set the Bearer token
-                        "Content-Type": "application/json",
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                // Assuming the API returns the profile in the expected format
-                setProfile({
-                    firstName: data.firstName || 'Jennifer',
-                    lastName: data.lastName || 'N',
-                    company: data.company || '',
-                    cLocation: data.cLocation || '',
-                    eCount: data.eCount || '',
-                    bType: data.bType || '',
-                    yOperation: data.yOperation || '',
-                    indigenousCert: data.indigenousCert || ''
-                });
-            } catch (error) {
-                console.error("Failed to fetch profile:", error);
-                setError("Failed to fetch profile. Please try again.");
-            }
-        };
-
-        fetchProfile();
-    }, []); // Empty dependency array to run once on mount
+        const storedProfile = localStorage.getItem("userProfile");
+        if (storedProfile) {
+            const data = JSON.parse(storedProfile);
+            setProfile({
+                firstName: data.firstname,
+                lastName: data.lastname,
+                company: data.businessname,
+                cLocation: data.location,
+                eCount: data.eCount,
+                bType: data.bType,
+                yOperation: data.yOperation,
+                indigenousCert: data.indigenousCert
+            });
+            setUserName(`${data.firstname} ${data.lastname}`);
+        } else {
+            setError("User profile not found. Please log in again.");
+            navigate("/login");
+        }
+    }, [navigate]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -75,7 +60,7 @@ export default function Landing() {
 
     return (
         <div>
-            <CommonHeader />
+            <CommonHeader userName={userName} userIcon={getAvatarLetter()} />
             <div className="content">
                 <p className="profile-title">My Profile</p>
                 <nav className="nav nav-pills nav-justified nav-tab">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import './style.css'
 import logo from '../../Assets/logo.png';
 
@@ -13,45 +14,31 @@ export default function Login() {
         e.preventDefault();
         setErrorMessage("");
 
-        if (email === "scsd@example.com" && password === "ashdsddddddddca!") {
-            localStorage.setItem("token", "bypass-token");
-            navigate("/home");
-            return;
-        }
-
         try {
-            const response = await fetch("http://app.infox.bot/api/login/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ email, password }),
+            const response = await axios.post("http://app.infox.bot/api/login/", {
+                email,
+                password
             });
 
-            const data = await response.json();
+            const data = response.data;
 
-            if (response.ok) {
+            if (response.status === 200 && data.token) {
                 const token = data.token;
+                localStorage.setItem("token", token);
 
-                const userDetailsResponse = await fetch("http://app.infox.bot/api/profile/", {
-                    method: "GET",
+                const userDetailsResponse = await axios.get("http://app.infox.bot/api/profile/", {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
                 });
 
-                if (!userDetailsResponse.ok) {
-                    throw new Error(`Failed to fetch user details: ${userDetailsResponse.status}`);
-                }
-
-                const userDetails = await userDetailsResponse.json();
-
-                if (userDetails.email === email && userDetails.password === password) {
-                    localStorage.setItem("token", token);
+                if (userDetailsResponse.status === 200) {
+                    const userDetails = userDetailsResponse.data;
+                    localStorage.setItem("userProfile", JSON.stringify(userDetails));
                     navigate("/home");
                 } else {
-                    setErrorMessage("Invalid user credentials");
+                    setErrorMessage("Failed to fetch user details.");
                 }
             } else {
                 setErrorMessage("Invalid user credentials");
@@ -76,7 +63,6 @@ export default function Login() {
                             type="email" 
                             className="form-control" 
                             id="exampleInputEmail1" 
-                            aria-describedby="emailHelp" 
                             placeholder="Email address" 
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
