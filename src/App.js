@@ -11,8 +11,13 @@ import Queries from './Components/Queries/index.js'
 import ChatHistory from './Components/ChatHistory/index.js'
 import ChatHistoryDetails from './Components/ChatHistoryDetails/index.js'
 import TermsAndPolicies from './Components/Terms_Condition/index.js'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function App() {
     return (
+        <>
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
@@ -25,7 +30,8 @@ export default function App() {
                 <Route path="chathistory" element={<ChatHistory />} />
                 <Route path="chathistorydetails" element={<ChatHistoryDetails />} />
                 <Route path="termsandconditions" element={<TermsAndPolicies />} />
-                
             </Routes>
+            <ToastContainer />
+        </>
     )
 }

@@ -66,7 +66,7 @@ export default function CommonHeader() {
                             <li className="nav-item1">
                                 <button className="btn btn-help" type="button" onClick={() => navigate('/')}>Get help from a HR Expert</button>
                             </li>
-                            <li className="nav-item1">
+                            <li className="nav-item1" onClick={() => navigate('/home')}>
                                 <img src={logo} alt="" height={30} width={100} />
                             </li>
                         </ul>
@@ -100,7 +100,7 @@ export default function CommonHeader() {
                                 <li className="nav-item1">
                                     <button className="btn btn-help" type="button" onClick={() => navigate('/')}>Get help from a HR Expert</button>
                                 </li>
-                                <li className="nav-item1">
+                                <li className="nav-item1" onClick={() => navigate('/home')}>
                                     <img src={logo} alt="" height={30} width={100} />
                                 </li>
                             </ul>

@@ -5,9 +5,18 @@ import './style.css'
 import { FaArrowLeft } from "react-icons/fa";
 import Fox from '../../Assets/Fox.png'
 import { GoCopy } from "react-icons/go";
+import { Success, Warning, Error } from "../../Helper/Toast.js";
 
 export default function ChatHistoryDetails() {
   const navigate = useNavigate();
+  const copyToClipBoard = async copyMe => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      Success("Copied successfully...")
+    } catch (err) {
+      Error(err)
+    }
+  };
   return (
     <div>
       <CommonHeader></CommonHeader>
@@ -32,7 +41,7 @@ export default function ChatHistoryDetails() {
                   Online Escape Room: Participate in a virtual escape room challenge. It’s a great way to encourage problem-solving and collaboration while having fun.
                 </li>
               </ol>
-              <GoCopy size={22}/>
+              <GoCopy onClick={() => copyToClipBoard('Virtual Team-Building Games')} className="copyBtn" size={22}/>
             </section>
             <div className="chat-message">
               <img src={Fox} alt="" style={{ marginRight: '1rem' }} height={36} width={36} />
@@ -56,7 +65,7 @@ export default function ChatHistoryDetails() {
                 Virtual Talent Show: Host a talent show where team members can showcase their unique skills or hobbies, whether it's singing, magic tricks, or playing an instrument.
                 </li>
               </ol>
-              <GoCopy size={22}/>
+              <GoCopy onClick={() => copyToClipBoard('Social and Interactive Events')} className="copyBtn" size={22}/>
             </section>
           </main>
         </div>

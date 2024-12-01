@@ -103,18 +103,16 @@ export default function Queries() {
         setInputText('');
     };
 
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault(); // Prevent default behavior (new line)
-            handleSubmit(e); // Call handleSubmit
-        }
-    };
-
     const handleTooltipClick = (tooltip) => {
         setBotMessages(prev => [...prev, { type: "user", message: tooltip }]);
         setTooltips([]); // Clear all tooltips after sending the message
     };
-
+    const handleKeyPress = (e) => {
+        if(e.keyCode === 13) { 
+            e.preventDefault();
+            handleSubmit(e);
+        }
+    }
     return (
         <div>
             <CommonHeader />
@@ -156,6 +154,7 @@ export default function Queries() {
                         placeholder="Message Infox"
                         className="searchKeyText"
                         value={inputText}
+                        onKeyDown={handleKeyPress}
                         onChange={(e) => setInputText(e.target.value)}
                         onKeyPress={handleKeyPress}
                         disabled={isLoading}

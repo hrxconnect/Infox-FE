@@ -88,6 +88,7 @@ export default function Assists() {
         if (!inputText.trim() || isLoading) return;
 
         setMessages(prev => [...prev, { type: "user", message: inputText }]);
+        
         setMessages(prev => [...prev, { type: "bot", message: "..." }]);
         
         setIsLoading(true);
@@ -102,11 +103,11 @@ export default function Assists() {
     };
 
     const handleKeyPress = (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
+        if(e.keyCode === 13) { 
             e.preventDefault();
             handleSubmit(e);
         }
-    };
+    }
 
     return (
         <div>
@@ -139,7 +140,7 @@ export default function Assists() {
                         className="searchKeyText"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
-                        onKeyPress={handleKeyPress}
+                        onKeyDown={handleKeyPress}
                         disabled={isLoading}
                     />
                     <button 
