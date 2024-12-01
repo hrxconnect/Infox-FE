@@ -30,7 +30,7 @@ export default function Assists() {
             console.log('Sending query:', userQuery);
             const response = await axios.post(url, {
                 query: userQuery,
-                use_case: {} // Include use_case in the request payload
+                use_case: use_case // Include use_case in the request payload
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,8 +52,14 @@ export default function Assists() {
             // Clean up the message
             fullMessage = fullMessage.trim(); // Trim whitespace
 
+            // Log the full message before formatting
+            console.log('Full message before formatting:', fullMessage);
+
             // Format the message for markdown
             fullMessage = formatBotMessage(fullMessage); // Call the formatting function
+
+            // Log the formatted message
+            console.log('Formatted message:', fullMessage);
 
             setMessages(prev => [
                 ...prev.slice(0, -1),
