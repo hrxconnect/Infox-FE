@@ -26,6 +26,7 @@ export default function Assists() {
         let fullMessage = '';
         
         try {
+            console.log('Sending query:', userQuery);
             const response = await axios.post(url, {
                 query: userQuery
             }, {
@@ -36,7 +37,7 @@ export default function Assists() {
             });
 
             // Log the full response to inspect its structure
-            console.log('API Response:', response.data);
+            console.log('API Response:', response);
 
             // Check if the response is in the expected format
             if (response.data && response.data.data) {
@@ -46,6 +47,7 @@ export default function Assists() {
                     { type: "bot", message: fullMessage }
                 ]);
             } else {
+                console.warn('No data received from the server:', response.data);
                 setMessages(prev => [
                     ...prev,
                     { type: "bot", message: "No data received from the server." }
