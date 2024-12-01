@@ -35,6 +35,9 @@ export default function Assists() {
                 }
             });
 
+            // Log the full response to inspect its structure
+            console.log('API Response:', response.data);
+
             // Check if the response is in the expected format
             if (response.data && response.data.data) {
                 fullMessage += response.data.data;

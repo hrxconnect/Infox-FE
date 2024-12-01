@@ -38,6 +38,8 @@ export default function Queries() {
                 }
             });
 
+            console.log('API Response:', response.data);
+
             if (response.data && response.data.data) {
                 fullMessage += response.data.data;
                 setBotMessages(prev => [
