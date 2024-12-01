@@ -109,6 +109,15 @@ export default function Assists() {
         }
     }
 
+    // Function to format the bot message
+    const formatBotMessage = (message) => {
+        return message
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold text
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic text
+            .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
+            .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
+    };
+
     return (
         <div>
             <CommonHeader />
@@ -119,7 +128,7 @@ export default function Assists() {
                             {ele.type === "bot" ? (
                                 <div className="botMessage">
                                     <img src={Fox} alt="" height={36} width={36} />
-                                    <span className="message-text" dangerouslySetInnerHTML={{ __html: ele.message }} />
+                                    <span className="message-text" dangerouslySetInnerHTML={{ __html: formatBotMessage(ele.message) }} />
                                 </div>
                             ) : (
                                 <div className="userMessage">

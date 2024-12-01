@@ -158,3 +158,13 @@ ul {
 li {
     margin: 5px 0; /* Space between list items */
 }
+
+.question {
+    font-weight: bold;
+    color: #333;
+}
+
+.options {
+    font-weight: bold;
+    color: #007BFF; /* Example color for options */
+}
