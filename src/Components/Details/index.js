@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import './style.css';
 import { useEffect, useState } from "react";
+import axios from 'axios'; // Import axios
 
 export default function Landing() {
     const navigate = useNavigate();
@@ -48,9 +49,28 @@ export default function Landing() {
         }));
     };
 
-    const handleSave = () => {
-        // Implement save functionality here
-        console.log("Profile saved:", profile);
+    const handleSave = async () => {
+        try {
+            const token = localStorage.getItem("token"); // Get the token from local storage
+            const response = await axios.put("http://app.infox.bot/api/profile/", profile, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (response.status === 200) {
+                // Update local storage with the new profile data
+                localStorage.setItem("userProfile", JSON.stringify(profile));
+                console.log("Profile saved:", profile);
+                alert("Profile updated successfully!"); // Optional: Notify the user
+            } else {
+                setError("Failed to save profile. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setError("Failed to save profile. Please try again.");
+        }
     };
 
     // Function to get the first letter of the first name for the avatar

@@ -35,40 +35,18 @@ export default function Assists() {
                 }
             });
 
-            const reader = response.data.getReader();
-            const decoder = new TextDecoder();
-
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-
-                const chunk = decoder.decode(value);
-                try {
-                    const data = JSON.parse(chunk);
-                    if (data.data) {
-                        fullMessage += data.data;
-                        setMessages(prev => [
-                            ...prev.slice(0, -1),
-                            { type: "bot", message: fullMessage }
-                        ]);
-                    }
-                } catch (e) {
-                    const lines = chunk.split('\n').filter(line => line.trim());
-                    for (const line of lines) {
-                        try {
-                            const data = JSON.parse(line);
-                            if (data.data) {
-                                fullMessage += data.data;
-                                setMessages(prev => [
-                                    ...prev.slice(0, -1),
-                                    { type: "bot", message: fullMessage }
-                                ]);
-                            }
-                        } catch (innerError) {
-                            console.error('Parsing line failed:', innerError);
-                        }
-                    }
-                }
+            // Check if the response is in the expected format
+            if (response.data && response.data.data) {
+                fullMessage += response.data.data;
+                setMessages(prev => [
+                    ...prev.slice(0, -1),
+                    { type: "bot", message: fullMessage }
+                ]);
+            } else {
+                setMessages(prev => [
+                    ...prev,
+                    { type: "bot", message: "No data received from the server." }
+                ]);
             }
         } catch (error) {
             console.error('Stream error:', error);
