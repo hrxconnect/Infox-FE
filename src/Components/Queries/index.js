@@ -5,7 +5,6 @@ import { useState, useRef, useEffect } from "react";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
 import axios from 'axios';
-import { queries } from "@testing-library/react";
 
 export default function Queries() {
     const navigate = useNavigate();
@@ -31,7 +30,7 @@ export default function Queries() {
         try {
             const response = await axios.post(url, {
                 query: userQuery,
-                use_case: queries
+                use_case: use_case // Ensure use_case is passed correctly
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,12 +42,20 @@ export default function Queries() {
 
             // Format the response data
             if (Array.isArray(response.data)) {
+                // Combine the messages into a single string
                 fullMessage = response.data.map(item => item.data).join(' ');
             } else {
                 fullMessage = response.data.data || "No data received from the server.";
             }
 
-            fullMessage = formatBotMessage(fullMessage);
+            // Replace specific patterns to maintain formatting
+            fullMessage = fullMessage
+                .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
+                .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
+                .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
+
+            // Format the message for markdown
+            fullMessage = formatBotMessage(fullMessage); // Call the formatting function
 
             setBotMessages(prev => [
                 ...prev.slice(0, -1),
@@ -65,10 +72,10 @@ export default function Queries() {
 
     const formatBotMessage = (message) => {
         return message
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-            .replace(/(Question \d+:)/g, '<span class="question">$1</span>')
-            .replace(/(Options:)/g, '<span class="options">$1</span>');
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold text
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic text
+            .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
+            .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
     };
 
     const handleSubmit = async (e) => {
@@ -93,12 +100,14 @@ export default function Queries() {
         setBotMessages(prev => [...prev, { type: "user", message: tooltip }]);
         setTooltips([]); // Clear all tooltips after sending the message
     };
+
     const handleKeyPress = (e) => {
         if(e.keyCode === 13) { 
             e.preventDefault();
             handleSubmit(e);
         }
     }
+
     return (
         <div>
             <CommonHeader />

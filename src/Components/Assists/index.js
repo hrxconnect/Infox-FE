@@ -38,13 +38,19 @@ export default function Assists() {
 
             console.log('API Response:', response.data);
 
-            // Format the response data
+            // Convert the JSON response to a string
             if (Array.isArray(response.data)) {
                 // Combine the messages into a single string
                 fullMessage = response.data.map(item => item.data).join(' ');
             } else {
                 fullMessage = response.data.data || "No data received from the server.";
             }
+
+            // Replace specific patterns to maintain formatting
+            fullMessage = fullMessage
+                .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
+                .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
+                .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
 
             // Format the message for markdown
             fullMessage = formatBotMessage(fullMessage); // Call the formatting function
@@ -92,9 +98,7 @@ export default function Assists() {
     const formatBotMessage = (message) => {
         return message
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold text
-            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic text
-            .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
-            .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
+            .replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic text
     };
 
     return (
