@@ -30,7 +30,7 @@ export default function Assists() {
             console.log('Sending query:', userQuery);
             const response = await axios.post(url, {
                 query: userQuery,
-                use_case: {}// Include use_case in the request payload
+                use_case: {} // Include use_case in the request payload
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,19 +40,17 @@ export default function Assists() {
 
             console.log('API Response:', response.data);
 
-            // Extract values and combine them into a single string
-            if (Array.isArray(response.data)) {
-                fullMessage = response.data.map(item => item.data).join(' ');
-            } else {
-                fullMessage = response.data.data || "No data received from the server.";
+            // Extract values from the concatenated JSON objects
+            const responseText = response.data;
+            const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
+            let match;
+
+            while ((match = regex.exec(responseText)) !== null) {
+                fullMessage += match[1] + ' '; // Concatenate the matched values
             }
 
-            // Clean up the message by removing unnecessary characters
-            fullMessage = fullMessage
-                .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
-                .replace(/"data":/g, '') // Remove the "data" key
-                .replace(/"/g, '') // Remove quotes
-                .trim(); // Trim whitespace
+            // Clean up the message
+            fullMessage = fullMessage.trim(); // Trim whitespace
 
             // Format the message for markdown
             fullMessage = formatBotMessage(fullMessage); // Call the formatting function

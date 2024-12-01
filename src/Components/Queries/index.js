@@ -40,20 +40,17 @@ export default function Queries() {
 
             console.log('API Response:', response.data);
 
-            // Format the response data
-            if (Array.isArray(response.data)) {
-                // Combine the messages into a single string
-                fullMessage = response.data.map(item => item.data).join(' ');
-            } else {
-                fullMessage = response.data.data || "No data received from the server.";
+            // Extract values from the concatenated JSON objects
+            const responseText = response.data;
+            const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
+            let match;
+
+            while ((match = regex.exec(responseText)) !== null) {
+                fullMessage += match[1] + ' '; // Concatenate the matched values
             }
 
-            // Clean up the message by removing unnecessary characters
-            fullMessage = fullMessage
-                .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
-                .replace(/"data":/g, '') // Remove the "data" key
-                .replace(/"/g, '') // Remove quotes
-                .trim(); // Trim whitespace
+            // Clean up the message
+            fullMessage = fullMessage.trim(); // Trim whitespace
 
             // Format the message for markdown
             fullMessage = formatBotMessage(fullMessage); // Call the formatting function
