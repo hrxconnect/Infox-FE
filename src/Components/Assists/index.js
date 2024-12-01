@@ -4,7 +4,6 @@ import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
-import axios from 'axios';
 
 export default function Assists() {
     const navigate = useNavigate();
@@ -24,47 +23,57 @@ export default function Assists() {
     const handleEventStream = async (userQuery) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
         let fullMessage = '';
-        const use_case = "grants"; // Define the use_case variable
-
+        
         try {
-            console.log('Sending query:', userQuery);
-            const response = await axios.post(url, {
-                query: userQuery,
-                use_case: use_case // Include use_case in the request payload
-            }, {
+            const response = await fetch(url, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                }
+                },
+                mode: 'cors',
+                body: JSON.stringify({ query: userQuery })
             });
 
-            console.log('API Response:', response.data);
-
-            // Extract values from the concatenated JSON objects
-            const responseText = response.data;
-            const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
-            let match;
-
-            while ((match = regex.exec(responseText)) !== null) {
-                fullMessage += match[1] + ' '; // Concatenate the matched values
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
 
-            // Clean up the message
-            fullMessage = fullMessage.trim(); // Trim whitespace
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
 
-            // Log the full message before formatting
-            console.log('Full message before formatting:', fullMessage);
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
 
-            // Format the message for markdown
-            fullMessage = formatBotMessage(fullMessage); // Call the formatting function
-
-            // Log the formatted message
-            console.log('Formatted message:', fullMessage);
-
-            setMessages(prev => [
-                ...prev.slice(0, -1),
-                { type: "bot", message: fullMessage }
-            ]);
+                const chunk = decoder.decode(value);
+                try {
+                    const data = JSON.parse(chunk);
+                    if (data.data) {
+                        fullMessage += data.data;
+                        setMessages(prev => [
+                            ...prev.slice(0, -1),
+                            { type: "bot", message: fullMessage }
+                        ]);
+                    }
+                } catch (e) {
+                    const lines = chunk.split('\n').filter(line => line.trim());
+                    for (const line of lines) {
+                        try {
+                            const data = JSON.parse(line);
+                            if (data.data) {
+                                fullMessage += data.data;
+                                setMessages(prev => [
+                                    ...prev.slice(0, -1),
+                                    { type: "bot", message: fullMessage }
+                                ]);
+                            }
+                        } catch (innerError) {
+                            console.error('Parsing line failed:', innerError);
+                        }
+                    }
+                }
+            }
         } catch (error) {
             console.error('Stream error:', error);
             setMessages(prev => [
@@ -104,7 +113,9 @@ export default function Assists() {
     const formatBotMessage = (message) => {
         return message
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold text
-            .replace(/\*(.*?)\*/g, '<em>$1</em>'); // Italic text
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic text
+            .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
+            .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
     };
 
     return (
