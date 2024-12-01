@@ -36,23 +36,19 @@ export default function Assists() {
                 }
             });
 
-            // Log the full response to inspect its structure
-            console.log('API Response:', response);
+            console.log('API Response:', response.data);
 
-            // Check if the response is in the expected format
-            if (response.data && response.data.data) {
-                fullMessage += response.data.data;
-                setMessages(prev => [
-                    ...prev.slice(0, -1),
-                    { type: "bot", message: fullMessage }
-                ]);
+            // Format the response data
+            if (Array.isArray(response.data)) {
+                fullMessage = response.data.map(item => item.data).join(' '); // Concatenate messages
             } else {
-                console.warn('No data received from the server:', response.data);
-                setMessages(prev => [
-                    ...prev,
-                    { type: "bot", message: "No data received from the server." }
-                ]);
+                fullMessage = response.data.data || "No data received from the server.";
             }
+
+            setMessages(prev => [
+                ...prev.slice(0, -1),
+                { type: "bot", message: fullMessage }
+            ]);
         } catch (error) {
             console.error('Stream error:', error);
             setMessages(prev => [

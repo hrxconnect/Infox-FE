@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
 import axios from 'axios';
+import { queries } from "@testing-library/react";
 
 export default function Queries() {
     const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function Queries() {
         try {
             const response = await axios.post(url, {
                 query: userQuery,
-                use_case
+                use_case: queries
             }, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,18 +41,17 @@ export default function Queries() {
 
             console.log('API Response:', response.data);
 
-            if (response.data && response.data.data) {
-                fullMessage += response.data.data;
-                setBotMessages(prev => [
-                    ...prev.slice(0, -1),
-                    { type: "bot", message: fullMessage }
-                ]);
+            // Format the response data
+            if (Array.isArray(response.data)) {
+                fullMessage = response.data.map(item => item.data).join(' '); // Concatenate messages
             } else {
-                setBotMessages(prev => [
-                    ...prev,
-                    { type: "bot", message: "No data received from the server." }
-                ]);
+                fullMessage = response.data.data || "No data received from the server.";
             }
+
+            setBotMessages(prev => [
+                ...prev.slice(0, -1),
+                { type: "bot", message: fullMessage }
+            ]);
         } catch (error) {
             console.error('Stream error:', error);
             setBotMessages(prev => [
