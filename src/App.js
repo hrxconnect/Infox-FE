@@ -13,6 +13,7 @@ import ChatHistoryDetails from './Components/ChatHistoryDetails/index.js'
 import TermsAndPolicies from './Components/Terms_Condition/index.js'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './Helper/RouterGuard.js';
 
 
 export default function App() {
@@ -23,13 +24,13 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="resetpassword" element={<ResetPassword />} />
                 <Route path="setpassword" element={<SetPassword />} />
-                <Route path="home" element={<Home />} />
-                <Route path="profile" element={<Profile />} />
-                <Route path="assists" element={<Assists />} />
-                <Route path="queries" element={<Queries />} />
-                <Route path="chathistory" element={<ChatHistory />} />
-                <Route path="chathistorydetails" element={<ChatHistoryDetails />} />
-                <Route path="termsandconditions" element={<TermsAndPolicies />} />
+                <Route path="home" element={<PrivateRoute><Home /></PrivateRoute>} />
+                <Route path="profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
+                <Route path="assists" element={<PrivateRoute><Assists /></PrivateRoute>} />
+                <Route path="queries" element={<PrivateRoute><Queries /></PrivateRoute>} />
+                <Route path="chathistory" element={<PrivateRoute><ChatHistory /></PrivateRoute>} />
+                <Route path="chathistorydetails" element={<PrivateRoute><ChatHistoryDetails /></PrivateRoute>} />
+                <Route path="termsandconditions" element={<PrivateRoute><TermsAndPolicies /></PrivateRoute>} />
             </Routes>
             <ToastContainer />
         </>
