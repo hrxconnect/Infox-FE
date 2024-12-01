@@ -24,11 +24,13 @@ export default function Assists() {
     const handleEventStream = async (userQuery) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
         let fullMessage = '';
-        
+        const use_case = { type: "grants" }; // Define the use_case variable
+
         try {
             console.log('Sending query:', userQuery);
             const response = await axios.post(url, {
-                query: userQuery
+                query: userQuery,
+                use_case: {}// Include use_case in the request payload
             }, {
                 headers: {
                     'Content-Type': 'application/json',

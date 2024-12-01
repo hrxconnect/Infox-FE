@@ -30,7 +30,7 @@ export default function Queries() {
         try {
             const response = await axios.post(url, {
                 query: userQuery,
-                use_case: use_case // Ensure use_case is passed correctly
+                use_case: "queries" // Ensure use_case is passed correctly
             }, {
                 headers: {
                     'Content-Type': 'application/json',
