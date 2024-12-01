@@ -22,7 +22,7 @@ export default function Assists() {
     }, [messages]);
 
     const handleEventStream = async (userQuery) => {
-        const url = `http://99.79.97.86/chat_stream/grants/${encodeURIComponent(userQuery)}`;
+        const url = `http://app.infox.bot/api/relay_chat/`;
         let fullMessage = '';
 
         try {
