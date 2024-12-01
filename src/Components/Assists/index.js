@@ -24,7 +24,7 @@ export default function Assists() {
     const handleEventStream = async (userQuery) => {
         const url = 'http://app.infox.bot/api/relay_chat/';
         let fullMessage = '';
-        const use_case = { type: "grants" }; // Define the use_case variable
+        const use_case = "grants"; // Define the use_case variable
 
         try {
             console.log('Sending query:', userQuery);
