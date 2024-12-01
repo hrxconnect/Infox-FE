@@ -40,10 +40,14 @@ export default function Assists() {
 
             // Format the response data
             if (Array.isArray(response.data)) {
-                fullMessage = response.data.map(item => item.data).join(' '); // Concatenate messages
+                // Combine the messages into a single string
+                fullMessage = response.data.map(item => item.data).join(' ');
             } else {
                 fullMessage = response.data.data || "No data received from the server.";
             }
+
+            // Format the message for markdown
+            fullMessage = formatBotMessage(fullMessage); // Call the formatting function
 
             setMessages(prev => [
                 ...prev.slice(0, -1),

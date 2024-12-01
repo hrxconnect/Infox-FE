@@ -43,10 +43,12 @@ export default function Queries() {
 
             // Format the response data
             if (Array.isArray(response.data)) {
-                fullMessage = response.data.map(item => item.data).join(' '); // Concatenate messages
+                fullMessage = response.data.map(item => item.data).join(' ');
             } else {
                 fullMessage = response.data.data || "No data received from the server.";
             }
+
+            fullMessage = formatBotMessage(fullMessage);
 
             setBotMessages(prev => [
                 ...prev.slice(0, -1),
@@ -59,6 +61,14 @@ export default function Queries() {
                 { type: "bot", message: "Sorry, I encountered an error. Please try again." }
             ]);
         }
+    };
+
+    const formatBotMessage = (message) => {
+        return message
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/(Question \d+:)/g, '<span class="question">$1</span>')
+            .replace(/(Options:)/g, '<span class="options">$1</span>');
     };
 
     const handleSubmit = async (e) => {
