@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { Success, Warning, Error } from "../Helper/Toast.js";
 
 const PrivateRoute = ({ children }) => {
-  const token = localStorage.getItem('token'); // Get the token from local storage
+  const token = localStorage.getItem('token');
 
   if (!token) {
     Error("Token expired or malformed !!!")
@@ -11,7 +11,7 @@ const PrivateRoute = ({ children }) => {
     return <Navigate to="/login" />;
   }
 
-  return children; // Render the child component if token is valid
+  return children; 
 };
 
 export default PrivateRoute;
