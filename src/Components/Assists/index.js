@@ -40,19 +40,19 @@ export default function Assists() {
 
             console.log('API Response:', response.data);
 
-            // Convert the JSON response to a string
+            // Extract values and combine them into a single string
             if (Array.isArray(response.data)) {
-                // Combine the messages into a single string
                 fullMessage = response.data.map(item => item.data).join(' ');
             } else {
                 fullMessage = response.data.data || "No data received from the server.";
             }
 
-            // Replace specific patterns to maintain formatting
+            // Clean up the message by removing unnecessary characters
             fullMessage = fullMessage
                 .replace(/\\n/g, '\n') // Replace escaped newlines with actual newlines
-                .replace(/(Question \d+:)/g, '<span class="question">$1</span>') // Style questions
-                .replace(/(Options:)/g, '<span class="options">$1</span>'); // Style options
+                .replace(/"data":/g, '') // Remove the "data" key
+                .replace(/"/g, '') // Remove quotes
+                .trim(); // Trim whitespace
 
             // Format the message for markdown
             fullMessage = formatBotMessage(fullMessage); // Call the formatting function
