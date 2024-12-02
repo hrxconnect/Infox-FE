@@ -118,6 +118,12 @@ textarea.searchKeyText::-webkit-input-placeholder {
   color: gray;
 }
 
+.user-icon {
+  margin-left: 10px;
+  color: #f29d38;
+  scale: 1.3;
+}
+
 
 
 @media only screen and (max-width: 768px) {

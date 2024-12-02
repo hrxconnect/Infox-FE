@@ -76,7 +76,7 @@ export default function ChatBox({
                   ) : (
                     <div className="userMessage">
                       <span className="message-text">{ele.message}</span>
-                      <div className="user-icon-container">
+                      <div>
                         <FaRegUser className="user-icon" />
                       </div>
                     </div>
