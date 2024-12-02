@@ -111,7 +111,7 @@ export default function CommonHeader() {
                     <div className="sidebar-footer">
                         <ul className="navbar-nav me-auto mb-2 mt-1 mb-lg-0">
                             <li className="nav-item1">
-                                <button className="btn btn-help" type="button" onClick={() => navigate('/#hrxExperts')}>Get help from a HR Expert</button>
+                                <button className="btn btn-help" type="button" onClick={() => navigate('/hr-experts')}>Get help from a HR Expert</button>
                             
                             </li>
                             <li className="nav-item1" onClick={() => navigate('/home')}>
@@ -146,7 +146,7 @@ export default function CommonHeader() {
                         <div className="sidebar-footer">
                             <ul className="navbar-nav me-auto mb-2 mt-1 mb-lg-0">
                                 <li className="nav-item1">
-                                    <button className="btn btn-help" type="button" onClick={() => navigate('/')}>Get help from a HR Expert</button>
+                                    <button className="btn btn-help" type="button" onClick={() => navigate('/hr-experts')}>Get help from a HR Expert</button>
                                 </li>
                                 <li className="nav-item1" onClick={() => navigate('/home')}>
                                     <img src={logo} alt="" height={30} width={100} />

@@ -16,7 +16,6 @@ import logo1 from '../../Assets/logo1.png'
 import logo2 from '../../Assets/logo2.jpg'
 import logo3 from '../../Assets/logo3.png'
 import logo4 from '../../Assets/logo4.png'
-import hrxExperts from '../../Assets/HRXExperts.png'
 import { useEffect } from "react";
 
 export default function Landing() {
@@ -157,14 +156,7 @@ export default function Landing() {
                 </div>
             </div>*/}
             <div className="hrxExperts" id="hrxExperts">
-                <div className="solutions">
-                    <span className="text4 text-center">Our HR Experts</span>
-                </div>
-                <div className="hrxExpertsLogo" >
-                  <a  href="https://hrxconnect.com/" target="_blank">
-                      <img src={hrxExperts} className="card-img-top2" alt="..." />
-                  </a>
-                </div>
+               
              
             </div>
             <LandingFooter></LandingFooter>
