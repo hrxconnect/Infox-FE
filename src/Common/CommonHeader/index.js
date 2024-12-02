@@ -60,7 +60,7 @@ export default function CommonHeader() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-body-tertiary shadow-sm bottomStyle">
-                <div className="container header-common">
+         
                     <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -85,7 +85,7 @@ export default function CommonHeader() {
                             </ul>
                         </div>
                     </div>
-                </div>
+               
             </nav>
             <div className="sidebar barstatus">
                 <div className="sidebar-content">
