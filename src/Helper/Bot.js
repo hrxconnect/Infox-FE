@@ -16,5 +16,6 @@ export const formatBotMessage = (message) => {
         .replace(/## (.*?)\n/g, '<h2>$1</h2>') // Convert ## to <h2>
         .replace(/# (.*?)\n/g, '<h1>$1</h1>') // Convert # to <h1>
         .replace(/\n/g, '<br/>')
+        .replace(/\t/g, "    ")
         .replace(/\\n/g, '<br/>');  // Style options
 };

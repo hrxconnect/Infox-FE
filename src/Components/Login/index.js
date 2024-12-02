@@ -15,7 +15,7 @@ export default function Login() {
         setErrorMessage("");
 
         try {
-            const response = await axios.post("http://app.infox.bot/api/login/", {
+            const response = await axios.post("https://app.infox.bot/api/login/", {
                 email,
                 password
             });
@@ -26,7 +26,7 @@ export default function Login() {
                 const token = data.token;
                 localStorage.setItem("token", token);
 
-                const userDetailsResponse = await axios.get("http://app.infox.bot/api/profile/", {
+                const userDetailsResponse = await axios.get("https://app.infox.bot/api/profile/", {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json",
