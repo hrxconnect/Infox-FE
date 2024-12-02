@@ -8,8 +8,9 @@
 }
 
 .banner-img {
-    height: 93px;
     width: 100%;
+    margin-bottom: 100px;
+    overflow: hidden;
 }
 
 .sectionCards {
