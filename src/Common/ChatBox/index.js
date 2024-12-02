@@ -62,7 +62,7 @@ export default function ChatBox({
 
 
     return (
-      <div className="contentxyz">
+      <div className="chat-bot-content">
         <div className="text-area">
             {messages.map((ele, index) => (
                 <div key={index} className="message-container">

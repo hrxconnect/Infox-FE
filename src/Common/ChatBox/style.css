@@ -1,4 +1,4 @@
-.contentxyz {
+.chat-bot-content {
   padding-left: 280px;
   padding-top: 78px;
   padding-right: 20px;
@@ -121,12 +121,14 @@ textarea.searchKeyText::-webkit-input-placeholder {
 
 
 @media only screen and (max-width: 768px) {
-  .context {
+  .chat-bot-content {
       margin-left: 0px;
       height: calc(100vh - 70px);
       margin-top: 70px;
       display: flex;
       justify-content: flex-end;
+
+      padding-left: 10px;
   }
 
   .tooltips {
