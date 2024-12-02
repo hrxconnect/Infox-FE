@@ -198,6 +198,14 @@
     align-items: center;
 }
 
+.hrxExperts {
+  margin-top: 100px;
+}
+
+.hrxExpertsLogo {
+  text-align: center;
+}
+
 @media only screen and (max-width: 768px) {
     .getStarted {
         background: linear-gradient(180deg, #FFA500 0%, rgba(129, 144, 128, 0.22) 50%, rgba(2, 123, 255, 0) 100%);
