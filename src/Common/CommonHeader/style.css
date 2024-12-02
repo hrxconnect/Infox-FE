@@ -3,12 +3,13 @@
     display: flex;
     justify-content: space-between; /* Align items to the ends */
     align-items: center; /* Center items vertically */
-    max-width: 1100px !important;
     padding: 0 10px; /* Add some padding */
+
 }
 
 .bottomStyle {
     border-bottom: 4px solid #FFA500;
+    
 }
 
 .navbar {
@@ -17,6 +18,11 @@
     left: 0;
     width: 100%;
     z-index: 1000;
+    background-color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 3rem;
 }
 
 .sidebar {
