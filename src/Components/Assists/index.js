@@ -17,7 +17,7 @@ export default function Assists() {
 
 
     const handleEventStream = async (userQuery) => {
-        const url = `http://app.infox.bot/api/relay_chat/`;
+        const url = `https://app.infox.bot/api/relay_chat/`;
         let fullMessage = '';
 
         try {
@@ -31,11 +31,12 @@ export default function Assists() {
                     'Accept': 'application/json',
 			    }
 		    });
-            if (!response.ok) {
+            if (response.status !== 200) {
+            
                 throw new Error(`HTTP error! status: ${response.status} - ${response.statusText}`);
             }
 
-            const text = await response.text(); // Get the raw response text
+            const text = await response.data; // Get the raw response text
             console.log('Raw response:', text); // Log the raw response
 
             // Extract values from the concatenated JSON objects

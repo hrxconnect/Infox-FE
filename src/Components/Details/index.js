@@ -52,7 +52,7 @@ export default function Landing() {
     const handleSave = async () => {
         try {
             const token = localStorage.getItem("token"); // Get the token from local storage
-            const response = await axios.put("http://app.infox.bot/api/profile/", profile, {
+            const response = await axios.put("https://app.infox.bot/api/profile/", profile, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",

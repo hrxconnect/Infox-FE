@@ -26,24 +26,25 @@ export default function ChatBox({
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    
+    const sendMessage = async (message) => {
+      setMessages(prev => [...prev, { type: "user", message }]);
+      setMessages(prev => [...prev, { type: "bot", message: "..." }]);
+      
+      setIsLoading(true);
+      try {
+          await handleEventStream(message);
+      } catch (error) {
+          console.error('Submit error:', error);
+      } finally {
+        
+          setIsLoading(false);
+      }
+      setInputText('');
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!inputText.trim() || isLoading) return;
-
-        setMessages(prev => [...prev, { type: "user", message: inputText }]);
-        setMessages(prev => [...prev, { type: "bot", message: "..." }]);
-        
-        setIsLoading(true);
-        try {
-            await handleEventStream(inputText);
-        } catch (error) {
-            console.error('Submit error:', error);
-        } finally {
-          
-            setIsLoading(false);
-        }
-        setInputText('');
+        sendMessage(inputText)
     };
 
     const handleKeyPress = (e) => {
@@ -54,7 +55,8 @@ export default function ChatBox({
     }
 
     const handleTooltipClick = (tooltip) => {
-      setMessages(prev => [...prev, { type: "user", message: tooltip }]);
+
+      sendMessage(tooltip)
       setTooltips([]); // Clear all tooltips after sending the message
   };
 

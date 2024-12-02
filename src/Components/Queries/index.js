@@ -26,7 +26,7 @@ export default function Queries() {
     }, [botMessages]);
 
     const handleEventStream = async (userQuery) => {
-        const url = 'http://app.infox.bot/api/relay_chat/';
+        const url = 'https://app.infox.bot/api/relay_chat/';
         let fullMessage = '';
 
         try {

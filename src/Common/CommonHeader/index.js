@@ -20,7 +20,7 @@ export default function CommonHeader() {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("http://app.infox.bot/api/profile/", {
+                    const response = await axios.get("https://app.infox.bot/api/profile/", {
                         headers: {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function CommonHeader() {
 
     const handleLogout = async () => {
         // Optionally, you can call an API to handle logout on the server side
-        // await axios.post("http://app.infox.bot/api/logout/", {}, {
+        // await axios.post("https://app.infox.bot/api/logout/", {}, {
         //     headers: {
         //         "Authorization": `Bearer ${localStorage.getItem("token")}`,
         //     },
