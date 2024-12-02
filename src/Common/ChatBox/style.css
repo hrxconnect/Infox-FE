@@ -1,0 +1,172 @@
+.contentxyz {
+  padding-left: 280px;
+  padding-top: 78px;
+  padding-right: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.text-area {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tooltips {
+  gap: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+
+.message-container {
+  margin: 10px 0; /* Add margin between messages */
+}
+
+.botMessage, .userMessage {
+  padding: 10px 15px; /* Add padding for better spacing */
+  border-radius: 10px; /* Rounded corners */
+  max-width: 80%; /* Limit width for better alignment */
+}
+
+.botMessage {
+  background-color: #f1f1f1; /* Light background for bot messages */
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.userMessage {
+  background-color: #f1f1f1; /* Blue background for user messages */
+  color: black; /* White text for user messages */
+  display: flex;
+  float: right;
+  text-align: end;
+  align-items: center;
+  white-space: pre-line;
+}
+
+.tooltip-card {
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  border-radius: 75px;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tooltips {
+  max-width: 1200px;
+  min-width: 600px;
+  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  background-color: #f1f1f1;
+  border: 0;
+  border-radius: 30px;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  color: black;
+  justify-content: center;
+  align-items: center;
+}
+
+input:focus {
+  outline: none;
+}
+
+input::placeholder {
+  color: white;
+}
+
+.send-btn {
+  background: grey;
+  border: 0;
+  border-radius: 17px;
+  color: white;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  display: flex;
+  padding: 7px;
+}
+
+.pt-site-footer__submit {
+  position: relative;
+  display: inline-block;
+
+  margin-top: 10px;
+  margin-bottom: 3rem;
+}
+
+input.searchKeyText::-webkit-input-placeholder,
+textarea.searchKeyText::-webkit-input-placeholder {
+  color: gray;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+  .context {
+      margin-left: 0px;
+      height: calc(100vh - 70px);
+      margin-top: 70px;
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  .tooltips {
+      display: none;
+  }
+}
+
+.message-text {
+  margin-left: 10px; /* Space between the avatar and the message text */
+  font-size: 16px; /* Font size for the message text */
+  color: #333; /* Text color */
+}
+
+/* Style for bold text */
+strong {
+  font-weight: bold;
+}
+
+/* Style for italic text */
+em {
+  font-style: italic;
+}
+
+/* Style for lists */
+ul {
+  margin: 5px 0; /* Margin for the list */
+  padding-left: 20px; /* Indent the list */
+}
+
+/* Style for list items */
+li {
+  margin: 5px 0; /* Space between list items */
+}
+
+.question {
+  font-weight: bold;
+  color: #333;
+}
+
+.options {
+  font-weight: bold;
+  color: #007BFF; /* Example color for options */
+}
