@@ -33,12 +33,13 @@
     margin-left: 40px;
 }
 
-.total {
+.profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
     font-family: Arial, sans-serif;
+    
 }
 
 .nav-tab {
@@ -53,7 +54,8 @@
 }
 
 .signup-box {
-    width: auto;
+  
+  min-width: 70%;
     padding: 20px;
 }
 
