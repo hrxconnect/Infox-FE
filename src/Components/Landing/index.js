@@ -145,7 +145,7 @@ export default function Landing() {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            {/*<div className="container">
                 <div className="solutions">
                     <span className="text4 text-center">Our Trusted Partners</span>
                 </div>
@@ -155,7 +155,7 @@ export default function Landing() {
                     <img src={logo3} className="card-img-top2" alt="..." />
                     <img src={logo4} className="card-img-top2" alt="..." /> 
                 </div>
-            </div>
+            </div>*/}
             <div className="hrxExperts" id="hrxExperts">
                 <div className="solutions">
                     <span className="text4 text-center">Our HR Experts</span>
