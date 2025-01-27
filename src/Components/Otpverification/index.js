@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
-import logo from '../../Assets/logo.png';
+
+//Assets
+import otpbackgroundImage from '../../Assets/OTP.png';
+import backBtnImage from '../../Assets/back-icon.png';
+
 const Otpverification = () => {
   const { userId } = useParams(); // Fetch userId from the URL parameter
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -83,24 +87,27 @@ const Otpverification = () => {
     console.log("User ID from URL:", userId);
   }, [userId]);
 
-  return (
-    <div className="otp-verification-page">
-      <div className="otp-container">
-        <div className="logo-section">
-                  <img src={logo} alt="Logo" className="login-logo" />
-                </div>
-        <h2>OTP Verification</h2>
-        <p>Enter the 6-digit OTP sent to your email.</p>
-
+  
+    return (
+      <div className="otp-container" >
+        <div className="otp-header">
+          <img 
+          src={backBtnImage} 
+          alt="" 
+          className="back-icon" 
+          onClick=""
+        />
+          <h1>Verify Your Email</h1>
+        </div>
+        <p>We’ve sent a 6-digit verification code to your email address. Enter the code below to continue.</p>
         {(successMessage || errorMessage) && (
           <p className={successMessage ? "success-message" : "error-message"}>
             {successMessage || errorMessage}
           </p>
         )}
-
-        <form onSubmit={handleOtpSubmit} className="otp-form">
-          <div className="otp-input-container">
-            {otp.map((digit, index) => (
+        <form onSubmit={handleOtpSubmit}>
+          <div className="otp-inputs">
+          {otp.map((digit, index) => (
               <input
                 key={index}
                 type="text"
@@ -108,22 +115,17 @@ const Otpverification = () => {
                 value={digit}
                 onChange={(e) => handleOtpChange(e, index)}
                 id={`otp-input-${index}`}
-                className="otp-input"
                 autoFocus={index === 0} // Focus on the first input by default
               />
             ))}
           </div>
-          <button type="submit" className="submit-button">
-            Verify OTP
-          </button>
+          <button type="submit" className="otp-submit button">Verify</button>
         </form>
-
-        <button className="resend-otp-button" onClick={handleResendOtp}>
-          Resend OTP
-        </button>
+        
+        <div className="resend" onClick={handleResendOtp}>
+  Didn’t receive the code? <span className="resend-code">Resend OTP</span></div>
       </div>
-    </div>
-  );
-};
-
-export default Otpverification;
+    );
+  };
+  
+  export default Otpverification;
