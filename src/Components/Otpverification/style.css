@@ -1,0 +1,130 @@
+.otp-verification-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.otp-container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Make the container take up full width of its parent */
+  max-width: 400px; /* Set a maximum width to avoid being too wide on larger screens */
+  box-sizing: border-box; /* Include padding in the element's total width */
+  margin: 0 auto; /* Center the container horizontally */
+}
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover; /* Ensures the image scales nicely */
+}
+/* Logo section */
+.logo-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.login-logo {
+  width: 170px;
+  height: 46px;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #333333; /* Dark color for heading */
+}
+
+p {
+  font-size: 14px;
+  color: #555555;
+  margin-bottom: 20px;
+}
+
+.otp-input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Ensures consistent spacing between inputs */
+  margin-bottom: 20px;
+  width: 100%; /* Ensures the container takes full width */
+  box-sizing: border-box; /* Ensures padding and border are included in the element's total width */
+}
+
+.otp-input {
+  width: 50px; /* Adjust the width of the input fields */
+  height: 50px; /* Adjust the height of the input fields */
+  font-size: 14px; /* Larger text for better readability */
+  text-align: center; /* Centers the text in each input */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  background-color: #fff; /* White background for the input */
+  color: #333; /* Dark text color for visibility */
+  box-sizing: border-box; /* Includes padding and border in width/height */
+}
+
+/* Focus state for OTP input */
+.otp-input:focus {
+  border-color: #FFA500; /* Primary color for focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Input validation: Green background for valid input */
+.otp-input:valid {
+  background-color: #e0ffe0; /* Light green background when valid */
+}
+
+/* Input validation: Red background for invalid input */
+.otp-input:invalid {
+  background-color: #ffcccc; /* Light red background when invalid */
+}
+
+/* Keep background white when focused and filled */
+.otp-input:focus:not(:placeholder-shown) {
+  background-color: #fff;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #FFA500; /* Primary color for submit button */
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: #e07b00; /* Slightly darker shade of primary color */
+}
+
+.resend-otp-button {
+  background: none;
+  border: none;
+  color: #007bff; /* Blue color for resend OTP */
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.resend-otp-button:hover {
+  text-decoration: underline;
+  color: #0056b3; /* Darker blue on hover */
+}
+
+.success-message {
+  color: #4CAF50; /* Green for success message */
+}
+
+.error-message {
+  color: #FF5733; /* Red-orange color for error messages */
+}
