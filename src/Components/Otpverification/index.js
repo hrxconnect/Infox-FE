@@ -7,7 +7,7 @@ import "./style.css";
 import otpbackgroundImage from '../../Assets/OTP.png';
 import backBtnImage from '../../Assets/back-icon.png';
 
-const Otpverification = () => {
+const Otpverification = ({ onBack }) => {
   const { userId } = useParams(); // Fetch userId from the URL parameter
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errorMessage, setErrorMessage] = useState("");
@@ -83,6 +83,11 @@ const Otpverification = () => {
     }
   };
 
+  const handleBackToSignup = (e) => {
+    e.preventDefault();
+    navigate("/signup");
+  };
+
   useEffect(() => {
     console.log("User ID from URL:", userId);
   }, [userId]);
@@ -95,7 +100,7 @@ const Otpverification = () => {
           src={backBtnImage} 
           alt="" 
           className="back-icon" 
-          onClick=""
+          onClick={handleBackToSignup}
         />
           <h1>Verify Your Email</h1>
         </div>
