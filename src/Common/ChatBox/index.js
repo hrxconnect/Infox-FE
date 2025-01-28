@@ -6,7 +6,6 @@ import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
-import axios from 'axios';
 import { formatBotMessage } from "../../Helper/Bot.js";
 
 export default function ChatBox({

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import './style.css';
 import { useEffect, useState } from "react";
-import axios from 'axios'; // Import axios
 import LandingHeader from "../../Common/LandingHeader/index.js";
 import hrxExperts from '../../Assets/HRXExperts.png'
 

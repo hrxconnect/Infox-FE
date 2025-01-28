@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 import './style.css';
 import logo from '../../Assets/logo.png';
+import apiClient from "../../api/api";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Login() {
         setErrorMessage("");
 
         try {
-            const response = await axios.post("https://app.infox.bot/api/login/", {
+            const response = await apiClient.post("/login/", {
                 email,
                 password
             });
@@ -26,7 +26,7 @@ export default function Login() {
                 const token = data.token;
                 localStorage.setItem("token", token);
 
-                const userDetailsResponse = await axios.get("https://app.infox.bot/api/profile/", {
+                const userDetailsResponse = await apiClient.get("/profile/", {
                     headers: {
                         "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json",

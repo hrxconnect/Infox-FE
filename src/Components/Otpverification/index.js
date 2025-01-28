@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./style.css";
 
 //Assets
 import otpbackgroundImage from '../../Assets/OTP.png';
 import backBtnImage from '../../Assets/back-icon.png';
+import apiClient from "../../api/api";
 
 const Otpverification = () => {
   const { userId } = useParams(); // Fetch userId from the URL parameter
@@ -40,8 +40,8 @@ const Otpverification = () => {
     }
 
     try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/verify_otp/${userId}/`,
+      const response = await apiClient.post(
+        `/${userId}/`,
         { otp: otpValue }
       );
 
@@ -65,8 +65,8 @@ const Otpverification = () => {
     setOtp(["", "", "", "", "", ""]); // Clear input fields
 
     try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/resend_otp/${userId}/`
+      const response = await apiClient.post(
+        `/${userId}/`
       );
 
       if (response.status === 200) {

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import './style.css';
 import { useEffect, useState } from "react";
-import axios from 'axios'; // Import axios
+import apiClient from "../../api/api.js";
 
 export default function Landing() {
     const navigate = useNavigate();
@@ -52,7 +52,7 @@ export default function Landing() {
     const handleSave = async () => {
         try {
             const token = localStorage.getItem("token"); // Get the token from local storage
-            const response = await axios.put("https://app.infox.bot/api/profile/", profile, {
+            const response = await apiClient.put("/profile/", profile, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json",

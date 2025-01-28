@@ -4,9 +4,9 @@ import './style.css'
 import CommonHeader from "../../Common/CommonHeader/index.js";
 import Fox from '../../Assets/Fox.png'
 import { FaArrowRight, FaRegUser } from "react-icons/fa";
-import axios from 'axios';
 import ChatBox from "../../Common/ChatBox/index.js";
 import { formatBotMessage } from "../../Helper/Bot.js";
+import apiClient from "../../api/api.js";
 
 export default function Assists() {
     const [messages, setMessages] = useState([
@@ -17,12 +17,12 @@ export default function Assists() {
 
 
     const handleEventStream = async (userQuery) => {
-        const url = `https://app.infox.bot/api/relay_chat/`;
+        const url = `/relay_chat/`;
         let fullMessage = '';
 
         try {
 		
-	    const response = await axios.post(url, {
+	    const response = await apiClient.post(url, {
                 query: userQuery,
                 use_case: "grants"
             }, {

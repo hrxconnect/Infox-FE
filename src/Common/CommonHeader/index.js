@@ -4,7 +4,7 @@ import logo from '../../Assets/logo.png';
 import { IoMdTime } from "react-icons/io";
 import { TbHome } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import apiClient from "../../api/api";
 
 export default function CommonHeader() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ export default function CommonHeader() {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("https://app.infox.bot/api/profile/", {
+                    const response = await apiClient.get("/profile/", {
                         headers: {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
