@@ -9,26 +9,6 @@ function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState('free');
   const navigate = useNavigate();
 
-
-  const handleCheckout = async (plan) => {
-    const response = await fetch('/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ plan: plan }),
-    });
-    const session = await response.json();
-    const stripe = await stripePromise;
-
-    // Redirect to Stripe Checkout page
-    const { error } = await stripe.redirectToCheckout({
-      sessionId: session.sessionId,
-    });
-
-    if (error) {
-      console.error(error);
-    }
-  };
-
   //This is static Payment Link , we are supposed to Handle dynamic Payment Link inorder to have more control over the payment process
   // Updated handlePlanSelect to handle different plans
 const handlePlanSelect = (plan) => {
