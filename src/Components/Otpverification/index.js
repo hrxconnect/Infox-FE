@@ -4,16 +4,15 @@ import axios from "axios";
 import "./style.css";
 
 //Assets
-import otpbackgroundImage from '../../Assets/OTP.png';
 import backBtnImage from '../../Assets/back-icon.png';
 
-const Otpverification = ({ onBack }) => {
+const Otpverification = () => {
   const { userId } = useParams(); // Fetch userId from the URL parameter
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-
+  
   const handleOtpChange = (e, index) => {
     const { value } = e.target;
     if (/^[0-9]?$/.test(value)) { // Allow only numeric input
@@ -48,7 +47,8 @@ const Otpverification = ({ onBack }) => {
       if (response.status === 200) {
         setSuccessMessage("OTP verified successfully!");
         setOtp(["", "", "", "", "", ""]); // Clear input fields
-        navigate("/login"); // Redirect after successful verification
+        // navigate("/login"); // Redirect after successful verification
+        navigate("/pricing")
       }
     } catch (error) {
       if (error.response && error.response.data) {

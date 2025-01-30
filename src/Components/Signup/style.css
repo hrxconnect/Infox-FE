@@ -245,24 +245,24 @@
   margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
+  accent-color: #FFA500;
 }
 
 .terms-container input {
-  margin: 0;
+  margin-right: 10px;
   padding: 0;
-  margin-right: 0;
-  width: 100px;
+  width: auto;
 }
 
 .terms-container label {
   font-size: 14px;
   color: #333;
+  width: 100%;
 }
 
 .highlight {
   color: #FFA500;
-  font-weight: bold;
-  text-decoration: underline;
+  font-weight: 500;
 }
 
 /* Button for Create Account */
@@ -270,7 +270,7 @@
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background-color: #FFA500;
+  background-color: #FFA500; 
   color: white;
   border: none;
   border-radius: 16px;

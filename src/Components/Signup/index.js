@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Otpverification from "../Otpverification";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
@@ -29,7 +30,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false); // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State for toggling confirm password visibility
-  
+
 
   const validateField = (name, value) => {
     let error = "";
@@ -140,6 +141,7 @@ export default function Signup() {
   };
 
   return (
+  <div className="app-container">
     <div className="signup-container">
       <div className="section-left">
         <div className="logo-section">
@@ -195,7 +197,7 @@ export default function Signup() {
             value={formData.lastname}
             onChange={handleChange}
             aria-describedby="lastnameError"
-            placeholder="Enter Your Last Name *" 
+            placeholder="Enter Your Last Name" 
             class="input-field" />
           {errors.lastname && (
             <span className="error-message">{errors.lastname}</span>
@@ -225,26 +227,26 @@ export default function Signup() {
             <label for="password" id="header-labels">Password</label>
             <div class="input-wrapper">
             <input
-  type={passwordVisible ? "text" : "password"}
-  id="password"
-  name="password"
-  value={formData.password}
-  onChange={handleChange}
-  placeholder="Enter your password"
-  aria-describedby="passwordError"
-  className="input-field" // Correct className syntax in JSX
-/>
-<span
-  className="eye-icon"
-  id="eye-icon-password"
-  onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility
->
-  <img
-    src={passwordVisible ? eyeOpen : eyeClosed}
-    alt="eye icon"
-    className="eye-icon-img" // Correct className syntax in JSX
-  />
-</span>
+        type={passwordVisible ? "text" : "password"}
+        id="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Enter your password"
+        aria-describedby="passwordError"
+        className="input-field" // Correct className syntax in JSX
+      />
+      <span
+        className="eye-icon"
+        id="eye-icon-password"
+        onClick={() => setPasswordVisible(!passwordVisible)} // Toggle password visibility
+      >
+        <img
+          src={passwordVisible ? eyeOpen : eyeClosed}
+          alt="eye icon"
+          className="eye-icon-img" // Correct className syntax in JSX
+        />
+      </span>
             </div>
             {errors.password && (
               <span  id="passwordError" className="error-message">{errors.password}</span>
@@ -252,43 +254,41 @@ export default function Signup() {
             {/* <label for="atleast8char" id="password-label">Must be at least 8 characters</label> */}
           </div>
 
-          <div className="input-container">
-  <label htmlFor="confirm-password" id="header-labels">
-    Confirm Password
-  </label>
-  <div className="input-wrapper">
-    <input
-      type={confirmPasswordVisible ? "text" : "password"} // Dynamically toggle input type
-      id="confirmPassword"
-      name="confirmPassword"
-      value={formData.confirmPassword}
-      onChange={handleChange}
-      placeholder="Re-enter your password"
-      aria-describedby="confirmPasswordError"
-      className="input-field"
-    />
-    <span
-      className="eye-icon"
-      id="eye-icon-confirm-password"
-      onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
-    >
-      <img
-        src={confirmPasswordVisible ? eyeOpen : eyeClosed}
-        alt="eye icon"
-        className="eye-icon-img"
-      />
-    </span>
-  </div>
-  {errors.confirmPassword && (
-    <span id="confirmPasswordError" className="error-message">
-      {errors.confirmPassword}
-    </span>
-  )}
-</div>
+      <div className="input-container">
+      <label htmlFor="confirm-password" id="header-labels">
+        Confirm Password
+      </label>
+      <div className="input-wrapper">
+        <input
+          type={confirmPasswordVisible ? "text" : "password"} // Dynamically toggle input type
+          id="confirmPassword"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+          placeholder="Re-enter your password"
+          aria-describedby="confirmPasswordError"
+          className="input-field"
+        />
+        <span
+          className="eye-icon"
+          id="eye-icon-confirm-password"
+          onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+        >
+          <img
+            src={confirmPasswordVisible ? eyeOpen : eyeClosed}
+            alt="eye icon"
+            className="eye-icon-img"
+          />
+        </span>
+      </div>
+      {errors.confirmPassword && (
+        <span id="confirmPasswordError" className="error-message">
+          {errors.confirmPassword}
+        </span>
+      )}
+    </div>
 
-            
         </div>
-
         {/* Country Dropdown */}
         <div className="country-container">
         <label htmlFor="country">Country</label>
@@ -321,8 +321,8 @@ export default function Signup() {
         />{" "}
         <label htmlFor="terms">
           I agree to the 
-          <span className="highlight">Terms and Conditions</span> and 
-          <span className="highlight">Privacy Policy</span>
+          <span className="highlight"> Terms and Conditions</span> and 
+          <span className="highlight"> Privacy Policy</span>
         </label>
         {errors.isChecked && (
           <span className="error-message">{errors.isChecked}</span>
@@ -335,7 +335,7 @@ export default function Signup() {
             type="submit"
             disabled={!isCheckboxChecked}
             style={{
-              backgroundColor: isCheckboxChecked ? "#007bff" : "#cccccc",
+              backgroundColor: isCheckboxChecked ? "#FFA500" : "#cccccc",
               color: isCheckboxChecked ? "#fff" : "#666666",
               cursor: isCheckboxChecked ? "pointer" : "not-allowed",
             }}
@@ -357,6 +357,7 @@ export default function Signup() {
         />
       </div>
     </div>
- );
+  </div>
+ ); 
 }
 

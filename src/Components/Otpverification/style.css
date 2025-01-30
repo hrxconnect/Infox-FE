@@ -2,12 +2,8 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: rgb(255, 255, 255); /* slate-50 */
-    background-image: url('../../Assets/OTP.png');
     margin: 0;
     padding: 0;
-    background-size: cover; /* This makes the image cover the whole screen */
-    background-position: center; /* This centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
   }
   
   .otp-container {

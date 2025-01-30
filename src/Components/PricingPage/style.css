@@ -1,0 +1,145 @@
+/* PricingPage.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.pricing-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.pricing-page-header {
+  background-color: #fff;
+  color: black;
+  padding: 40px 20px;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.pricing-page-header h1 {
+  font-size: 62px;
+  margin: 0;
+  font-weight: bolder;
+}
+
+.pricing-page-header p {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.pricing-main {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pricing-plans {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.plan-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 350px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  text-align: left;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card.selected {
+  /* border: 1px solid #e9be6e; */
+}
+
+.plan-card h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.plan-card p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.plan-card span {
+  font-size: 22px;
+  color: black;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.plan-card ul {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.plan-card ul li {
+  margin: 5px 0;
+  line-height: 2.5;
+}
+
+.select-btn {
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  height: 42px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 28px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  justify-content: center; /* Aligns text horizontally */
+  align-items: center;     /* Aligns text vertically */
+}
+
+.select-btn:hover {
+  background-color: black;
+}
+
+.pricing-footer {
+  margin-top: 50px;
+  font-size: 14px;
+  color: #777;
+}
+
+.pricing-footer a {
+  color: #FFA500;
+  text-decoration: none;
+}
+
+.pricing-footer a:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 768px) {
+  .pricing-plans {
+    flex-direction: column;
+    align-items: center;
+  }
+}
