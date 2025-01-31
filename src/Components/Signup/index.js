@@ -321,8 +321,10 @@ export default function Signup() {
         />{" "}
         <label htmlFor="terms">
           I agree to the 
-          <span className="highlight"> Terms and Conditions</span> and 
-          <span className="highlight"> Privacy Policy</span>
+          <span className="highlight" onClick={() => navigate('/termsandconditions')}> 
+            Terms and Conditions</span> and 
+          <span className="highlight" onClick={() => navigate('/termsandconditions')}> 
+            Privacy Policy</span>
         </label>
         {errors.isChecked && (
           <span className="error-message">{errors.isChecked}</span>
