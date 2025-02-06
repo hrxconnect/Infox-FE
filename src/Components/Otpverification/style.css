@@ -2,8 +2,10 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: rgb(255, 255, 255); /* slate-50 */
+    /*background-image: url('../../Assets/OTP.png');*/
     margin: 0;
     padding: 0;
+    
   }
   
   .otp-container {
@@ -154,10 +156,9 @@ body {
     color: #4f46e5; /* indigo-600 */
   }
   .success-message {
-    color: #4CAF50; /* Green for success message */
-  }
-  
-  .error-message {
-    color: #FF5733; /* Red-orange color for error messages */
-  }
-  
+  color: #4CAF50; /* Green for success message */
+}
+
+.error-message {
+  color: #FF5733; /* Red-orange color for error messages */
+}

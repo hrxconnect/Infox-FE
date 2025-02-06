@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Otpverification from "../Otpverification";
 import { useNavigate } from "react-router-dom";
+import { useMsal } from "@azure/msal-react"; 
 import axios from "axios";
+import { useEffect } from "react";
+
 import "./style.css";
+import { GoogleLogin } from "@react-oauth/google";
 
 
 //Assets
@@ -30,8 +34,26 @@ export default function Signup() {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false); // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State for toggling confirm password visibility
+<<<<<<< HEAD
 
+=======
+  const [user_id, getUserid] = useState("");
+  const [googleToken, setGoogleToken] = useState(null);
+  const [error, setError] = useState(null);
+  const { instance } = useMsal();
+  const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+>>>>>>> 6b7c03e (Added session in signup..)
 
+  useEffect(() => {
+    // Make a GET request to the Django view to fetch session data
+    axios.get('http://localhost:8000/get_user_session/')
+      .then(response => {
+        getUserid(response.data.user_id);  // Set session value from Django
+      })
+      .catch(error => {
+        console.error("There was an error fetching the session data!", error);
+      });
+  }, []);
   const validateField = (name, value) => {
     let error = "";
 
@@ -56,7 +78,7 @@ export default function Signup() {
       case "password":
         if (!value.trim()) {
           error = "Password is required.";
-        } else if (value.length < 8) {
+        } else if (value.length < 2) {
           error = "Password must be at least 8 characters long.";
         }
         break;
@@ -117,7 +139,8 @@ export default function Signup() {
     try {
       const response = await axios.post(
         "http://127.0.0.1:8000/api/signup/",
-        formData
+        formData,{
+          withCredentials: true,}
       );
 
       if (response.status === 201) {
@@ -131,17 +154,91 @@ export default function Signup() {
           country: "",
         });
         setIsCheckboxChecked(false);
-        if (response.data.user_id) {
-          navigate(`/verify_otp/${response.data.user_id}`);
+        if (response.data.message === "Email sent successfully") {
+            navigate(`/verify_otp`);
         }
+        else {
+          console.log('Signup failed:', response.data.error);
+          setErrors({ form: response.data.error || "Error creating account. Please try again." });
+        }
+
       }
     } catch (error) {
       setErrors({ form: "Error creating account. Please try again." });
     }
   };
+  //**************************************************************************************** */
+ // Handle Google Signup Success
+ const handleGoogleSignupSuccess = async (response) => {
+  const googleToken = response.credential;
 
+<<<<<<< HEAD
   return (
   <div className="app-container">
+=======
+  try {
+    const res = await axios.post("http://localhost:8000/api/google-signup", { token: googleToken });
+
+    if (res.data.success) {
+      console.log('Google Signup successful:', res.data.message);
+      navigate("/home");                           // Redirect to home after successful signup
+
+      
+    } else {
+      setErrors({ form: res.data.error || "Error creating account. Please try again." });
+    }
+  } catch (error) {
+    // Check for token timing issue and retry after a delay
+    if (error.response && error.response.data.message.includes("Token used too early")) {
+      console.warn("Token issue detected. Retrying in 2 seconds...");
+      setTimeout(() => handleGoogleSignupSuccess(response), 2000);  // Retry after 2 seconds
+    } else {
+      setErrors({ form: 'Google signup error: ' + (error.response?.data.message || error.message) });
+    }
+  }
+};
+// Handle Google Signup Failure
+const handleGoogleSignupFailure = () => {
+  setError("Google login failed. Please try again.");
+};
+/******************************************************************************************** */
+
+const handleSignupwithmicrosoft = async () => {
+  try {
+    
+    const loginResponse = await instance.loginPopup({
+      scopes: ["User.Read"], // Request necessary scopes (permissions)
+    });
+
+    console.log("User successfully signed in with Microsoft!");
+
+    const idToken = loginResponse.idToken;
+    console.log("ID Token:", idToken);
+
+    // Optionally redirect the user to a dashboard or another page
+    navigate("/login"); // Redirect to a different page after successful login
+
+    // Optionally, send ID token to your backend for validation
+    fetch("http://127.0.0.1:8000/auth/microsoft", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ token: idToken }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log("Backend Response:", data));
+
+  } catch (error) {
+    console.error("Signup Error:", error);
+  }
+};
+
+
+
+return (
+    
+>>>>>>> 6b7c03e (Added session in signup..)
     <div className="signup-container">
       <div className="section-left">
         <div className="logo-section">
@@ -151,12 +248,32 @@ export default function Signup() {
           <h5 className="create-account-label">Create Your Account</h5>
         </div>
         <div className="social-login-container">
-          <img 
-            src={google} 
-            alt="Google Login"
-            className="social-icon" 
+
+       
+        <GoogleLogin
+      clientId={CLIENT_ID}//  Google Client ID
+      onSuccess={handleGoogleSignupSuccess}
+      onFailure={handleGoogleSignupFailure}
+      cookiePolicy="single_host_origin"
+      render={(renderProps) => (
+        <button
+          onClick={renderProps.onClick} 
+          disabled={renderProps.disabled} 
+          className="google-login-button"
+        >
+          <img
+            src={google}
+            alt="Google Signup"
+            className="google-login-image"
+            style={{ width: "150px", height: "auto" }}
           />
+        </button>
+      )}
+    />
+  
+        
           <img 
+            onClick={handleSignupwithmicrosoft}
             src={microsoft}
             alt="Microsoft Login" 
             className="social-icon" 
@@ -301,8 +418,8 @@ export default function Signup() {
             aria-describedby="countryError"
           >
            <option value="">-- Select your country --</option>
-            <option value="Canada">Canada</option>
-            <option value="USA">USA</option>
+            <option value="1">Canada</option>
+            <option value="2">USA</option>
           </select>
           {errors.country && <span  id="countryError" className="error-message">{errors.country}</span>}
           <img src={chevronDown} alt="Chevron Down Icon" className="chevron-icon"/>
