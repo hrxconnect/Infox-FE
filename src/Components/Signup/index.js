@@ -34,15 +34,11 @@ export default function Signup() {
   const navigate = useNavigate();
   const [passwordVisible, setPasswordVisible] = useState(false); // State for toggling password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State for toggling confirm password visibility
-<<<<<<< HEAD
-
-=======
   const [user_id, getUserid] = useState("");
   const [googleToken, setGoogleToken] = useState(null);
   const [error, setError] = useState(null);
   const { instance } = useMsal();
   const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
->>>>>>> 6b7c03e (Added session in signup..)
 
   useEffect(() => {
     // Make a GET request to the Django view to fetch session data
@@ -171,11 +167,6 @@ export default function Signup() {
  // Handle Google Signup Success
  const handleGoogleSignupSuccess = async (response) => {
   const googleToken = response.credential;
-
-<<<<<<< HEAD
-  return (
-  <div className="app-container">
-=======
   try {
     const res = await axios.post("http://localhost:8000/api/google-signup", { token: googleToken });
 
@@ -234,11 +225,9 @@ const handleSignupwithmicrosoft = async () => {
   }
 };
 
-
-
-return (
-    
->>>>>>> 6b7c03e (Added session in signup..)
+  
+  return (
+  <div className="app-container">
     <div className="signup-container">
       <div className="section-left">
         <div className="logo-section">

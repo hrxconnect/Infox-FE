@@ -12,9 +12,7 @@ const Otpverification = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-<<<<<<< HEAD
   
-=======
   useEffect(() => {
     // Make a GET request to the Django view to fetch session data
     axios.get('http://localhost:8000/get_user_session/')
@@ -26,10 +24,6 @@ const Otpverification = () => {
       });
   }, []);
   
-      
-  
-
->>>>>>> 6b7c03e (Added session in signup..)
   const handleOtpChange = (e, index) => {
     const { value } = e.target;
     if (/^[0-9]?$/.test(value)) { // Allow only numeric input
@@ -68,12 +62,7 @@ const Otpverification = () => {
       if (response.status === 200) {
         setSuccessMessage("OTP verified successfully!");
         setOtp(["", "", "", "", "", ""]); // Clear input fields
-<<<<<<< HEAD
-        // navigate("/login"); // Redirect after successful verification
-        navigate("/pricing")
-=======
-        navigate("/pricing"); // Redirect after successful verification
->>>>>>> 6b7c03e (Added session in signup..)
+        navigate("/pricing") // Redirect after successful verification
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -108,61 +97,54 @@ const Otpverification = () => {
     }
   };
 
-<<<<<<< HEAD
   const handleBackToSignup = (e) => {
     e.preventDefault();
     navigate("/signup");
   };
 
   useEffect(() => {
-    console.log("User ID from URL:", userId);
-  }, [userId]);
+    console.log("User ID from URL:", user_id);
+  }, [user_id]);
 
-=======
->>>>>>> 6b7c03e (Added session in signup..)
   
-    return (
-      <div className="otp-container" >
-        <div className="otp-header">
-          <img 
-          src={backBtnImage} 
-          alt="" 
-          className="back-icon" 
-<<<<<<< HEAD
-          onClick={handleBackToSignup}
-=======
-          onClick={()=> navigate("/signup")}
->>>>>>> 6b7c03e (Added session in signup..)
-        />
-          <h1>Verify Your Email</h1>
-        </div>
-        <p>We’ve sent a 6-digit verification code to your email address. Enter the code below to continue.</p>
-        {(successMessage || errorMessage) && (
-          <p className={successMessage ? "success-message" : "error-message"}>
-            {successMessage || errorMessage}
-          </p>
-        )}
-        <form onSubmit={handleOtpSubmit}>
-          <div className="otp-inputs">
-          {otp.map((digit, index) => (
-              <input
-                key={index}
-                type="text"
-                maxLength="1"
-                value={digit}
-                onChange={(e) => handleOtpChange(e, index)}
-                id={`otp-input-${index}`}
-                autoFocus={index === 0} // Focus on the first input by default
-              />
-            ))}
-          </div>
-          <button type="submit" className="otp-submit button">Verify</button>
-        </form>
-        
-        <div className="resend" onClick={handleResendOtp}>
-  Didn’t receive the code? <span className="resend-code">Resend OTP</span></div>
+  return (
+    <div className="otp-container" >
+      <div className="otp-header">
+        <img 
+        src={backBtnImage} 
+        alt="" 
+        className="back-icon" 
+        onClick={handleBackToSignup}
+      />
+        <h1>Verify Your Email</h1>
       </div>
-    );
-  };
+      <p>We’ve sent a 6-digit verification code to your email address. Enter the code below to continue.</p>
+      {(successMessage || errorMessage) && (
+        <p className={successMessage ? "success-message" : "error-message"}>
+          {successMessage || errorMessage}
+        </p>
+      )}
+      <form onSubmit={handleOtpSubmit}>
+        <div className="otp-inputs">
+        {otp.map((digit, index) => (
+            <input
+              key={index}
+              type="text"
+              maxLength="1"
+              value={digit}
+              onChange={(e) => handleOtpChange(e, index)}
+              id={`otp-input-${index}`}
+              autoFocus={index === 0} // Focus on the first input by default
+            />
+          ))}
+        </div>
+        <button type="submit" className="otp-submit button">Verify</button>
+      </form>
+      
+      <div className="resend" onClick={handleResendOtp}>
+Didn’t receive the code? <span className="resend-code">Resend OTP</span></div>
+    </div>
+  );
+};
   
   export default Otpverification;

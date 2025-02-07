@@ -9,7 +9,6 @@ import PricingPage from "./Components/PricingPage/index.js"
 import HRXExperts from "./Components/HRXExperts/index.js"
 import ResetPassword from './Components/ResetPassword/index.js'
 import SetPassword from './Components/SetPassword/index.js'
-import PricingPage from "./Components/PricingPage/index.js"
 import Home from './Components/Home/index.js'
 import Profile from './Components/Details/index.js'
 import Assists from './Components/Assists/index.js'
@@ -32,14 +31,11 @@ export default function App() {
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
-<<<<<<< HEAD
-                <Route path="/verify_otp/:userId" element={<OtpVerification />} />
+                <Route path="/verify_otp" element={<OtpVerification />} />
+                {/* Need to make this work - the below code is not displaying OTP Form */}
+                {/* <Route path="/verify_otp/:userId" element={<OtpVerification />} /> */} 
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/pricing" element={<PricingPage />} />
-=======
-                <Route path="/pricing" element={<PricingPage />} />
-                <Route path="/verify_otp" element={<OtpVerification />} />
->>>>>>> 6b7c03e (Added session in signup..)
                 <Route path="/hr-experts" element={<HRXExperts/>} />
                 <Route path="resetpassword" element={<ResetPassword />} />
                 <Route path="setpassword" element={<SetPassword />} />

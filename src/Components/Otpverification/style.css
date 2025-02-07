@@ -1,161 +1,159 @@
 /* General Styles */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: rgb(255, 255, 255); /* slate-50 */
-    /*background-image: url('../../Assets/OTP.png');*/
-    margin: 0;
-    padding: 0;
-    
-  }
-  
-  .otp-container {
-    max-width: 440px;
-    margin: 100px auto;
-    padding: 40px;
-    background-color: #ffffff; /* white */
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
-    outline: none;
-    transition: box-shadow 0.3s ease;
-  }
+  font-family: 'Inter', sans-serif;
+  background-color: rgb(255, 255, 255); /* slate-50 */
+  margin: 0;
+  padding: 0;
+}
 
-  .otp-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 20px;
-    height: 45px;
-    margin-bottom: 28px;
-  }
-  
-  .back-icon {
-    width: 20px;  /* Adjust size of your back icon */
-    height: 20px;
-  }
-  /* Header */
-  .otp-container h1 {
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    width: 100%;
-  }
-  
-  .otp-container p {
-    font-size: 15px;
-    color: #64748b; /* slate-500 */
-    margin-bottom: 24px;
-  }
-  
-  /* Input Styles */
-  .otp-inputs {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin: 40px;
-  }
-  
-  .otp-inputs input {
-    width: 56px;
-    height: 56px;
-    font-size: 24px;
-    font-weight: 800;
-    text-align: center;
-    background-color: #fff; /* slate-100 */
-    border: 1px solid #333333;
-    border-radius: 16px;
-    outline: none;
-    transition: 0.2s;
-  }
-  
-  .otp-inputs input:hover {
-    border-color: #e2e8f0; /* slate-200 */
-  }
-  
-  .otp-inputs input:focus {
-    background-color: #ffffff; /* white */
-    border-color: #FFA500; /* indigo-400 */
-    box-shadow: 0 0 0 2px #c7d2fe; /* indigo-100 */
-  }
-  
-  /* Submit Button */
-  .otp-submit {
-    margin-top: 16px;
-    background-color: #FFA500;
-    color: white;
-    border: none;
-    border-radius: 16px;
-    height: 62px;
-    font-weight: 600;
-    width: 200px;
-  }
-  
-  .otp-submit button {
-    width: 100%;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #ffffff; /* white */
-    background-color: #f163b3; /* indigo-500 */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .otp-submit button:hover {
-    background-color: #4f46e5; /* indigo-600 */
-  }
-  
-  .otp-submit button:focus {
-    box-shadow: 0 0 0 3px #c7d2fe; /* indigo-300 */
-  }
-  
-  .resend{
-    margin-top: 16px;
-    font-size: 16px;
-    color: #333333; /* slate-500 */
-    pointer-events: auto;
-    cursor: pointer;
-  
-  }
-  /* Resend Link */
-  .resend-code {
-    margin-top: 16px;
-    font-size: 16px;
-    color: #FFA500; /* slate-500 */
-    font-weight: 500;
-  }
-  
-  .resend-code a {
-    color: #6366f1; /* indigo-500 */
-    font-weight: 500;
-    text-decoration: none;
-    transition: 0.2s;
-  }
-  
-  .resend-code a:hover {
-    color: #4f46e5; /* indigo-600 */
-  }
-  
-  /* Footer */
-  .footer {
-    margin-top: 32px;
-    font-size: 12px;
-    color: #64748b; /* slate-500 */
-  }
-  .footer a {
-    color: #6366f1; /* indigo-500 */
-    text-decoration: none;
-    font-weight: 500;
-  }
-  .footer a:hover {
-    color: #4f46e5; /* indigo-600 */
-  }
-  .success-message {
+.otp-container {
+  max-width: 440px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #ffffff; /* white */
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.otp-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  height: 45px;
+  margin-bottom: 28px;
+}
+
+.back-icon {
+  width: 20px;  /* Adjust size of your back icon */
+  height: 20px;
+}
+/* Header */
+.otp-container h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
+  width: 100%;
+}
+
+.otp-container p {
+  font-size: 15px;
+  color: #64748b; /* slate-500 */
+  margin-bottom: 24px;
+}
+
+/* Input Styles */
+.otp-inputs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 40px;
+}
+
+.otp-inputs input {
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
+  font-weight: 800;
+  text-align: center;
+  background-color: #fff; /* slate-100 */
+  border: 1px solid #333333;
+  border-radius: 16px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.otp-inputs input:hover {
+  border-color: #e2e8f0; /* slate-200 */
+}
+
+.otp-inputs input:focus {
+  background-color: #ffffff; /* white */
+  border-color: #FFA500; /* indigo-400 */
+  box-shadow: 0 0 0 2px #c7d2fe; /* indigo-100 */
+}
+
+/* Submit Button */
+.otp-submit {
+  margin-top: 16px;
+  background-color: #FFA500;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  height: 62px;
+  font-weight: 600;
+  width: 200px;
+}
+
+.otp-submit button {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff; /* white */
+  background-color: #f163b3; /* indigo-500 */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.otp-submit button:hover {
+  background-color: #4f46e5; /* indigo-600 */
+}
+
+.otp-submit button:focus {
+  box-shadow: 0 0 0 3px #c7d2fe; /* indigo-300 */
+}
+
+.resend{
+  margin-top: 16px;
+  font-size: 16px;
+  color: #333333; /* slate-500 */
+  pointer-events: auto;
+  cursor: pointer;
+
+}
+/* Resend Link */
+.resend-code {
+  margin-top: 16px;
+  font-size: 16px;
+  color: #FFA500; /* slate-500 */
+  font-weight: 500;
+}
+
+.resend-code a {
+  color: #6366f1; /* indigo-500 */
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.resend-code a:hover {
+  color: #4f46e5; /* indigo-600 */
+}
+
+/* Footer */
+.footer {
+  margin-top: 32px;
+  font-size: 12px;
+  color: #64748b; /* slate-500 */
+}
+.footer a {
+  color: #6366f1; /* indigo-500 */
+  text-decoration: none;
+  font-weight: 500;
+}
+.footer a:hover {
+  color: #4f46e5; /* indigo-600 */
+}
+.success-message {
   color: #4CAF50; /* Green for success message */
 }
 
