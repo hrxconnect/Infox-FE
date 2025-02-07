@@ -40,16 +40,6 @@ export default function Signup() {
   const { instance } = useMsal();
   const CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
-  useEffect(() => {
-    // Make a GET request to the Django view to fetch session data
-    axios.get('http://localhost:8000/get_user_session/')
-      .then(response => {
-        getUserid(response.data.user_id);  // Set session value from Django
-      })
-      .catch(error => {
-        console.error("There was an error fetching the session data!", error);
-      });
-  }, []);
   const validateField = (name, value) => {
     let error = "";
 
@@ -134,9 +124,10 @@ export default function Signup() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/signup/",
+        "http://localhost:8000/api/signup/",
         formData,{
-          withCredentials: true,}
+          withCredentials: true
+        }
       );
 
       if (response.status === 201) {
@@ -151,6 +142,7 @@ export default function Signup() {
         });
         setIsCheckboxChecked(false);
         if (response.data.message === "Email sent successfully") {
+            sessionStorage.setItem('user_id', response.data.user_id);
             navigate(`/verify_otp`);
         }
         else {

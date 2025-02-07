@@ -13,17 +13,6 @@ const Otpverification = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   
-  useEffect(() => {
-    // Make a GET request to the Django view to fetch session data
-    axios.get('http://localhost:8000/get_user_session/')
-      .then(response => {
-        getUserid(response.data.user_id);  // Set session value from Django
-      })
-      .catch(error => {
-        console.error("There was an error fetching the session data!", error);
-      });
-  }, []);
-  
   const handleOtpChange = (e, index) => {
     const { value } = e.target;
     if (/^[0-9]?$/.test(value)) { // Allow only numeric input
@@ -51,8 +40,12 @@ const Otpverification = () => {
 
     try {
       const csrfToken = Cookies.get('csrftoken');
-      const response = await axios.post(`http://127.0.0.1:8000/api/verify_otp`,
-        { otp: otpValue },
+      const userId = sessionStorage.getItem('user_id');
+      console.log("User ID from session:", userId);
+      const response = await axios.post(`http://localhost:8000/api/verify_otp`,
+        { otp: otpValue ,
+          user_id: userId
+        },
         {
           withCredentials: true, // Ensure session cookies are included with the request
           headers: { 'Content-Type': 'application/json' 
