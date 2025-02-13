@@ -32,8 +32,6 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/verify_otp" element={<OtpVerification />} />
-                {/* Need to make this work - the below code is not displaying OTP Form */}
-                {/* <Route path="/verify_otp/:userId" element={<OtpVerification />} /> */} 
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/pricing" element={<PricingPage />} />
                 <Route path="/hr-experts" element={<HRXExperts/>} />

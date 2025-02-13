@@ -95,10 +95,28 @@
 }
 
 .social-icon {
-  width: 40px; /* Adjust size */
+  width: 15px; /* Adjust size */
+  height: 15px;
+  margin-right: 10px;
+}
+
+.ms-signin-btn {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #3d4043;
+  border: solid 1px #dadce0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
   height: 40px;
 }
 
+.ms-signin-btn:hover {
+  border: solid 1px #d2e0fa;
+  background-color: #f8fafe;
+}
 
 /* Divider */
 .divider {
@@ -111,7 +129,8 @@
   font-size: 18px;
 }
 
-.divider::before, .divider::after {
+.divider::before,
+.divider::after {
   content: "";
   flex: 1;
   border-bottom: 1px solid #ccc;
@@ -155,7 +174,7 @@
   padding: 10px;
   font-size: 1rem;
   border-radius: 16px;
-  border: 1px solid #AFB1B6;
+  border: 1px solid #afb1b6;
   box-sizing: border-box;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -164,13 +183,13 @@
 }
 
 .input-field::placeholder {
-  color: #8E8E93;
+  color: #8e8e93;
   font-size: 13px;
   /* padding-left: 5px; */
 }
 
 .input-field:focus {
-  border-color: #FFA500;
+  border-color: #ffa500;
   outline: none;
 }
 
@@ -214,8 +233,8 @@
 }
 
 .country-container label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: medium;
   margin-bottom: 5px;
 }
 
@@ -248,7 +267,7 @@
 }
 
 .country-container select:focus {
-  border-color: #FFA500;
+  border-color: #ffa500;
 }
 
 /* Terms and Conditions checkbox */
@@ -256,7 +275,7 @@
   margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
-  accent-color: #FFA500;
+  accent-color: #ffa500;
 }
 
 .terms-container input {
@@ -272,7 +291,7 @@
 }
 
 .highlight {
-  color: #FFA500;
+  color: #ffa500;
   font-weight: 500;
 }
 
@@ -281,7 +300,7 @@
   width: 100%;
   padding: 12px;
   margin-top: 20px;
-  background-color: #FFA500; 
+  background-color: #ffa500;
   color: white;
   border: none;
   border-radius: 16px;
@@ -322,7 +341,8 @@
     padding: 10px;
   }
 
-  .section-left, .section-right {
+  .section-left,
+  .section-right {
     flex: 1;
     margin: 0;
   }
@@ -360,13 +380,16 @@
   .create-account-label {
     font-size: 20px;
     margin-top: 10px;
+    font-weight: bold;
   }
 
   .social-login-container {
     gap: 20px;
   }
 
-  .input-field, .country-container select, .create-account-btn {
+  .input-field,
+  .country-container select,
+  .create-account-btn {
     font-size: 16px;
     height: 50px;
   }

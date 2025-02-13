@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
 import Cookies from 'js-cookie';
@@ -11,6 +11,10 @@ const Otpverification = () => {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const location = useLocation();
+  const { email_id, signupUser_id } = location.state || {};  // Access the passed email
+
   const navigate = useNavigate();
   
   const handleOtpChange = (e, index) => {
@@ -40,11 +44,9 @@ const Otpverification = () => {
 
     try {
       const csrfToken = Cookies.get('csrftoken');
-      const userId = sessionStorage.getItem('user_id');
-      console.log("User ID from session:", userId);
       const response = await axios.post(`http://localhost:8000/api/verify_otp`,
         { otp: otpValue ,
-          user_id: userId
+          user_id: response.data.user_id
         },
         {
           withCredentials: true, // Ensure session cookies are included with the request
@@ -55,7 +57,7 @@ const Otpverification = () => {
       if (response.status === 200) {
         setSuccessMessage("OTP verified successfully!");
         setOtp(["", "", "", "", "", ""]); // Clear input fields
-        navigate("/pricing") // Redirect after successful verification
+        navigate('/pricing', { state: { email_id: email_id, userId:response.data.user_id } });// Redirect after successful verification
       }
     } catch (error) {
       if (error.response && error.response.data) {

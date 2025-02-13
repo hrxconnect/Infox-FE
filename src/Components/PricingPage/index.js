@@ -1,32 +1,45 @@
 import React, { useState } from 'react';
 import './style.css';
+import axios from "axios";
 import { loadStripe } from '@stripe/stripe-js';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
-const stripePromise = loadStripe('your-public-key'); 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 function PricingPage() {
-  const [selectedPlan, setSelectedPlan] = useState('free');
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { email_id, userId } = location.state || {};  // Access the passed email
 
-  //This is static Payment Link , we are supposed to Handle dynamic Payment Link inorder to have more control over the payment process
-  // Updated handlePlanSelect to handle different plans
-const handlePlanSelect = (plan) => {
-  let paymentLink = '';
+const handlePlanSelect = async (plan) => {
 
-  // Set the payment link based on the selected plan
   if (plan === 'free') {
-    paymentLink = ''; // Free plan link
-    navigate("/login"); 
-  } else if (plan === 'plus') {
-    paymentLink = 'https://buy.stripe.com/test_eVaeVOaVb1wu7oA5km'; // Plus plan link
-    window.location.href = paymentLink;
-  } else if (plan === 'pro') {
-    paymentLink = 'https://buy.stripe.com/test_dR63d63sJ7US7oA6or'; // Pro plan link
-    window.location.href = paymentLink;
+    navigate("/login"); // Redirect free users to login
+    return;
   }
-    
 
+  try {
+    const response = await axios.post("http://127.0.0.1:8000/api/create_checkout_session/", {
+      plan: plan,
+      email: email_id,  
+      user_id: userId,
+      payment_mode: "Subscription",
+      success_url: "http://localhost:3000/login",
+      cancel_url: "http://localhost:3000/cancel" 
+    }, {
+      headers: { "Content-Type": "application/json" }
+    });
+
+    if (response.data.error) {
+      console.error("Error:", response.data.error);
+    } else {
+      const stripe = await stripePromise;
+      await stripe.redirectToCheckout({ sessionId: response.data.session_id });
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };
 
   return (

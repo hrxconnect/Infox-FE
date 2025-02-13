@@ -76,7 +76,7 @@ body {
 .otp-inputs input:focus {
   background-color: #ffffff; /* white */
   border-color: #FFA500; /* indigo-400 */
-  box-shadow: 0 0 0 2px #c7d2fe; /* indigo-100 */
+  box-shadow: 0 0 0 2px #fff; /* white */
 }
 
 /* Submit Button */
