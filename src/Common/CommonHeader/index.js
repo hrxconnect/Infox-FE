@@ -6,11 +6,29 @@ import { TbHome } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+import chevronDownIcon from '../../Assets/chevron-down.png';
+import chevronUpIcon from '../../Assets/chevron-up.png';
+import canadaFlag from '../../Assets/CA.png';
+import usaFlag from '../../Assets/US.png';
+
+
+
+
+
 export default function CommonHeader() {
     const navigate = useNavigate();
     const [pathState, setPathState] = useState('')
     const [profileName, setProfileName] = useState('');
     const [profileInitial, setProfileInitial] = useState('');
+
+    /*Countries*/
+    const countries = [
+        { code: "CA", name: "Canada", flag: canadaFlag },
+        { code: "US", name: "United States", flag: usaFlag }
+      ];
+    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
     useEffect(() => {
         const pathname = window.location.pathname
@@ -70,6 +88,38 @@ export default function CommonHeader() {
                         </button>
                     </div>
                     <div className="sidebar-profile">
+                        <div className="dropdown-container">
+                            <button
+                                className="dropdown-button"
+                                onClick={() => setDropdownOpen(!dropdownOpen)}>
+                                {selectedCountry ? (
+                                <span className="selected-item">
+                                    <img src={selectedCountry.flag} alt={selectedCountry.name} className="flag" />
+                                    {selectedCountry.name}
+                                </span>
+                                ) : (
+                                "Country"
+                                )}
+                                <img src={dropdownOpen ? chevronUpIcon : chevronDownIcon} alt="Toggle" className="chevron-icon" />
+                            </button>
+                            {dropdownOpen && (
+                                <ul className="country-dropdown-menu">
+                                {countries.map((country) => (
+                                    <li
+                                    key={country.code}
+                                    className="dropdown-item"
+                                    onClick={() => {
+                                        setSelectedCountry(country);
+                                        setDropdownOpen(false);
+                                    }}
+                                    >
+                                    <img src={country.flag} alt={country.name} className="flag" />
+                                    {country.name}
+                                    </li>
+                                ))}
+                                </ul>
+                            )}
+                        </div>
                         <div className="avatar" data-bs-toggle="dropdown" aria-expanded="false">
                             <span className="profile-letter">{profileInitial}</span>
                         </div>
