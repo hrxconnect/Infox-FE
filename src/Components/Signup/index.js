@@ -142,6 +142,8 @@ export default function Signup() {
         if (response.data.message === "Email sent successfully") {
           sessionStorage.setItem("user_id", response.data.user_id);
           // Navigate to OTP page and pass email_id through state
+
+          console.log('User ID from Session Storage:', sessionStorage.getItem("user_id"));
           console.log("Email ID from Signup:", formData.email);
           navigate("/verify_otp", {
             state: {
@@ -455,8 +457,12 @@ export default function Signup() {
               />{" "}
               <label htmlFor="terms">
                 I agree to the
-                <span className="highlight"> Terms and Conditions</span> and
-                <span className="highlight"> Privacy Policy</span>
+                <span> </span>
+                <span className="highlight" onClick={() => navigate('/termsandconditions')}> 
+                  Terms and Conditions </span> and 
+                  <span> </span>   
+                <span className="highlight" onClick={() => navigate('/termsandconditions')}> 
+                    Privacy Policy </span>
               </label>
               {errors.isChecked && (
                 <span className="error-message">{errors.isChecked}</span>

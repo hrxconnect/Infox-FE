@@ -32,6 +32,7 @@ const Otpverification = () => {
   };
 
   const handleOtpSubmit = async (event) => {
+    console.log("Verifying OTP...");
     event.preventDefault();
     setErrorMessage(""); // Clear previous error
     setSuccessMessage(""); // Clear previous success
@@ -44,9 +45,12 @@ const Otpverification = () => {
 
     try {
       const csrfToken = Cookies.get('csrftoken');
+      const userId = sessionStorage.getItem('user_id');
+      console.log("User ID from session:", userId);
+
       const response = await axios.post(`http://localhost:8000/api/verify_otp`,
         { otp: otpValue ,
-          user_id: response.data.user_id
+          user_id: userId
         },
         {
           withCredentials: true, // Ensure session cookies are included with the request
@@ -69,6 +73,7 @@ const Otpverification = () => {
   };
 
   const handleResendOtp = async () => {
+    console.log("Resending OTP...");
     setErrorMessage(""); // Clear previous error
     setSuccessMessage(""); // Clear previous success
     setOtp(["", "", "", "", "", ""]); // Clear input fields
