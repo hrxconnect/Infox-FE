@@ -79,9 +79,21 @@ const Otpverification = () => {
     setOtp(["", "", "", "", "", ""]); // Clear input fields
 
     try {
-      const response = await axios.post(
-        `http://127.0.0.1:8000/api/resend_otp/${user_id}/`
+      const userId = sessionStorage.getItem('user_id');
+      console.log("User ID from session:", userId);
+
+      const response = await axios.post(`http://localhost:8000/api/resend_otp`,
+        { 
+          email_id: email_id,
+          user_id: userId
+        },
+        {
+          withCredentials: true, // Ensure session cookies are included with the request
+          headers: { 'Content-Type': 'application/json' 
+          } // Set the content type header
+        }
       );
+      
 
       if (response.status === 200) {
         setSuccessMessage("OTP has been resent to your email.");
@@ -102,11 +114,7 @@ const Otpverification = () => {
     navigate("/signup");
   };
 
-  useEffect(() => {
-    console.log("User ID from URL:", user_id);
-  }, [user_id]);
-
-  
+ 
   return (
     <div className="otp-container" >
       <div className="otp-header">

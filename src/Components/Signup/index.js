@@ -147,7 +147,7 @@ export default function Signup() {
           console.log("Email ID from Signup:", formData.email);
           navigate("/verify_otp", {
             state: {
-              email_id: formData.email,
+              email_id: response.data.email,
               signupUser_id: response.data.user_id,
             },
           });
@@ -175,7 +175,11 @@ export default function Signup() {
 
       if (res.data.success) {
         console.log("Google Signup successful:", res.data.message);
-        navigate("/home"); // Redirect to home after successful signup
+        sessionStorage.setItem("user_id", res.data.user_id);
+          // Navigate to OTP page and pass email_id through state
+
+          console.log('User ID from Session Storage:', sessionStorage.getItem("user_id"));
+          navigate('/pricing', { state: { email_id : res.data.email, userId : res.data.user_id } });
       } else {
         setErrors({
           form: res.data.error || "Error creating account. Please try again.",

@@ -34,8 +34,7 @@ const handlePlanSelect = async (plan) => {
     if (response.data.error) {
       console.error("Error:", response.data.error);
     } else {
-      const stripe = await stripePromise;
-      await stripe.redirectToCheckout({ sessionId: response.data.session_id });
+      window.location.href =response.data.url;
     }
   } catch (error) {
     console.error("Error:", error);
