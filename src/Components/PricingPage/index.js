@@ -23,7 +23,6 @@ const handlePlanSelect = async (plan) => {
     const response = await axios.post("http://127.0.0.1:8000/api/create_checkout_session/", {
       plan: plan,
       email: email_id,  
-      user_id: userId,
       payment_mode: "Subscription",
       success_url: "http://localhost:3000/login",
       cancel_url: "http://localhost:3000/cancel" 
