@@ -20,11 +20,13 @@ export default function CommonHeader() {
     const [pathState, setPathState] = useState('')
     const [profileName, setProfileName] = useState('');
     const [profileInitial, setProfileInitial] = useState('');
+    const [userID, setUserID] = useState('');
+    
 
     /*Countries*/
     const countries = [
-        { code: "CA", name: "Canada", flag: canadaFlag },
-        { code: "US", name: "United States", flag: usaFlag }
+        { code: "CA", name: "Canada", flag: canadaFlag, value: "1" },
+        { code: "US", name: "United States", flag: usaFlag, value: "2" },
       ];
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -38,7 +40,7 @@ export default function CommonHeader() {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("https://app.infox.bot/api/profile/", {
+                    const response = await axios.get("http://127.0.0.1:8000/api/profile/", {
                         headers: {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
@@ -49,6 +51,8 @@ export default function CommonHeader() {
                         const data = response.data;
                         setProfileName(`${data.firstname} ${data.lastname}`);
                         setProfileInitial(data.firstname.charAt(0));
+                        handleCountryUpdate(data.country.value, false);
+                        setUserID(data.userid);
                     }
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);
@@ -59,6 +63,50 @@ export default function CommonHeader() {
         fetchUserProfile();
     }, [])
 
+
+    useEffect(() => {
+        console.log("Updated Selected Country:", selectedCountry);
+    }, [selectedCountry]);
+    
+    const UpdateSelectedCountry = async (countryValue) => {
+        console.log('Calling Country API with:', countryValue);
+        var userId = sessionStorage.getItem('user_id');
+        if(!userId) {
+            userId = userID;
+        }
+
+        try {
+            const response = await axios.post("http://127.0.0.1:8000/api/cournty_selection", {
+                selected_country: countryValue,
+                user_id: userId
+            });
+    
+            console.log('Selected Country API Response:', response.data);
+    
+            if (response.status === 200) {
+                handleCountryUpdate(response.data.new_country, false);
+            }
+        } catch (error) {
+            console.error("Failed to fetch Selected Country:", error);
+        }
+    };    
+
+    const handleCountryUpdate = (countryValue, shouldCallAPI) => {
+        console.log("Updating country selection:", countryValue);
+        
+        setSelectedCountry(prevCountry => {
+            const updatedCountry = countryValue === "1" ? countries[0] : countries[1];
+            console.log("New Selected Country:", updatedCountry);
+            return updatedCountry;
+        });
+    
+        if (shouldCallAPI) {
+            setTimeout(() => UpdateSelectedCountry(countryValue), 0); // Delays API call slightly
+        }
+    };
+    
+    
+    
     const handleLogout = async () => {
         // Optionally, you can call an API to handle logout on the server side
         // await axios.post("https://app.infox.bot/api/logout/", {}, {
@@ -109,9 +157,10 @@ export default function CommonHeader() {
                                     key={country.code}
                                     className="dropdown-item"
                                     onClick={() => {
+                                        console.log('Dropdown Clicked - New Country:', country);
                                         setSelectedCountry(country);
-                                        setDropdownOpen(false);
-                                    }}
+                                        handleCountryUpdate(country.value, true);
+                                        setDropdownOpen(false);                                    }}
                                     >
                                     <img src={country.flag} alt={country.name} className="flag" />
                                     {country.name}

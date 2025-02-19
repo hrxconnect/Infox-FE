@@ -26,7 +26,7 @@ import PrivateRoute from './Helper/RouterGuard.js';
 export default function App() {
     return (
     <MsalProvider instance={msalInstance}>
-        <GoogleOAuthProvider clientId="1038646241800-3tp1oav5f8h4b1tpnv1jnt412hgfr6bq.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
             <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
