@@ -4,8 +4,7 @@ import logo from '../../Assets/logo.png';
 import { IoMdTime } from "react-icons/io";
 import { TbHome } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import axios from 'axios';
-
+import apiClient from "../../api/api";
 import chevronDownIcon from '../../Assets/chevron-down.png';
 import chevronUpIcon from '../../Assets/chevron-up.png';
 import canadaFlag from '../../Assets/CA.png';
@@ -40,7 +39,8 @@ export default function CommonHeader() {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("http://127.0.0.1:8000/api/profile/", {
+                    
+                    const response = await apiClient.get("/profile/", {
                         headers: {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
@@ -76,7 +76,7 @@ export default function CommonHeader() {
         }
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/api/cournty_selection", {
+            const response = await apiClient.post("/cournty_selection", {
                 selected_country: countryValue,
                 user_id: userId
             });

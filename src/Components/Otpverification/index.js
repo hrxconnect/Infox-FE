@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import apiClient from "../../api/api";
 import "./style.css";
 import Cookies from 'js-cookie';
 //Assets
@@ -48,7 +48,7 @@ const Otpverification = () => {
       const userId = sessionStorage.getItem('user_id');
       console.log("User ID from session:", userId);
 
-      const response = await axios.post(`http://localhost:8000/api/verify_otp`,
+      const response = await apiClient.post(`/verify_otp`,
         { otp: otpValue ,
           user_id: userId
         },
@@ -58,11 +58,16 @@ const Otpverification = () => {
           } // Set the content type header
         }
       );
-      if (response.status === 200) {
+      console.log(response)
+      if (response.status === 200 && response.data.token) {
         setSuccessMessage("OTP verified successfully!");
         setOtp(["", "", "", "", "", ""]); // Clear input fields
-        navigate('/pricing', { state: { email_id: email_id, userId:response.data.user_id } });// Redirect after successful verification
+        localStorage.setItem("token", response.data.token); // Store the token in local storage
+        navigate('/pricing', { state: { email_id: email_id, userId:userId } });// Redirect after successful verification
       }
+
+     
+
     } catch (error) {
       if (error.response && error.response.data) {
         setErrorMessage(error.response.data.error || "Invalid OTP. Please try again.");
@@ -82,7 +87,7 @@ const Otpverification = () => {
       const userId = sessionStorage.getItem('user_id');
       console.log("User ID from session:", userId);
 
-      const response = await axios.post(`http://localhost:8000/api/resend_otp`,
+      const response = await apiClient.post(`/resend_otp`,
         { 
           email_id: email_id,
           user_id: userId

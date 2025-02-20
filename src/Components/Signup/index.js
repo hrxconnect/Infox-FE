@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { useMsal } from "@azure/msal-react"; 
 import axios from "axios";
 import "./style.css";
@@ -13,6 +13,7 @@ import microsoft from '../../Assets/microsoft.png';
 import eyeOpen from '../../Assets/eye-icon.png';
 import eyeClosed from '../../Assets/eye-closed.png';
 import chevronDown from '../../Assets/chevron-down.png';
+import apiClient from "../../api/api";
 
 
 export default function Signup() {
@@ -121,8 +122,7 @@ export default function Signup() {
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:8000/api/signup/",
+      const response = await apiClient.post("/signup/",
         formData,{
           withCredentials: true
         }
@@ -168,8 +168,9 @@ export default function Signup() {
   // Handle Google Signup Success
   const handleGoogleSignupSuccess = async (response) => {
     const googleToken = response.credential;
+    localStorage.setItem("token", googleToken);
     try {
-      const res = await axios.post("http://localhost:8000/api/google-signup", {
+      const res = await apiClient.post("/google-signup", {
         token: googleToken,
       });
 
@@ -218,9 +219,10 @@ export default function Signup() {
 
       const idToken = loginResponse.idToken;
       console.log("ID Token:", idToken);
+      localStorage.setItem("token", idToken);
 
       // Optionally redirect the user to a dashboard or another page
-      navigate("/login"); // Redirect to a different page after successful login
+      navigate("/home"); // Redirect to a different page after successful login
 
       // Optionally, send ID token to your backend for validation
       fetch("http://127.0.0.1:8000/auth/microsoft", {

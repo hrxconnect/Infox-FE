@@ -7,6 +7,7 @@ import { FaArrowRight, FaRegUser } from "react-icons/fa";
 import axios from 'axios';
 import ChatBox from "../../Common/ChatBox/index.js";
 import { formatBotMessage } from "../../Helper/Bot.js";
+import apiClient from "../../api/api.js";
 
 export default function Queries() {
     const navigate = useNavigate();
@@ -26,11 +27,11 @@ export default function Queries() {
     }, [botMessages]);
 
     const handleEventStream = async (userQuery) => {
-        const url = 'https://app.infox.bot/api/relay_chat/';
+        const url = 'relay_chat/';
         let fullMessage = '';
 
         try {
-            const response = await axios.post(url, {
+            const response = await apiClient.post(url, {
                 query: userQuery,
                 use_case: "hr" // Ensure use_case is passed correctly
             }, {

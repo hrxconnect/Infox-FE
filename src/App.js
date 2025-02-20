@@ -33,7 +33,7 @@ export default function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/verify_otp" element={<OtpVerification />} />
                 <Route path="/signup" element={<SignUp />} />
-                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/pricing" element={<PrivateRoute><PricingPage /></PrivateRoute>} />
                 <Route path="/hr-experts" element={<HRXExperts/>} />
                 <Route path="resetpassword" element={<ResetPassword />} />
                 <Route path="setpassword" element={<SetPassword />} />

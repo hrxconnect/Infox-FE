@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
-import axios from "axios";
+import apiClient from '../../api/api';
 import { loadStripe } from '@stripe/stripe-js';
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 
@@ -10,17 +10,20 @@ function PricingPage() {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { email_id, userId } = location.state || {};  // Access the passed email
+  var { email_id, userId } = location.state || {};  // Access the passed email
 
 const handlePlanSelect = async (plan) => {
-
+  if(!userId) {
+    userId = sessionStorage.getItem('user_id');
+  }
   if (plan === 'free') {
-    navigate("/login"); // Redirect free users to login
+    navigate("/home"); // Redirect free users to login
     return;
   }
 
   try {
-    const response = await axios.post("http://127.0.0.1:8000/api/create_checkout_session/", {
+    const response = await apiClient.post("/create_checkout_session/", {
+      user_id: userId,
       plan: plan,
       email: email_id,  
       payment_mode: "Subscription",
