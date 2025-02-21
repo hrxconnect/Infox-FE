@@ -7,13 +7,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 function PricingPage() {
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const [selectedPlan] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   var { email_id, userId } = location.state || {};  // Access the passed email
 
 const handlePlanSelect = async (plan) => {
-  setSelectedPlan(plan);  // Update the selected plan
   if(!userId) {
     userId = sessionStorage.getItem('user_id');
   }
@@ -26,7 +25,7 @@ const handlePlanSelect = async (plan) => {
 
     const response = await apiClient.post("/create_checkout_session/", {
       user_id: userId,
-      plan: selectedPlan,
+      plan: plan,
       payment_mode: "Subscription",
       success_url: "http://localhost:3000/home",
       cancel_url: "http://localhost:3000/pricing" 

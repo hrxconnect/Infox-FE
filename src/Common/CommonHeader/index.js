@@ -51,7 +51,11 @@ export default function CommonHeader() {
                         const data = response.data;
                         setProfileName(`${data.firstname} ${data.lastname}`);
                         setProfileInitial(data.firstname.charAt(0));
-                        handleCountryUpdate(data.country.value, false);
+                        
+                        // Set the country from the API, fallback to Canada if not available
+                        const countryValue = data.country || "1"; // Default to Canada if API does not provide a value
+                        handleCountryUpdate(countryValue, false);
+
                         setUserID(data.userid);
                     }
                 } catch (error) {
@@ -94,6 +98,7 @@ export default function CommonHeader() {
     const handleCountryUpdate = (countryValue, shouldCallAPI) => {
         console.log("Updating country selection:", countryValue);
         
+        // Ensure selected country state is updated before proceeding
         setSelectedCountry(prevCountry => {
             const updatedCountry = countryValue === "1" ? countries[0] : countries[1];
             console.log("New Selected Country:", updatedCountry);
@@ -101,7 +106,8 @@ export default function CommonHeader() {
         });
     
         if (shouldCallAPI) {
-            setTimeout(() => UpdateSelectedCountry(countryValue), 0); // Delays API call slightly
+            // Delay API call to make sure state has been updated
+            setTimeout(() => UpdateSelectedCountry(countryValue), 100); // Slightly more delay to ensure state update
         }
     };
     

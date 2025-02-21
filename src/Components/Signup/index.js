@@ -161,7 +161,14 @@ export default function Signup() {
         }
       }
     } catch (error) {
-      setErrors({ form: "Error creating account. Please try again." });
+      console.error("Signup error:", error.response ? error.response.data : error);
+      
+      // Check if the error message matches "User email id already exists"
+      if (error.response && error.response.data && error.response.data.error === "User with this email already exists.") {
+        setErrors({ form: "This email is associated with an account." });
+      } else {
+        setErrors({ form: error.response ? error.response.data.error : "Error creating account. Please try again." });
+      }
     }
   };
   //**************************************************************************************** */
@@ -288,7 +295,6 @@ export default function Signup() {
           {successMessage && (
             <div className="success-message">{successMessage}</div>
           )}
-          {errors.form && <div className="error-message">{errors.form}</div>}
           <form onSubmit={handleSubmit} noValidate>
             <div class="name-fields">
               <div class="input-container">
@@ -487,6 +493,7 @@ export default function Signup() {
             >
               Create Account
             </button>
+            {errors.form && <div className="error-message">{errors.form}</div>}
           </form>
 
           {/* Sign In text */}
