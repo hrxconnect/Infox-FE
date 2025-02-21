@@ -168,7 +168,6 @@ export default function Signup() {
   // Handle Google Signup Success
   const handleGoogleSignupSuccess = async (response) => {
     const googleToken = response.credential;
-    localStorage.setItem("token", googleToken);
     try {
       const res = await apiClient.post("/google-signup", {
         token: googleToken,
@@ -177,10 +176,10 @@ export default function Signup() {
       if (res.data.success) {
         console.log("Google Signup successful:", res.data.message);
         sessionStorage.setItem("user_id", res.data.user_id);
-          // Navigate to OTP page and pass email_id through state
-
-          console.log('User ID from Session Storage:', sessionStorage.getItem("user_id"));
-          navigate('/pricing', { state: { email_id : res.data.email, userId : res.data.user_id } });
+        setGoogleToken(googleToken);
+        localStorage.setItem("token", googleToken);
+        // Navigate to OTP page and pass email_id through state
+        navigate('/pricing', { state: { email_id : res.data.email, userId : res.data.user_id } });
       } else {
         setErrors({
           form: res.data.error || "Error creating account. Please try again.",

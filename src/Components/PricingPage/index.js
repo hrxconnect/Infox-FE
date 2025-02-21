@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css';
 import apiClient from '../../api/api';
 import { loadStripe } from '@stripe/stripe-js';
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -13,6 +13,7 @@ function PricingPage() {
   var { email_id, userId } = location.state || {};  // Access the passed email
 
 const handlePlanSelect = async (plan) => {
+  setSelectedPlan(plan);  // Update the selected plan
   if(!userId) {
     userId = sessionStorage.getItem('user_id');
   }
@@ -22,17 +23,18 @@ const handlePlanSelect = async (plan) => {
   }
 
   try {
+
     const response = await apiClient.post("/create_checkout_session/", {
       user_id: userId,
-      plan: plan,
-      email: email_id,  
+      plan: selectedPlan,
       payment_mode: "Subscription",
-      success_url: "http://localhost:3000/login",
-      cancel_url: "http://localhost:3000/cancel" 
+      success_url: "http://localhost:3000/home",
+      cancel_url: "http://localhost:3000/pricing" 
     }, {
       headers: { "Content-Type": "application/json" }
     });
 
+    console.log("userID:", userId, "Email:", email_id, "Plan:", plan, "Response:", response.data);
     if (response.data.error) {
       console.error("Error:", response.data.error);
     } else {
