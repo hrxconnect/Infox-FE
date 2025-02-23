@@ -23,25 +23,41 @@ export default function Login() {
 
             const data = response.data;
 
-            if (response.status === 200 && data.token) {
-                const token = data.token;
-                localStorage.setItem("token", token);
+            if (response.status === 200)
+            {
+                if (response.data.token) 
+                {
+                    const token = data.token;
+                    localStorage.setItem("token", token);
 
-                const userDetailsResponse = await apiClient.get("/profile/", {
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json",
-                    },
-                });
+                    const userDetailsResponse = await apiClient.get("/profile/", {
+                        headers: {
+                            "Authorization": `Bearer ${token}`,
+                            "Content-Type": "application/json",
+                        },
+                    });
 
-                if (userDetailsResponse.status === 200) {
-                    const userDetails = userDetailsResponse.data;
-                    localStorage.setItem("userProfile", JSON.stringify(userDetails));
-                    navigate("/home");
-                } else {
-                    setErrorMessage("Failed to fetch user details.");
+                    if (userDetailsResponse.status === 200) {
+                        const userDetails = userDetailsResponse.data;
+                        localStorage.setItem("userProfile", JSON.stringify(userDetails));
+                        navigate("/home");
+                    } else {
+                        setErrorMessage("Failed to fetch user details.");
+                    }
                 }
-            } else {
+                else if (response.data.url && (response.data.url === "/pricing" || response.data.url === "/verify_otp")) 
+                {
+                    navigate(response.data.url, { 
+                        state: { 
+                            email_id: response.data.email, 
+                            userId: response.data.user_id 
+                        } 
+                    });
+                }
+            }
+            else 
+            {
+                
                 setErrorMessage("Invalid user credentials");
             }
         } catch (error) {

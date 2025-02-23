@@ -166,46 +166,62 @@ export default function Signup() {
   };
   //**************************************************************************************** */
   // Handle Google Signup Success
-  const handleGoogleSignupSuccess = async (response) => {
-    const googleToken = response.credential;
-    try {
-      const res = await apiClient.post("/google-signup", {
-        token: googleToken,
-      });
+const handleGoogleSignupSuccess = async (response) => {
+  const googleToken = response.credential; // Extract the Google token from the response
 
+  try {
+    const res = await apiClient.post("/auth/google-signup/", {
+      token: googleToken,
+    });
+
+    if (res && res.data) {
       if (res.data.success) {
         console.log("Google Signup successful:", res.data.message);
+        console.log("Google Signup successful:", res.data.token);
+        
+        // Store user ID and token in session and local storage
         sessionStorage.setItem("user_id", res.data.user_id);
-        setGoogleToken(googleToken);
-        localStorage.setItem("token", googleToken);
+        setGoogleToken(res.data.token);
+        localStorage.setItem("token", res.data.token);
+
         // Navigate to OTP page and pass email_id through state
-        navigate('/pricing', { state: { email_id : res.data.email, userId : res.data.user_id } });
+        navigate(`${res.data.url}`, { state: { email_id: res.data.email, userId: res.data.user_id } });
       } else {
+        // Set errors from response
         setErrors({
           form: res.data.error || "Error creating account. Please try again.",
         });
+       
       }
-    } catch (error) {
-      // Check for token timing issue and retry after a delay
-      if (
-        error.response &&
-        error.response.data.message.includes("Token used too early")
-      ) {
+    } else {
+      console.log("Google:", res.data.token);
+      console.error('Response is undefined:', res);
+      setErrors({ form: "Unexpected response format." });
+    }
+  } catch (error) {
+    // Handle errors and token timing issues
+    if (error.response) {
+      // Check for token timing issue
+      if (error.response.data.message && error.response.data.message.includes("Token used too early")) {
         console.warn("Token issue detected. Retrying in 2 seconds...");
-        setTimeout(() => handleGoogleSignupSuccess(response), 2000); // Retry after 2 seconds
+        setTimeout(() => handleGoogleSignupSuccess(response), 2000); // Retry with the original response
       } else {
         setErrors({
-          form:
-            "Google signup error: " +
-            (error.response?.data.message || error.message),
+          form: "Google signup error: " + (error.response.data.message || error.message),
         });
       }
+    } else {
+      console.error('Error occurred:', error);
+      setErrors({ form: "An error occurred. Please try again later." });
     }
-  };
-  // Handle Google Signup Failure
-  const handleGoogleSignupFailure = () => {
-    setError("Google login failed. Please try again.");
-  };
+  }
+};
+
+// Handle Google Signup Failure
+const handleGoogleSignupFailure = () => {
+  setErrors({ form: "Google login failed. Please try again." }); // Updated to use setErrors for consistency
+};
+
   /******************************************************************************************** */
 
   const handleSignupwithmicrosoft = async () => {
@@ -297,6 +313,7 @@ export default function Signup() {
                     First Name
                   </label>
                 </div>
+                
                 <input
                   type="text"
                   id="firstname"
