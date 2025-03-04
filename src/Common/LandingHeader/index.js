@@ -31,7 +31,7 @@ export default function LandingHeader() {
                                     <a className="nav-link" href=""><CiGlobe size={20}/>EN</a>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="btn btn-signup" type="submit" onClick={() => navigate("login")}>Sign Up</button>
+                                    <button className="btn btn-signup" type="submit" onClick={() => navigate("signup")}>Sign Up</button>
                                 </li>
                                 <li className="nav-item">
                                     <button className="btn btn-login" type="submit" onClick={()=> navigate("login")} >Log In</button>

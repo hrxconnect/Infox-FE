@@ -4,13 +4,32 @@ import logo from '../../Assets/logo.png';
 import { IoMdTime } from "react-icons/io";
 import { TbHome } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import axios from 'axios';
+import apiClient from "../../api/api";
+import chevronDownIcon from '../../Assets/chevron-down.png';
+import chevronUpIcon from '../../Assets/chevron-up.png';
+import canadaFlag from '../../Assets/CA.png';
+import usaFlag from '../../Assets/US.png';
+
+
+
+
 
 export default function CommonHeader() {
     const navigate = useNavigate();
     const [pathState, setPathState] = useState('')
     const [profileName, setProfileName] = useState('');
     const [profileInitial, setProfileInitial] = useState('');
+    const [userID, setUserID] = useState('');
+    
+
+    /*Countries*/
+    const countries = [
+        { code: "CA", name: "Canada", flag: canadaFlag, value: "1" },
+        { code: "US", name: "United States", flag: usaFlag, value: "2" },
+      ];
+    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
 
     useEffect(() => {
         const pathname = window.location.pathname
@@ -20,7 +39,8 @@ export default function CommonHeader() {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get("https://app.infox.bot/api/profile/", {
+                    
+                    const response = await apiClient.get("/profile/", {
                         headers: {
                             "Authorization": `Bearer ${token}`,
                             "Content-Type": "application/json",
@@ -31,6 +51,12 @@ export default function CommonHeader() {
                         const data = response.data;
                         setProfileName(`${data.firstname} ${data.lastname}`);
                         setProfileInitial(data.firstname.charAt(0));
+                        
+                        // Set the country from the API, fallback to Canada if not available
+                        const countryValue = data.country || "1"; // Default to Canada if API does not provide a value
+                        handleCountryUpdate(countryValue, false);
+
+                        setUserID(data.userid);
                     }
                 } catch (error) {
                     console.error("Failed to fetch user profile:", error);
@@ -41,6 +67,52 @@ export default function CommonHeader() {
         fetchUserProfile();
     }, [])
 
+
+    useEffect(() => {
+        console.log("Updated Selected Country:", selectedCountry);
+    }, [selectedCountry]);
+    
+    const UpdateSelectedCountry = async (countryValue) => {
+        console.log('Calling Country API with:', countryValue);
+        var userId = sessionStorage.getItem('user_id');
+        if(!userId) {
+            userId = userID;
+        }
+
+        try {
+            const response = await apiClient.post("/cournty_selection", {
+                selected_country: countryValue,
+                user_id: userId
+            });
+    
+            console.log('Selected Country API Response:', response.data);
+    
+            if (response.status === 200) {
+                handleCountryUpdate(response.data.new_country, false);
+            }
+        } catch (error) {
+            console.error("Failed to fetch Selected Country:", error);
+        }
+    };    
+
+    const handleCountryUpdate = (countryValue, shouldCallAPI) => {
+        console.log("Updating country selection:", countryValue);
+        
+        // Ensure selected country state is updated before proceeding
+        setSelectedCountry(prevCountry => {
+            const updatedCountry = countryValue === "1" ? countries[0] : countries[1];
+            console.log("New Selected Country:", updatedCountry);
+            return updatedCountry;
+        });
+    
+        if (shouldCallAPI) {
+            // Delay API call to make sure state has been updated
+            setTimeout(() => UpdateSelectedCountry(countryValue), 100); // Slightly more delay to ensure state update
+        }
+    };
+    
+    
+    
     const handleLogout = async () => {
         // Optionally, you can call an API to handle logout on the server side
         // await axios.post("https://app.infox.bot/api/logout/", {}, {
@@ -70,6 +142,39 @@ export default function CommonHeader() {
                         </button>
                     </div>
                     <div className="sidebar-profile">
+                        <div className="dropdown-container">
+                            <button
+                                className="dropdown-button"
+                                onClick={() => setDropdownOpen(!dropdownOpen)}>
+                                {selectedCountry ? (
+                                <span className="selected-item">
+                                    <img src={selectedCountry.flag} alt={selectedCountry.name} className="flag" />
+                                    {selectedCountry.name}
+                                </span>
+                                ) : (
+                                "Country"
+                                )}
+                                <img src={dropdownOpen ? chevronUpIcon : chevronDownIcon} alt="Toggle" className="chevron-icon" />
+                            </button>
+                            {dropdownOpen && (
+                                <ul className="country-dropdown-menu">
+                                {countries.map((country) => (
+                                    <li
+                                    key={country.code}
+                                    className="dropdown-item"
+                                    onClick={() => {
+                                        console.log('Dropdown Clicked - New Country:', country);
+                                        setSelectedCountry(country);
+                                        handleCountryUpdate(country.value, true);
+                                        setDropdownOpen(false);                                    }}
+                                    >
+                                    <img src={country.flag} alt={country.name} className="flag" />
+                                    {country.name}
+                                    </li>
+                                ))}
+                                </ul>
+                            )}
+                        </div>
                         <div className="avatar" data-bs-toggle="dropdown" aria-expanded="false">
                             <span className="profile-letter">{profileInitial}</span>
                         </div>

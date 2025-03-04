@@ -1,0 +1,408 @@
+/* Main container */
+.signup-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  gap: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+  flex-wrap: wrap; /* Allow content to wrap on small screens */
+  position: relative;
+  transition: filter 0.3s ease;
+}
+
+/* Section styling */
+.section {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Left and Right sections */
+.section-left {
+  flex: 0.4;
+  margin-left: 82px;
+  margin-right: 85px;
+  background-color: #fff;
+}
+
+.section-right {
+  flex: 0.6;
+  margin-right: 70px;
+  background-color: #fff;
+}
+
+.section-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover; /* Ensures the image scales nicely */
+}
+
+/* Logo section */
+.logo-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.login-logo {
+  width: 170px;
+  height: 46px;
+}
+
+/* Account label */
+.create-account-label {
+  font-size: 24px;
+  margin-left: 20px;
+  margin-right: 10px;
+  font-weight: semibold;
+  text-align: center;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+/* Social login icons */
+.social-login-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 65px;
+  height: 65px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+.google-login-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.social-icon {
+  width: 15px; /* Adjust size */
+  height: 15px;
+  margin-right: 10px;
+}
+
+.ms-signin-btn {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: #3d4043;
+  border: solid 1px #dadce0;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  height: 40px;
+}
+
+.ms-signin-btn:hover {
+  border: solid 1px #d2e0fa;
+  background-color: #f8fafe;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+  color: #888;
+  font-size: 18px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+  margin: 0 10px;
+}
+
+/* Name fields */
+.name-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Error message */
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 5px;
+}
+
+/* Input styling */
+.input-container label {
+  font-size: 18px;
+  margin-bottom: 5px;
+  font-weight: medium;
+}
+
+.input-field {
+  width: 100%;
+  height: 62px;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 16px;
+  border: 1px solid #afb1b6;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.input-field::placeholder {
+  color: #8e8e93;
+  font-size: 13px;
+  /* padding-left: 5px; */
+}
+
+.input-field:focus {
+  border-color: #ffa500;
+  outline: none;
+}
+
+/* Password fields */
+.password-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-icon-img {
+  width: 12px;
+  height: 9px;
+}
+
+/* Country Dropdown */
+.country-container {
+  margin-bottom: 20px;
+  display: block;
+  width: 100%;
+}
+
+.country-container label {
+  font-size: 18px;
+  font-weight: medium;
+  margin-bottom: 5px;
+}
+
+.select-container {
+  position: relative;
+}
+
+.country-container select {
+  width: 100%;
+  height: 62px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  margin-top: 5px;
+  appearance: none;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.chevron-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin-right: 10px;
+  transform: translateY(-50%);
+  width: 12px;
+}
+
+.country-container select:focus {
+  border-color: #ffa500;
+}
+
+/* Terms and Conditions checkbox */
+.terms-container {
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  accent-color: #ffa500;
+}
+
+.terms-container input {
+  margin-right: 10px;
+  padding: 0;
+  width: auto;
+}
+
+.terms-container label {
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+}
+
+.highlight {
+  color: #ffa500;
+  font-weight: 500;
+}
+
+/* Button for Create Account */
+.create-account-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  height: 62px;
+}
+
+.create-account-btn:hover {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 1px;
+  border-radius: 16px;
+  border-color: black;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* Sign In text */
+.sign-in-text {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.sign-in-text .highlight {
+  color: FFA500;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column; /* Stack sections on smaller screens */
+    padding: 10px;
+  }
+
+  .section-left,
+  .section-right {
+    flex: 1;
+    margin: 0;
+  }
+
+  .name-fields {
+    flex-direction: column; /* Stack name fields vertically */
+    gap: 10px;
+  }
+
+  .password-fields {
+    flex-direction: column; /* Stack password fields vertically */
+    gap: 10px;
+  }
+
+  .create-account-btn {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .social-login-container {
+    gap: 15px;
+  }
+
+  .login-logo {
+    width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .create-account-label {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .social-login-container {
+    gap: 20px;
+  }
+
+  .input-field,
+  .country-container select,
+  .create-account-btn {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .create-account-btn {
+    font-size: 18px;
+  }
+
+  .input-field::placeholder {
+    font-size: 12px;
+  }
+
+  .input-container label {
+    font-size: 16px;
+  }
+}
