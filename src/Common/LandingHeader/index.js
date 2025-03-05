@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from '../../Assets/logo.png';
+import logo from '../../Assets/logo_new.png';
 import './style.css';
 import { CiGlobe } from "react-icons/ci";
 
@@ -13,28 +13,31 @@ export default function LandingHeader() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                        <a className="navbar-brand" href=""> <img src={logo} alt="" height={30} width={100} /></a>
+                        <a className="navbar-brand" href=""> <img src={logo} alt="" className="header-login-logo" /></a>
                         {/* <ul className="navbar-nav navbar-menus me-auto mb-2 mb-lg-0">
                         </ul> */}
                         <form  role="search">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-end">
                                 <li className="nav-item">
-                                    <a className="nav-link" href="">Our Story</a>
+                                    <a className="nav-link" href="">Our Solutions</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="">Chat</a>
+                                    <a className="nav-link" href="">Grant Assist</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link " href="">Contact Us</a>
+                                    <a className="nav-link " href="">HR Queries</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link" href=""><CiGlobe size={20}/>EN</a>
+                                    <a className="nav-link " href="">Pricing</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link " href="" type="submit" onClick={()=> navigate("login")}>Login</a>
                                 </li>
                                 <li className="nav-item">
                                     <button className="btn btn-signup" type="submit" onClick={() => navigate("signup")}>Sign Up</button>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="btn btn-login" type="submit" onClick={()=> navigate("login")} >Log In</button>
+                                    <button className="btn btn-demo" type="submit"  >Book A Demo</button>
                                 </li>
                             </ul>
                         </form>

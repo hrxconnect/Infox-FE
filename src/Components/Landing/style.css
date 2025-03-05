@@ -1,5 +1,6 @@
 .getStarted {
-    background: linear-gradient(180deg, #FFA500 0%, rgba(129, 144, 128, 0.22) 50%, rgba(2, 123, 255, 0) 100%);
+    background: rgb(255,145,0);
+    background: linear-gradient(240deg, rgba(255,145,0,0.8) 0%, rgba(255,255,255,0.2) 57%, rgba(255,255,255,1) 73%, rgba(2,123,255,0.2) 100%);
 }
 
 .getStartedSection {
@@ -16,22 +17,51 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 100%;
+    height: 983px;
 }
 
-.leftSection {
-    width: 45%;
+.topSection {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 100px;
+}
+
+.topLeftSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.topRightSection {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 15%;
 }
 
-.rightSection {
-    width: 45%;
+.bottomSection {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
+}
+
+.heroCard {
+    width: 285px;
+    height: 120px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+  }
+
+.heroTitle {
+    font-weight: bold;
 }
 
 .text1 {
@@ -52,163 +82,394 @@
 }
 
 .btn-toogle {
-    background-color: #027BFF;
-    margin: 0px 10px;
+    background-color: black;
     font-weight: 500;
     color: white;
     align-self: flex-start;
+    border-radius: 50px;
+    height: 52px;
+    width: 220px;
+    margin-top: 50px;
 }
 
 .text4 {
-    font-size: 40px;
+    font-size: 48px;
     font-weight: 700;
     display: block;
-    margin: 20px;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 50px;
+
 }
+
+.empowerHighlight {
+    margin-left: 5px;
+    color: #ffa500;
+    font-weight: bolder;
+    font-size: 64px;
+  }
 
 .text5 {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: normal;
     display: block;
-    margin: 20px;
-}
-
-.imgSection {
-    width: 400px;
-    height: 400px;
-    box-shadow: 20px 20px #FFA500;
-    border-radius: 50px 15px;
-}
-
-.solutions {
-    margin-top: 4rem;
-}
-
-.item-card {
-    padding: 1rem;
-    display: flex;
-    flex-direction: row;
-}
-
-.cards {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(3, 1fr);
-    margin-top: 5rem;
-}
-
-.icon-sec {
-    height: fit-content;
-    width: fit-content;
-    padding: 10px;
-    background-color: #027BFF;
-    border-radius: 60px;
-}
-
-.card-discription {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-}
-
-.banner {
-    max-height: 600px;
-    width: 100%;
-    background-color: #FFA500;
-    border-radius: 20px 60px;
-    display: flex;
-    flex-direction: row;
-}
-
-.banner-aside {
-    width: 50%;
-    display: flex;
-    justify-content: end;
-}
-
-.imgSection2 {
-    width: 70%;
-    height: 100%;
-    padding-top: 30px;
-    z-index: 999;
-}
-
-.dummy {
-    height: 200px;
-    width: 200px;
-    background-color: #027BFF;
-    border-radius: 60px 20px;
-    position: relative;
-    left: 60%;
-    top: 30%;
-}
-
-.banner-content {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
+    margin: 0px;
     justify-content: center;
-    padding: 10px 40px 10px 40px;
 }
 
-.mess-card {
-    background-color: white;
-    align-items: left;
-    display: block;
-    width: 300px;
-    padding: 22px;
-    margin-top: 10px;
-    border-radius: 25px;
+/* CardStyle.css */
+.card-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 90px;
+    margin-left: 73px;
+    margin-right: 73px;
+    height: auto;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap to each card when scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  }
+  
+  .landing-card {
+    width: 35%;
+    color: black;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: auto;
+    border-radius: 50px !important;
+    overflow: hidden;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+    scroll-snap-align: start; /* Snap each card at the start of the container */
+  }
+  
+  .card-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  
+  /* Individual card gradients */
+  .card-1 {
+    background: rgb(255,155,15);
+    background: linear-gradient(40deg, rgba(255,155,15,1) 0%, rgba(255,255,255,0.4) 62%, rgba(2,123,255,0.2) 100%);  
+    
+  }
+  .card-2 {
+    background: rgb(2,123,255);
+    background: linear-gradient(40deg, rgba(2,123,255,0.2) 0%, rgba(255,255,255,0.4) 38%, rgba(255,155,15,1) 100%);
+  }
+  
+  .card-3 {
+    background: rgb(255,155,15);
+    background: linear-gradient(40deg, rgba(255,155,15,1) 0%, rgba(255,255,255,0.4) 73%, rgba(2,123,255,0.1) 100%);     
+ }
+
+/* Carousel */
+.carousel-wrapper {
+    position: relative;
+    width: 100%; 
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+.carousel-container {
+    width: 100%;
+    overflow-x: auto; /* Horizontal scroll */
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    scroll-snap-type: x mandatory; /* Smooth scrolling */
+    white-space: nowrap; /* Keeps everything in one line */
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hides scrollbar for IE/Edge */
+  }
+
+  .carousel-container::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for Chrome, Safari */
+  }
+  
+  .carousel {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 70px;
+    margin-bottom: 70px;
+  }
+  
+  .carousel-item {
+    background: #F8F5EF;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 18px;
+    font-weight: normal;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+    padding: 10px 20px;
+    white-space: nowrap; /* Keeps the text on one line */
+
+  }
+  
+  .carousel-icon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+  
+  .carousel-title {
+    font-size: 1em;
+  }
+  
+.carousel-fade-left,
+.carousel-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  pointer-events: none; /* Allows clicks to pass through */
+  z-index: 1;
+}
+
+.carousel-fade-left {
+  left: 0;
+  width: 200px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.carousel-fade-right {
+  right: 0;
+  width: 200px;
+  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+
+.grants {
+    margin-bottom: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: calc(100% - 120px); /* Subtract the left and right margins */
+    height: 450px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 25%, rgba(255, 145, 0, 0.8) 45%, rgba(255, 255, 255, 1) 85%);
+    margin-left: 60px;  /* Left margin */
+    margin-right: 60px; /* Right margin */
+
+}
+
+.grantsLeftSection {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+}
+
+.grantsTitle {
+    font-size: 60px;
+    font-weight: bold;
+    color: black;
+}
+
+.grantsDescription {
+    margin-top: 70px;
+    font-size: 22px;
+    font-weight: normal;
+    color: black;
+}
+
+.grantsRightSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    margin-top: 0px;
+}
+
+.grantsImg {
+    max-width: 100%;
+    height: auto;
+}
+
+.ourSolutions {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: center;
+    margin-bottom: 44px;  
+}
+
+.ourSolutionsBtn {
+    background-color:#027BFF;
+    font-weight: 500;
+    color: white;
+    align-self: flex-start;
+    border-radius: 50px;
+    height: 52px;
+    width: 220px;  
+}
+
+.BookADemoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will horizontally center the button */
+    justify-content: center; /* This will vertically center if needed */
+    width: 100%;
+    height: auto;
+    margin-bottom: 44px;
+}
+
+.BookADemo {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    text-align: center; /* Centering text inside the span */
+    margin: 0 188px;
+}
+
+.BookADemoBtn {
+    background-color: black;
+    font-weight: 500;
+    color: white;
+    border-radius: 50px;
+    width: 220px;
+    text-align: center; /* Centering button text */
+    margin-top: 20px; /* Optional: adding space between text and button */
+    height: 52px;
+}
+
+.contact-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+    margin: 0 62px;
+    background: rgb(153,99,0);
+    background: linear-gradient(280deg, rgba(153,99,0,0.2) 7%, rgba(2,123,255,0.2) 38%, rgba(255,165,0,0.4) 100%);
+    border-radius: 50px !important;
+    padding: 60px;
+    backdrop-filter: blur(10px); /* Background blur effect */
+    box-shadow: 0 4px 15px rgba(51, 51, 51, 0.08); /* Updated drop shadow color with 8% opacity */
+  }
+.form-title {
+  font-size: 64px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.input-grid {
+  display: grid;
+  grid-template-columns: 0.45fr 0.45fr;
+  gap: 50px;
+  justify-content: space-between;
+  width: 100%;
+  padding: auto;
+  margin-left: 104px;
+  margin-right: 104px;
+}
+.input-field {
+    margin-top: 8px;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    border: none !important;
+    border-radius: 10px !important;
+  }
+
+  .asteriskHighlight {
+    color: red;
+    font-weight: bolder;
+  }
+  
+
+.subject-section, .message-section {
+    width: 100%;
+    margin: 20px 0;
+  }
+
+  .subject-section {
+    margin-top: 54px;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    margin-bottom: 10px;
+  }
+  
+  .subject-options {
     display: flex;
     flex-direction: row;
-    align-items: end;
-}
+    flex-wrap: wrap;
+    gap: 20px; /* Adjusts space between radio button groups */
+  }
+  
+  .subject-option {
+    display: flex;
+    align-items: center; /* Ensures radio button and text are aligned */
+    gap: 5px; /* Small space between the radio button and label text */
+    white-space: nowrap; /* Prevents text from wrapping onto a new line */
+  }
+  
+  input[type="radio"] {
+    margin: 0; /* Removes default margin on radio buttons */
+  }
+  
 
-.banner-text {
-    margin-top: 10px;
-    font-size: 30px;
-    font-weight: 700;
-}
-
-.click_able {
-    cursor: pointer;
-}
-
-.card-img-top {
-    border-radius: 25px;
-    height: 230px;
+.section-title {
+    margin-bottom: 10px;
+  }
+  
+  .message-input {
     width: 100%;
+    padding: 2px 0px; /* Adds padding on all sides */
+    margin: 8px 0; /* Adds space above and below the input */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    border: none; /* Removes all borders */
+    border-bottom: 2px solid #8D8D8D; /* Adds a red bottom border */
+    outline: none; /* Removes the outline on focus */
+    font-size: 16px; /* Optional: Adjust font size to match input style */
+    background-color: #00000000;
+    outline: none; /* Removes the outline on focus */
+    font-size: 16px; /* Optional: Adjust font size to match input style */
+    border-radius: 0; /* Remove any border-radius to eliminate rounded corners */  
+  }
+
+  .message-input::placeholder {
+    color: gray; /* Change placeholder color */
+    opacity: 1; /* Make sure the placeholder is visible */
+  }
+  
+
+.submit-button {
+  background-color: #027BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 224px;
+  font-weight: bold;
+  height: 52px;
+}
+.submit-button:hover {
+  background-color: #027BFF;
 }
 
-.card-img-top2 {
-    height: 100px;
-    width: 200px;
-}
-
-.cards2 {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-gap: 1rem;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 5rem;
-    align-items: center;
-}
-
-.hrxExperts {
-  margin-top: 100px;
-}
-
-.hrxExpertsLogo {
-  text-align: center;
-}
 
 @media only screen and (max-width: 768px) {
     .getStarted {
-        background: linear-gradient(180deg, #FFA500 0%, rgba(129, 144, 128, 0.22) 50%, rgba(2, 123, 255, 0) 100%);
+        background: rgb(255,145,0);
+        background: linear-gradient(240deg, rgba(255,145,0,0.8) 0%, rgba(255,255,255,0.2) 57%, rgba(255,255,255,1) 73%, rgba(2,123,255,0.2) 100%);
     }
 
     .text1 {
@@ -357,7 +618,9 @@
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
     .getStarted {
-        background: linear-gradient(180deg, #FFA500 0%, rgba(129, 144, 128, 0.22) 50%, rgba(2, 123, 255, 0) 100%);
+        background: rgb(255,145,0);
+        background: linear-gradient(240deg, rgba(255,145,0,0.8) 0%, rgba(255,255,255,0.2) 57%, rgba(255,255,255,1) 73%, rgba(2,123,255,0.2) 100%);
+    
     }
 
     .getStartedSection {
@@ -466,7 +729,9 @@
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
     .getStarted {
-        background: linear-gradient(180deg, #FFA500 0%, rgba(129, 144, 128, 0.22) 50%, rgba(2, 123, 255, 0) 100%);
+        background: rgb(255,145,0);
+        background: linear-gradient(240deg, rgba(255,145,0,0.8) 0%, rgba(255,255,255,0.2) 57%, rgba(255,255,255,1) 73%, rgba(2,123,255,0.2) 100%);
+            
     }
 
     .getStartedSection {

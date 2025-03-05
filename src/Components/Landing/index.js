@@ -16,10 +16,34 @@ import logo1 from '../../Assets/logo1.png'
 import logo2 from '../../Assets/logo2.jpg'
 import logo3 from '../../Assets/logo3.png'
 import logo4 from '../../Assets/logo4.png'
-import { useEffect } from "react";
+import grantsAssists from '../../Assets/Grants_Assists_Img.png'
+import hrQueries from '../../Assets/HR_Queries_Img.png'
+import checkmark from '../../Assets/checkmark-round.png'
+
+
+import { useEffect, useState } from "react";
 
 export default function Landing() {
   const location = useLocation();
+  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
+
+  const items = [
+    { icon: '🛡️ ', title: 'Overtime rules in Canada?' },
+    { icon: '🧾 ', title: ' Parental leave policy?' },
+    { icon: '💻 ', title: 'Apply for a grant?' },
+    { icon: '📊 ', title: 'Track grant status' },
+    { icon: '🌐 ', title: 'Tech funding options?' },
+    { icon: '🗓️ ', title: 'How to apply leave?' },
+    { icon: '💼 ', title: 'Probation rules?' },
+    { icon: '🗓️ ', title: 'Compliance deadlines?' },
+    { icon: '🧑‍⚖️ ', title: 'Handling labor claims?' },
+    { icon: '📜 ', title: 'Mandatory benefits?' },
+    { icon: '📊 ', title: 'Performance review steps?' },
+    { icon: '📌 ', title: 'Policy violation process?' },
+    { icon: '🗓️ ', title: 'How to apply leave?' },
+    { icon: '📈 ', title: 'Eligibility for grants?' },
+    { icon: '💼 ', title: 'Probation rules?' },
+  ];
   useEffect(() => {
     if (location.hash) {
       const section = document.querySelector(location.hash)
@@ -28,137 +52,173 @@ export default function Landing() {
       }
     }
   }, [])
+
     return (
         <div className="body">
             <LandingHeader></LandingHeader>
             <div className="getStarted">
                 <div className="container getStartedSection">
                     <div className="Section">
-                        <div className="leftSection">
-                            <span className="text1">Your HR wing's new MVP: </span>
-                            <span className="text2">A chatbot that gets it done.</span>
-                            <p className="text3">Our AI chatbot is designed to quickly answer legal HR-related questions, saving you time. By using this tool, you can instantly access the information and answers you need without the hassle of extensive research or processes.</p>
-                            <button className="btn btn-toogle shadow pl-3 pr-3" type="submit">Get Started</button>
-                        </div>
-                        <div className="rightSection">
-                            <div className="imgSection">
-                                <img src={startedLogo} className="imgSection" alt="" />
+                        <div className="topSection">
+                            <div className="topLeftSection">
+                            <span className="text1">Your HR Assistant, </span>
+                            <span className="text2">Anytime, Anywhere.</span>
+                            <button className="btn btn-toogle shadow pl-3 pr-3" type="submit">Book A Demo</button>
+                            </div>
+
+                            <div className="topRightSection">
+                            <div className="heroCard">
+                            <p className="heroTitle">Leverage AI to uncover funding opportunities tailored to your business needs.</p>
+                            </div>
                             </div>
                         </div>
+                        <div className="bottomSection">
+                        <div className="heroCard">
+                            <p className="heroTitle">Empower your team with instant answers to HR-related questions with HR Queries.</p>
+                        </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div className="container">
-                <div className="solutions">
-                    <span className="text4 text-center">Elevate HR Efficiency and Maximize Productivity with Our Solutions.</span>
-                    <span className="text5 text-center">Unlock Instant Solutions, Legal Certainty, and Nonstop Support</span>
+                <label className="text4 text-center">
+                Solutions Designed to
+                <span> </span>
+                <span> </span>
+                <span className="empowerHighlight"> 
+                   Empower </span>  
+              </label>
+            <div>
+                <span className="text5 text-center">Effortlessly tackle HR tasks, compliance challenges, </span>
+                <span className="text5 text-center">and funding opportunities with infox.</span>
+            </div>
+            </div>
+            <div className="card-container">
+                <div className="landing-card card-1">
+                    <div className="card-title">AI-Powered HR Assistance</div>
+                    <div className="card-description">
+                    Streamline your workflows and resolve HR queries instantly with intelligent automation.
+                    </div>
                 </div>
-                <div className="cards">
-                    <div className="item-card">
-                        <div className="icon-sec">
-                            <FaRegClock size={35} color="white" />
-                        </div>
-                        <div className="card-discription">
-                            <span className="text2">Time Efficiency</span>
-                            <p className="text3">Access the answers you need instantly, eliminating the need for time-consuming research.</p>
-                        </div>
+                <div className="landing-card card-2">
+                    <div className="card-title">Unlock Talent & Business Grants</div>
+                    <div className="card-description">
+                    Find funding opportunities that match your industry and goals. Infox make grant discovery and applications simple and efficient.
                     </div>
-                    <div className="item-card">
-                        <div className="icon-sec">
-                            <FaHammer size={35} color="white" />
-                        </div>
-                        <div className="card-discription">
-                            <span className="text2">Legal Compliance</span>
-                            <p className="text3">Receive up-to-date, compliant advice on HR matters, ensuring your organization stays within legal boundaries.</p>
-                        </div>
+                </div>
+                <div className="landing-card card-3">
+                    <div className="card-title">Simplify Compliance</div>
+                    <div className="card-description">
+                    Stay updated with labor laws and regulatory changes. Infox provides real-time insights to ensure your business remains protected.
                     </div>
-                    <div className="item-card">
-                        <div className="icon-sec">
-                            <MdLaptopChromebook size={35} color="white" />
-                        </div>
-                        <div className="card-discription">
-                            <span className="text2">24/7 Accessibility</span>
-                            <p className="text3">Get HR support anytime, anywhere, with our AI chatbot available round the clock to assist you.
-                            </p>
-                        </div>
-                    </div>
+                </div>
+                </div>
+            <div className="carousel-wrapper">
+                <div className="carousel-fade-left"></div>
+                    <div className="carousel-container">
+                        <div className="carousel">
+                            {items.map((item, index) => (
+                        <div key={index} className="carousel-item">
+                    <div className="carousel-icon">{item.icon}</div>
+                <div className="carousel-title">{item.title}</div>
+            </div>
+                ))}
+            </div>
+            </div>
+            <div className="carousel-fade-right"></div>
+        </div>
+            <div className="grants">
+                <div className="grantsLeftSection">
+                    <span className="grantsTitle">Find and Secure Grants with Ease</span>
+                    <span className="grantsDescription">Leverage AI to uncover funding opportunities tailored to your business needs.</span>
+                </div>
+
+                <div className="grantsRightSection">
+                    <img src={grantsAssists} className="grantsImg"/>
                 </div>
             </div>
-            <div className="banner">
-                <div className="banner-aside">
-                    <div className="dummy"></div>
-                    <img src={img2} className="imgSection2" alt="" />
+            <div className="grants">
+                <div className="grantsRightSection">
+                    <img src={hrQueries} className="grantsImg"/>
                 </div>
-                <div className="banner-content">
-                    <div>
-                        <div className="mess-card float-start">
-                            <p>What workplace safety regulations do we need to adhere to for our office in Ohio?</p>
-                            <FaArrowCircleRight size={60} color="#027BFF" />
-                        </div>
-                    </div>
-                    <div>
-                        <div className="mess-card float-end">
-                            <p>What are the essential employment laws and regulations for hiring in Quebec?</p>
-                            <FaArrowCircleRight size={60} color="#027BFF" />
-                        </div>
-                    </div>
-                    <div className="banner-text">
-                        <IoMdCheckmark color="#027BFF" /> Ensure compliance through AI-powered insights into regulations.
-                    </div>
-                    <div className="mt-4">
-                        <span className="text3">Stay informed on all local regulations and global hiring trends at your fingertips.</span>
-                    </div>
-                    <div className="mt-3 d-flex justify-content-end">
-                        <button className="btn btn-toogle" type="submit">Learn More</button>
-                    </div>
+                <div className="grantsLeftSection">
+                    <span className="grantsTitle">Streamlined HR Assistance, Powered by AI</span>
+                    <span className="grantsDescription">Empower your team with instant answers to HR-related questions with HR Queries.</span>
                 </div>
             </div>
-            <div className="container">
-                <div className="solutions">
-                    <span className="text4 text-center">Keep up-to-date with our latest guides and resources.</span>
-                </div>
-                <div className="cards">
-                    <div className="cardpic shadow-none rounded">
-                        <img src={pic1} className="card-img-top" alt="..." />
-                        <div className="card-body mt-3">
-                            <h5 className="card-title">The Expense of Employing a Worker in Canada</h5>
-                            <p className="card-text">Initiating the employment of new staff primarily incurs costs through their initial...</p>
-                            <span className="click_able">Read more</span>
-                        </div>
-                    </div>
-                    <div className="cardpic shadow-none rounded">
-                        <img src={pic2} className="card-img-top" alt="..." />
-                        <div className="card-body mt-3">
-                            <h5 className="card-title">Your Guide to Engaging Independent Contractors</h5>
-                            <p className="card-text">The distinction between independent contractors and employees marks...</p>
-                            <span className="click_able">Read more</span>
-                        </div>
-                    </div>
-                    <div className="cardpic shadow-none rounded">
-                        <img src={pic3} className="card-img-top" alt="..." />
-                        <div className="card-body mt-3">
-                            <h5 className="card-title">Transitioning International Contractors to Employees</h5>
-                            <p className="card-text">What steps are involved in changing the status of an independent contractor to...</p>
-                            <span className="click_able">Read more</span>
-                        </div>
-                    </div>
-                </div>
+            <div className="ourSolutions">
+            <button className="btn ourSolutionsBtn" type="submit">Our Solutions</button>
             </div>
-            {/*<div className="container">
-                <div className="solutions">
-                    <span className="text4 text-center">Our Trusted Partners</span>
-                </div>
-                <div className="cards2">
-                    <img src={logo1} className="card-img-top2" alt="..." />
-                    <img src={logo2} className="card-img-top2" alt="..." />
-                    <img src={logo3} className="card-img-top2" alt="..." />
-                    <img src={logo4} className="card-img-top2" alt="..." /> 
-                </div>
-            </div>*/}
-            <div className="hrxExperts" id="hrxExperts">
-               
-             
+            <div className="BookADemoSection">
+                <span className="BookADemo">Book a Demo to See How infox Transforms </span>
+                <span className="BookADemo"> Chaos into Streamlined HR Management.</span>
+                <button className="btn BookADemoBtn" >Book A Demo</button>
             </div>
+    <div className="contact-form-container">
+      <h1 className="form-title">Contact Us</h1>
+      <div className="input-grid">
+      <div className="input-group">
+          <label className="input-label">First Name<span className="asteriskHighlight">*</span> </label>
+          <input type="text" className="input-field" />
+        </div>
+        <div className="input-group">
+          <label className="input-label">Last Name<span className="asteriskHighlight">*</span></label>
+          <input type="text" className="input-field" />
+        </div>
+        <div className="input-group">
+          <label className="input-label">Company Name<span className="asteriskHighlight">*</span></label>
+          <input type="text" className="input-field" />
+        </div>
+        <div className="input-group">
+          <label className="input-label">Business Email<span className="asteriskHighlight">*</span></label>
+          <input type="email"  className="input-field" />
+        </div>
+        <div className="input-group">
+          <label className="input-label">Job Title</label>
+          <input type="text"  className="input-field" />
+        </div>
+        <div className="input-group">
+          <label className="input-label">Mobile Number</label>
+          <input type="text"  className="input-field" />
+        </div>
+      </div>
+      <div className="subject-section">
+  <h3 className="section-title">
+    Select Subject <span className="asteriskHighlight">*</span>
+  </h3>
+  <div className="subject-options">
+    <label className="subject-option">
+      <input
+        type="radio"
+        name="subject"
+        value="General Inquiry"
+      />
+      General Inquiry
+    </label>
+    <label className="subject-option">
+      <input
+        type="radio"
+        name="subject"
+        value="HR Queries"
+      />
+      HR Queries
+    </label>
+    <label className="subject-option">
+      <input
+        type="radio"
+        name="subject"
+        value="Grants Assist"
+      />
+      Grants Assist
+    </label>
+  </div>
+</div>
+      <div className="message-section">
+      <h3 className="section-title">Message<span className="asteriskHighlight">*</span></h3>
+      <input type="text" placeholder="Write your Message.." className="message-input" />
+    </div>     
+      <button className="submit-button">Submit</button>
+    </div>
             <LandingFooter></LandingFooter>
         </div>
     )
