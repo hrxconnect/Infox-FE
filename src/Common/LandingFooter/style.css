@@ -3,16 +3,15 @@
     width: 100%;
     display: flex;
     margin-top: 2rem;
-    margin-bottom: 58px;
+    margin-bottom: 0px;
 }
 
 .footer-logo-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
+    height: auto;
     margin-bottom: 40px;
-    
   }
   
   .footer-login-logo {
@@ -21,12 +20,13 @@
   }
 
 .footerLeft {
-    width: 50%;
+    width: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     padding: 4rem;
+    margin-left: 100px;
 }
 
 .btn-section {
@@ -35,7 +35,7 @@
 }
 
 .footerRight {
-    width: 50%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -93,19 +93,28 @@ ul.no-bullets {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    justify-content: center;
+    justify-content: start;
+    align-items: start;
 }
 
 .terms {
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 10px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     margin-top: 2rem;
+    align-items: start;
+    justify-content: start;
 }
 
 .clickable {
     cursor: pointer;
+}
+
+.phoneicon, .mailicon {
+    width: 21px;
+    height: auto;
+    margin-right: 20px;
 }
 
 @media only screen and (max-width: 768px) {

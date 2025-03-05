@@ -126,13 +126,10 @@
     margin-left: 73px;
     margin-right: 73px;
     height: auto;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Snap to each card when scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
   }
   
   .landing-card {
-    width: 35%;
+    width: 40%;
     color: black;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     text-align: center;
@@ -140,11 +137,13 @@
     flex-direction: column;
     justify-content: start;
     height: auto;
+    max-height: 300px; /* Optional, to prevent it from getting too tall */
+    flex-grow: 1; /* Ensures it expands */
     border-radius: 50px !important;
     overflow: hidden;
-    flex-shrink: 0; /* Prevent cards from shrinking */
-    scroll-snap-align: start; /* Snap each card at the start of the container */
+    padding: 30px;
   }
+  
   
   .card-title {
     font-size: 1.5em;
@@ -377,13 +376,14 @@
   margin-left: 104px;
   margin-right: 104px;
 }
-.input-field {
+.landing-input-field {
     margin-top: 8px;
     padding: 10px;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.45) !important;
     border: none !important;
     border-radius: 10px !important;
+    height: 50px;
   }
 
   .asteriskHighlight {
@@ -413,17 +413,21 @@
     gap: 20px; /* Adjusts space between radio button groups */
   }
   
-  .subject-option {
+  .subject-option-item {
     display: flex;
     align-items: center; /* Ensures radio button and text are aligned */
     gap: 5px; /* Small space between the radio button and label text */
     white-space: nowrap; /* Prevents text from wrapping onto a new line */
   }
   
-  input[type="radio"] {
-    margin: 0; /* Removes default margin on radio buttons */
+  .subject-option-item img {
+    width: 20px; /* Adjust the size of the icon */
+    height: 20px;
   }
   
+  .subject-option-item input {
+    display: none; /* Hide the radio buttons */
+  }
 
 .section-title {
     margin-bottom: 10px;

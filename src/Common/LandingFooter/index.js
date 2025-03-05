@@ -5,6 +5,10 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import logo from '../../Assets/logo_new.png';
+import PhoneIcon from '../../Assets/Phone.png';
+import MailIcon from '../../Assets/Mail.png';
+
+
 
 
 export default function LandingFooter() {
@@ -26,8 +30,12 @@ export default function LandingFooter() {
                 <div className="product-list">
                         <ul className="no-bullets">
                             <li className="product-li"><b>Contact Us</b></li>
-                            <li className="product-li-active">(123)-567-8910</li>
-                            <li className="product-li-active">support@infox.com</li>
+                            <li className="product-li-active">
+                                <img src={PhoneIcon} alt="Phone" className="phoneicon" /> (123)-567-8910
+                            </li>
+                            <li className="product-li-active">
+                            <img src={MailIcon} alt="Phone" className="mailicon" /> support@infox.com
+                            </li>
                         </ul>
                     </div>
 

@@ -1,6 +1,8 @@
 .ul,li{
     margin: 0px 10px;
+    
 }
+
 .container{
     max-width: 1100px;
 }
@@ -15,20 +17,23 @@
 .btn-signup{
     height: 40px;
     width: 90px;
-    background-color: whitesmoke;
+    background-color: #00000000;
     box-shadow: none;
-    border: 1px solid black;
     margin: 10px 10px;
     font-weight: 500;
+    border-radius: 50px;
+    color: #027BFF;
 }
 
 .btn-demo{
     height: 50px;
     width: 180px;
-    background-color: rgba(white, white, white, 0.7);;
+    background-color: rgba(255, 255, 255, 0.7);;
     margin: 10px 10px;
     font-weight: 500;
     color: #027BFF; 
+    border-radius: 50px;
+
 }
 .nav-item{
     display: flex;

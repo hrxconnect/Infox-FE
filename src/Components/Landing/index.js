@@ -18,14 +18,19 @@ import logo3 from '../../Assets/logo3.png'
 import logo4 from '../../Assets/logo4.png'
 import grantsAssists from '../../Assets/Grants_Assists_Img.png'
 import hrQueries from '../../Assets/HR_Queries_Img.png'
-import checkmark from '../../Assets/checkmark-round.png'
+import subjectSelectedIcon from '../../Assets/checkmark-round.png'
+import subjectNotSelectedIcon from '../../Assets/checkmark-circle-solid.png'
 
 
 import { useEffect, useState } from "react";
 
 export default function Landing() {
   const location = useLocation();
-  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
+  const [selectedSubject, setSelectedSubject] = useState('General Inquiry');
+
+  const handleSelectionChange = (e) => {
+    setSelectedSubject(e.target.value);
+  }
 
   const items = [
     { icon: '🛡️ ', title: 'Overtime rules in Canada?' },
@@ -44,6 +49,13 @@ export default function Landing() {
     { icon: '📈 ', title: 'Eligibility for grants?' },
     { icon: '💼 ', title: 'Probation rules?' },
   ];
+
+  const subjects = [
+    { value: "General Inquiry", icon: "/icons/general-inquiry.png" },
+    { value: "HR Queries", icon: "/icons/hr-queries.png" },
+    { value: "Grants Assist", icon: "/icons/grants-assist.png" }
+  ];
+
   useEffect(() => {
     if (location.hash) {
       const section = document.querySelector(location.hash)
@@ -159,60 +171,79 @@ export default function Landing() {
       <div className="input-grid">
       <div className="input-group">
           <label className="input-label">First Name<span className="asteriskHighlight">*</span> </label>
-          <input type="text" className="input-field" />
+          <input type="text" className="landing-input-field" />
         </div>
         <div className="input-group">
           <label className="input-label">Last Name<span className="asteriskHighlight">*</span></label>
-          <input type="text" className="input-field" />
+          <input type="text" className="landing-input-field" />
         </div>
         <div className="input-group">
           <label className="input-label">Company Name<span className="asteriskHighlight">*</span></label>
-          <input type="text" className="input-field" />
+          <input type="text" className="landing-input-field" />
         </div>
         <div className="input-group">
           <label className="input-label">Business Email<span className="asteriskHighlight">*</span></label>
-          <input type="email"  className="input-field" />
+          <input type="email"  className="landing-input-field" />
         </div>
         <div className="input-group">
           <label className="input-label">Job Title</label>
-          <input type="text"  className="input-field" />
+          <input type="text"  className="landing-input-field" />
         </div>
         <div className="input-group">
           <label className="input-label">Mobile Number</label>
-          <input type="text"  className="input-field" />
+          <input type="text"  className="landing-input-field" />
         </div>
       </div>
       <div className="subject-section">
-  <h3 className="section-title">
-    Select Subject <span className="asteriskHighlight">*</span>
-  </h3>
-  <div className="subject-options">
-    <label className="subject-option">
-      <input
-        type="radio"
-        name="subject"
-        value="General Inquiry"
-      />
-      General Inquiry
-    </label>
-    <label className="subject-option">
-      <input
-        type="radio"
-        name="subject"
-        value="HR Queries"
-      />
-      HR Queries
-    </label>
-    <label className="subject-option">
-      <input
-        type="radio"
-        name="subject"
-        value="Grants Assist"
-      />
-      Grants Assist
-    </label>
-  </div>
-</div>
+      <div className="section-title">Select Subject</div>
+      <div className="subject-options">
+        <label className="subject-option-item">
+          <img
+            src={selectedSubject === 'General Inquiry' ? subjectSelectedIcon : subjectNotSelectedIcon}
+            alt="General Inquiry"
+            className="subject-icon"
+          />
+          <input
+            type="radio"
+            name="subject"
+            value="General Inquiry"
+            checked={selectedSubject === 'General Inquiry'}
+            onChange={handleSelectionChange}
+          />
+          General Inquiry
+        </label>
+        <label className="subject-option-item">
+          <img
+            src={selectedSubject === 'HR Queries' ? subjectSelectedIcon : subjectNotSelectedIcon}
+            alt="HR Queries"
+            className="subject-icon"
+          />
+          <input
+            type="radio"
+            name="subject"
+            value="HR Queries"
+            checked={selectedSubject === 'HR Queries'}
+            onChange={handleSelectionChange}
+          />
+          HR Queries
+        </label>
+        <label className="subject-option-item">
+          <img
+            src={selectedSubject === 'Grants Assist' ? subjectSelectedIcon : subjectNotSelectedIcon}
+            alt="Grants Assist"
+            className="subject-icon"
+          />
+          <input
+            type="radio"
+            name="subject"
+            value="Grants Assist"
+            checked={selectedSubject === 'Grants Assist'}
+            onChange={handleSelectionChange}
+          />
+          Grants Assist
+        </label>
+      </div>
+    </div>
       <div className="message-section">
       <h3 className="section-title">Message<span className="asteriskHighlight">*</span></h3>
       <input type="text" placeholder="Write your Message.." className="message-input" />
