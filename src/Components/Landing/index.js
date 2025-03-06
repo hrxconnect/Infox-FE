@@ -72,7 +72,7 @@ export default function Landing() {
           <div className="Section">
             <div className="topSection">
               <div className="topLeftSection">
-                <span className="text1">Your HR Assistant, </span>
+                <span className="text1">Your HR & Funding Assistant,</span>
                 <span className="text2">Anytime, Anywhere.</span>
                 <button
                   className="btn btn-toogle shadow pl-3 pr-3"
