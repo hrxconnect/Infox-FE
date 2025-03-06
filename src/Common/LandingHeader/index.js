@@ -49,11 +49,11 @@ export default function LandingHeader() {
                                 <li className="nav-item">
                                     <a className="nav-link " href="">HR Queries</a>
                                 </li> */}
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a className="nav-link " href="">
                     Pricing
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <a
                     className="nav-link "
