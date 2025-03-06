@@ -464,6 +464,12 @@
   white-space: nowrap; /* Prevents text from wrapping onto a new line */
 }
 
+.subject-option-item input[type="radio"] {
+  width: 16px; /* Set a specific width for the radio button */
+  height: 16px; /* Set a specific height for the radio button */
+  margin: 0; /* Remove any default margin */
+}
+
 .subject-option-item img {
   width: 20px; /* Adjust the size of the icon */
   height: 20px;
