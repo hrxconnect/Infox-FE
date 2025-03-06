@@ -458,7 +458,7 @@
 }
 
 .subject-option-item {
-  display: flex;
+  /* display: flex; */
   align-items: center; /* Ensures radio button and text are aligned */
   gap: 5px; /* Small space between the radio button and label text */
   white-space: nowrap; /* Prevents text from wrapping onto a new line */
@@ -468,6 +468,7 @@
   width: 16px; /* Set a specific width for the radio button */
   height: 16px; /* Set a specific height for the radio button */
   margin: 0; /* Remove any default margin */
+  margin-right: 5px;
 }
 
 .subject-option-item img {
