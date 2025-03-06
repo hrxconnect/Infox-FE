@@ -365,6 +365,8 @@ export default function Landing() {
                   style={{
                     height: 20,
                     width: 20,
+                    maxHeight: 20,
+                    maxWidth: 20,
                     marginRight: 10,
                   }}
                 />
@@ -380,6 +382,8 @@ export default function Landing() {
                   style={{
                     height: 20,
                     width: 20,
+                    maxHeight: 20,
+                    maxWidth: 20,
                     marginRight: 10,
                   }}
                 />
@@ -395,6 +399,8 @@ export default function Landing() {
                   style={{
                     height: 20,
                     width: 20,
+                    maxHeight: 20,
+                    maxWidth: 20,
                     marginRight: 10,
                   }}
                 />
