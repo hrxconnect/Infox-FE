@@ -349,37 +349,57 @@ export default function Landing() {
           </div>
           <div className="subject-section">
             <div className="section-title">Select Subject</div>
-            <div className="subject-options">
-              <label className="subject-option-item">
+            <div
+              className="subject-options"
+              style={{
+                gap: 20,
+              }}
+            >
+              <div style={{ display: "flex" }}>
                 <input
                   type="radio"
                   name="selectedSubject"
                   value="General Inquiry"
                   checked={formData.selectedSubject === "General Inquiry"}
                   onChange={handleChange}
+                  style={{
+                    height: 20,
+                    width: 20,
+                    marginRight: 10,
+                  }}
                 />
-                General Inquiry
-              </label>
-              <label className="subject-option-item">
+                <label className="">General Inquiry</label>
+              </div>
+              <div style={{ display: "flex" }}>
                 <input
                   type="radio"
                   name="selectedSubject"
                   value="HR Queries"
                   checked={formData.selectedSubject === "HR Queries"}
                   onChange={handleChange}
+                  style={{
+                    height: 20,
+                    width: 20,
+                    marginRight: 10,
+                  }}
                 />
-                HR Queries
-              </label>
-              <label className="subject-option-item">
+                <label className="">HR Queries</label>
+              </div>
+              <div style={{ display: "flex" }}>
                 <input
                   type="radio"
                   name="selectedSubject"
                   value="Grants Assist"
                   checked={formData.selectedSubject === "Grants Assist"}
                   onChange={handleChange}
+                  style={{
+                    height: 20,
+                    width: 20,
+                    marginRight: 10,
+                  }}
                 />
-                Grants Assist
-              </label>
+                <label className="">Grants Assist</label>
+              </div>
             </div>
           </div>
           <div className="message-section">

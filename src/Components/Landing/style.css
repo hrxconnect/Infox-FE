@@ -454,7 +454,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 20px; /* Adjusts space between radio button groups */
+  align-items: center;
 }
 
 .subject-option-item {
@@ -464,11 +464,39 @@
   white-space: nowrap; /* Prevents text from wrapping onto a new line */
 }
 
+.selectedSubject input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+.subject-option-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .subject-option-item input[type="radio"] {
-  width: 16px; /* Set a specific width for the radio button */
-  height: 16px; /* Set a specific height for the radio button */
-  margin: 0; /* Remove any default margin */
-  margin-right: 5px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.subject-option-item input[type="radio"]:checked::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background-color: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .subject-option-item img {

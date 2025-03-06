@@ -35,7 +35,7 @@ export default function LandingFooter() {
               </li>
               <li className="product-li-active">
                 <img src={MailIcon} alt="Phone" className="mailicon" />{" "}
-                support@infox.com
+                support@infox.bot
               </li>
             </ul>
           </div>
