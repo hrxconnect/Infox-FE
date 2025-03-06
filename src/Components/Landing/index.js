@@ -188,7 +188,9 @@ export default function Landing() {
                 <button className="btn BookADemoBtn" >Book A Demo</button>
             </div> */}
       <div className="contact-form-container">
-        <h1 className="form-title">Contact Us</h1>
+        <h1 className="form-title" id="contact-us">
+          Contact Us
+        </h1>
         <div className="input-grid">
           <div className="input-group">
             <label className="input-label">
