@@ -355,7 +355,14 @@ export default function Landing() {
                 gap: 20,
               }}
             >
-              <div style={{ display: "flex", height: 20 }}>
+              <div
+                style={{
+                  display: "flex",
+                  height: 20,
+                  maxHeight: 20,
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
                   name="selectedSubject"
@@ -372,7 +379,14 @@ export default function Landing() {
                 />
                 <label className="">General Inquiry</label>
               </div>
-              <div style={{ display: "flex", height: 20 }}>
+              <div
+                style={{
+                  display: "flex",
+                  height: 20,
+                  maxHeight: 20,
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
                   name="selectedSubject"
@@ -389,7 +403,14 @@ export default function Landing() {
                 />
                 <label className="">HR Queries</label>
               </div>
-              <div style={{ display: "flex", height: 20 }}>
+              <div
+                style={{
+                  display: "flex",
+                  height: 20,
+                  maxHeight: 20,
+                  alignItems: "center",
+                }}
+              >
                 <input
                   type="radio"
                   name="selectedSubject"
