@@ -27,6 +27,87 @@ export default function Landing() {
   const location = useLocation()
   const [selectedSubject, setSelectedSubject] = useState("General Inquiry")
 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    email: "",
+    jobTitle: "",
+    mobileNumber: "",
+    selectedSubject: "",
+    message: "",
+  })
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Web3Forms API endpoint
+    const web3formsUrl = "https://api.web3forms.com/submit"
+
+    // Your Web3Forms Access Key
+    const accessKey = "afad6b5c-463e-48b6-a406-6eb6a7d41388"
+
+    // Prepare form data
+    const data = {
+      access_key: accessKey,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      companyName: formData.companyName,
+      email: formData.email,
+      jobTitle: formData.jobTitle,
+      mobileNumber: formData.mobileNumber,
+      selectedSubject: formData.selectedSubject,
+      message: formData.message,
+    }
+
+    try {
+      // Submit the form data
+      const response = await fetch(web3formsUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSubmitStatus("success")
+        alert("Form submitted successfully!")
+        setFormData({
+          firstName: "",
+          lastName: "",
+          companyName: "",
+          email: "",
+          jobTitle: "",
+          mobileNumber: "",
+          selectedSubject: "",
+          message: "",
+        })
+      } else {
+        setSubmitStatus("error")
+        alert("Failed to submit the form. Please try again.")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      setSubmitStatus("error")
+      alert("An error occurred. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   const handleSelectionChange = (e) => {
     setSelectedSubject(e.target.value)
   }
@@ -187,118 +268,153 @@ export default function Landing() {
                 <span className="BookADemo"> Chaos into Streamlined HR Management.</span>
                 <button className="btn BookADemoBtn" >Book A Demo</button>
             </div> */}
-      <div className="contact-form-container">
-        <h1 className="form-title" id="contact-us">
-          Contact Us
-        </h1>
-        <div className="input-grid">
-          <div className="input-group">
-            <label className="input-label">
-              First Name<span className="asteriskHighlight">*</span>{" "}
-            </label>
-            <input type="text" className="landing-input-field" />
-          </div>
-          <div className="input-group">
-            <label className="input-label">
-              Last Name<span className="asteriskHighlight">*</span>
-            </label>
-            <input type="text" className="landing-input-field" />
-          </div>
-          <div className="input-group">
-            <label className="input-label">
-              Company Name<span className="asteriskHighlight">*</span>
-            </label>
-            <input type="text" className="landing-input-field" />
-          </div>
-          <div className="input-group">
-            <label className="input-label">
-              Business Email<span className="asteriskHighlight">*</span>
-            </label>
-            <input type="email" className="landing-input-field" />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Job Title</label>
-            <input type="text" className="landing-input-field" />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Mobile Number</label>
-            <input type="text" className="landing-input-field" />
-          </div>
-        </div>
-        <div className="subject-section">
-          <div className="section-title">Select Subject</div>
-          <div className="subject-options">
-            <label className="subject-option-item">
-              <img
-                src={
-                  selectedSubject === "General Inquiry"
-                    ? subjectSelectedIcon
-                    : subjectNotSelectedIcon
-                }
-                alt="General Inquiry"
-                className="subject-icon"
-              />
+      <form onSubmit={handleSubmit}>
+        <div className="contact-form-container">
+          <h1 className="form-title" id="contact-us">
+            Contact Us
+          </h1>
+          <div className="input-grid">
+            <div className="input-group">
+              <label className="input-label">
+                First Name<span className="asteriskHighlight">*</span>
+              </label>
               <input
-                type="radio"
-                name="subject"
-                value="General Inquiry"
-                checked={selectedSubject === "General Inquiry"}
-                onChange={handleSelectionChange}
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                className="landing-input-field"
+                required
               />
-              General Inquiry
-            </label>
-            <label className="subject-option-item">
-              <img
-                src={
-                  selectedSubject === "HR Queries"
-                    ? subjectSelectedIcon
-                    : subjectNotSelectedIcon
-                }
-                alt="HR Queries"
-                className="subject-icon"
-              />
+            </div>
+            <div className="input-group">
+              <label className="input-label">
+                Last Name<span className="asteriskHighlight">*</span>
+              </label>
               <input
-                type="radio"
-                name="subject"
-                value="HR Queries"
-                checked={selectedSubject === "HR Queries"}
-                onChange={handleSelectionChange}
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                className="landing-input-field"
+                required
               />
-              HR Queries
-            </label>
-            <label className="subject-option-item">
-              <img
-                src={
-                  selectedSubject === "Grants Assist"
-                    ? subjectSelectedIcon
-                    : subjectNotSelectedIcon
-                }
-                alt="Grants Assist"
-                className="subject-icon"
-              />
+            </div>
+            <div className="input-group">
+              <label className="input-label">
+                Company Name<span className="asteriskHighlight">*</span>
+              </label>
               <input
-                type="radio"
-                name="subject"
-                value="Grants Assist"
-                checked={selectedSubject === "Grants Assist"}
-                onChange={handleSelectionChange}
+                type="text"
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleChange}
+                className="landing-input-field"
+                required
               />
-              Grants Assist
-            </label>
+            </div>
+            <div className="input-group">
+              <label className="input-label">
+                Business Email<span className="asteriskHighlight">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="landing-input-field"
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label className="input-label">Job Title</label>
+              <input
+                type="text"
+                name="jobTitle"
+                value={formData.jobTitle}
+                onChange={handleChange}
+                className="landing-input-field"
+              />
+            </div>
+            <div className="input-group">
+              <label className="input-label">Mobile Number</label>
+              <input
+                type="text"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className="landing-input-field"
+              />
+            </div>
           </div>
+          <div className="subject-section">
+            <div className="section-title">Select Subject</div>
+            <div className="subject-options">
+              <label className="subject-option-item">
+                <input
+                  type="radio"
+                  name="selectedSubject"
+                  value="General Inquiry"
+                  checked={formData.selectedSubject === "General Inquiry"}
+                  onChange={handleChange}
+                />
+                General Inquiry
+              </label>
+              <label className="subject-option-item">
+                <input
+                  type="radio"
+                  name="selectedSubject"
+                  value="HR Queries"
+                  checked={formData.selectedSubject === "HR Queries"}
+                  onChange={handleChange}
+                />
+                HR Queries
+              </label>
+              <label className="subject-option-item">
+                <input
+                  type="radio"
+                  name="selectedSubject"
+                  value="Grants Assist"
+                  checked={formData.selectedSubject === "Grants Assist"}
+                  onChange={handleChange}
+                />
+                Grants Assist
+              </label>
+            </div>
+          </div>
+          <div className="message-section">
+            <h3 className="section-title">
+              Message<span className="asteriskHighlight">*</span>
+            </h3>
+            <input
+              type="text"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your Message.."
+              className="message-input"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Submitting..." : "Submit"}
+          </button>
+          {submitStatus === "success" && (
+            <p className="success-message mt-4 text-center">
+              Form submitted successfully!
+            </p>
+          )}
+          {submitStatus === "error" && (
+            <p className="error-message mt-4 text-center">
+              Failed to submit the form. Please try again.
+            </p>
+          )}
         </div>
-        <div className="message-section">
-          <h3 className="section-title">
-            Message<span className="asteriskHighlight">*</span>
-          </h3>
-          <input
-            type="text"
-            placeholder="Write your Message.."
-            className="message-input"
-          />
-        </div>
-        <button className="submit-button">Submit</button>
-      </div>
+      </form>
       <LandingFooter></LandingFooter>
     </div>
   )

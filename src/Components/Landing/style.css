@@ -467,10 +467,6 @@
   height: 20px;
 }
 
-.subject-option-item input {
-  display: none; /* Hide the radio buttons */
-}
-
 .section-title {
   margin-bottom: 10px;
 }
