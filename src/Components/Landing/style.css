@@ -287,12 +287,13 @@
 
 .grants,
 .HRQueries {
-  margin-bottom: 56px;
+  margin-top: 200px;
+  margin-bottom: 200px;
   display: flex;
   justify-content: center;
   align-items: start;
   width: calc(100% - 120px); /* Subtract the left and right margins */
-  height: 450px;
+  /* height: 450px; */
   background: rgb(255, 255, 255);
   background: linear-gradient(
     180deg,
@@ -614,7 +615,10 @@
   .grants {
     flex-direction: column-reverse;
     width: 100%;
-    margin: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 100px;
+    margin-bottom: 100px;
     padding-left: 31px;
     padding-right: 31px;
   }
