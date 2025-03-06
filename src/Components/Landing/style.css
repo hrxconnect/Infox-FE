@@ -47,6 +47,7 @@
   flex-direction: column;
   justify-content: center;
   width: 15%;
+  margin-top: 150px;
 }
 
 .bottomSection {
@@ -511,6 +512,10 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .topRightSection {
+    margin-top: 0px;
+  }
+
   .getStarted {
     background: rgb(255, 145, 0);
     background: linear-gradient(
@@ -777,6 +782,11 @@
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .topRightSection {
+    margin-top: 0px;
+    margin-right: 150px;
+  }
+
   .getStarted {
     background: rgb(255, 145, 0);
     background: linear-gradient(
@@ -823,6 +833,10 @@
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+  /* .topRightSection {
+    margin-right: 150px;
+  } */
+
   .getStarted {
     background: rgb(255, 145, 0);
     background: linear-gradient(
