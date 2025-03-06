@@ -33,6 +33,11 @@ li {
   font-weight: 500;
   color: #027bff;
   border-radius: 50px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 .nav-item {
   display: flex;

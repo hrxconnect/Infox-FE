@@ -68,9 +68,9 @@ export default function LandingHeader() {
                                 <a className="nav-link " href="" type="submit" onClick={()=> navigate("signup")}>Sign Up</a>
                                 </li> */}
                 <li className="nav-item">
-                  <button className="btn btn-demo" type="submit">
+                  <a className="btn btn-demo" href="/#contact-us">
                     Book A Demo
-                  </button>
+                  </a>
                 </li>
               </ul>
             </form>
