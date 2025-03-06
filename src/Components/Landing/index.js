@@ -92,17 +92,15 @@ export default function Landing() {
                     </div>
                 </div>
             </div>
-            <div className="container">
+            <div className="solutions-container">
                 <label className="text4 text-center">
                 Solutions Designed to
-                <span> </span>
-                <span> </span>
+                <br className="landing-solution-break"></br>
                 <span className="empowerHighlight"> 
                    Empower </span>  
               </label>
-            <div>
-                <span className="text5 text-center">Effortlessly tackle HR tasks, compliance challenges, </span>
-                <span className="text5 text-center">and funding opportunities with infox.</span>
+            <div className="text5">
+                <p>Effortlessly tackle HR tasks, compliance challenges, <br></br>and funding opportunities with infox.</p>
             </div>
             </div>
             <div className="card-container">
@@ -149,7 +147,7 @@ export default function Landing() {
                     <img src={grantsAssists} className="grantsImg"/>
                 </div>
             </div>
-            <div className="grants">
+            <div className="HRQueries">
                 <div className="grantsRightSection">
                     <img src={hrQueries} className="grantsImg"/>
                 </div>
@@ -158,14 +156,14 @@ export default function Landing() {
                     <span className="grantsDescription">Empower your team with instant answers to HR-related questions with HR Queries.</span>
                 </div>
             </div>
-            <div className="ourSolutions">
+            {/* <div className="ourSolutions">
             <button className="btn ourSolutionsBtn" type="submit">Our Solutions</button>
-            </div>
-            <div className="BookADemoSection">
+            </div> */}
+            {/* <div className="BookADemoSection">
                 <span className="BookADemo">Book a Demo to See How infox Transforms </span>
                 <span className="BookADemo"> Chaos into Streamlined HR Management.</span>
                 <button className="btn BookADemoBtn" >Book A Demo</button>
-            </div>
+            </div> */}
     <div className="contact-form-container">
       <h1 className="form-title">Contact Us</h1>
       <div className="input-grid">

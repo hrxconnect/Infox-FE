@@ -19,10 +19,10 @@ export default function LandingFooter() {
                     <img src={logo} alt="Logo" className="footer-login-logo" />
                 </div>
                 <div className="terms">
-                    <div className="terms-list">
+                    {/* <div className="terms-list">
                         <FaLinkedin className="clickable" />
                         <FaInstagram className="clickable" />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="footerRight">

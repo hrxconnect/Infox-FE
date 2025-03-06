@@ -4,6 +4,8 @@
     display: flex;
     margin-top: 2rem;
     margin-bottom: 0px;
+    min-height: 200px;
+    flex-shrink: 0;
 }
 
 .footer-logo-section {
@@ -117,58 +119,60 @@ ul.no-bullets {
     margin-right: 20px;
 }
 
+
 @media only screen and (max-width: 768px) {
     .sectionFooter {
-        background: white;
-        width: 100%;
-        display: flex;
         flex-direction: column;
+        margin-top: 0;
+        padding: 1rem;
+        min-height: auto;
     }
 
-    .footerLeft {
-        margin-top: 5rem;
+    .footerLeft, .footerRight {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 10px;
+        text-align: center;
+        margin: 0;
+        padding: 2rem 1rem;
     }
 
-    .footerRight {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
-    .product-list {
-        display: flex;
+    .btn-section {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn-work, .btn-sub {
+        width: 80%;
     }
 
     .products {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-gap: 1rem;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 1rem;
+        grid-template-columns: 1fr;
+        grid-gap: 2rem;
     }
 
     .terms-list {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     .terms {
-        max-width: 1200px;
         margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        margin-top: 2rem;
-        margin-bottom: 3rem;
+        text-align: center;
     }
-}
+} 
+
+/* Smaller Phones for screens up to 480px */
+@media only screen and (max-width: 480px) {
+    .footer-login-logo {
+        width: 100px;
+    }
+
+    .btn-work, .btn-sub {
+        width: 100%;
+    }
+
+    .phoneicon, .mailicon {
+        margin-right: 10px;
+    }
+} 

@@ -24,24 +24,24 @@ export default function LandingHeader() {
                         </ul> */}
                         <form  role="search">
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-end">
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="">Our Solutions</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="">Grant Assist</a>
+                                </li> */}
+                                {/* <li className="nav-item"> */}
+                                    {/* <a className="nav-link" href="">Grant Assist</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link " href="">HR Queries</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <a className="nav-link " href="">Pricing</a>
                                 </li>
                                 <li className="nav-item">
                                     <a className="nav-link " href="" type="submit" onClick={()=> navigate("login")}>Login</a>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                 <a className="nav-link " href="" type="submit" onClick={()=> navigate("signup")}>Sign Up</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item">
                                     <button className="btn btn-demo" type="submit"  >Book A Demo</button>
                                 </li>
