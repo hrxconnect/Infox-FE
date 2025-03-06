@@ -1,27 +1,109 @@
-.ul,li{
-    margin: 0px 10px;
+.ul,
+li {
+  margin: 0px 10px;
 }
-.container{
-    max-width: 1100px;
+
+.container {
+  max-width: 1100px;
 }
-.btn-login{
-    height: 40px;
-    width: 90px;
-    background-color: #027BFF;
-    margin: 10px 10px;
-    font-weight: 500;
-    color: white;
+.btn-login {
+  height: 40px;
+  width: 90px;
+  background-color: #027bff;
+  margin: 10px 10px;
+  font-weight: 500;
+  color: white;
 }
-.btn-signup{
-    height: 40px;
-    width: 90px;
-    background-color: whitesmoke;
-    box-shadow: none;
-    border: 1px solid black;
-    margin: 10px 10px;
-    font-weight: 500;
+.btn-signup {
+  height: 40px;
+  width: 90px;
+  background-color: #00000000;
+  box-shadow: none;
+  margin: 10px 10px;
+  font-weight: 500;
+  border-radius: 50px;
+  color: #027bff;
 }
-.nav-item{
+
+.btn-demo {
+  height: 50px;
+  width: 180px;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 10px 10px;
+  font-weight: 500;
+  color: #027bff;
+  border-radius: 50px;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.header-login-logo {
+  width: 120px;
+  height: auto;
+}
+
+@media only screen and (max-width: 992px) {
+  .header-login-logo {
+    width: 58px;
+    height: 24px;
+  }
+
+  .navbar-toggler {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    border: 0px;
+  }
+
+  .fullscreen-menu {
+    position: fixed; /* Fix the menu to the screen */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: white; /* Set a background color */
+    z-index: 1000; /* Ensure it appears above other content */
+    overflow-y: auto; /* Allow scrolling if the content is too long */
+    padding: 20px; /* Add some padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+  }
+
+  /* Adjust the navbar toggler button */
+  .navbar-toggler {
+    z-index: 1001; /* Ensure the toggler is above the fullscreen menu */
+  }
+
+  /* Optional: Style the links in the fullscreen menu */
+  .fullscreen-menu .navbar-nav {
+    margin-top: 50px; /* Add space at the top */
+  }
+
+  .fullscreen-menu .nav-link {
+    font-size: 1.5rem; /* Increase font size for better readability */
+    padding: 10px 0; /* Add padding to links */
+  }
+
+  .logo-hidden {
+    display: none;
+  }
+
+  .btn-demo {
+    height: 50px;
+    width: fit-content;
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 0px;
+    font-weight: 500;
+    color: #027bff;
+    border-radius: 50px;
+    padding: 0px;
+    font-size: 24px;
+  }
 }
