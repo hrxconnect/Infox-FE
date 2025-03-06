@@ -347,7 +347,7 @@ export default function Landing() {
               />
             </div>
           </div>
-          {/* <div className="subject-section">
+          <div className="subject-section">
             <div className="section-title">Select Subject</div>
             <div
               className="subject-options"
@@ -428,7 +428,7 @@ export default function Landing() {
                 <label className="">Grants Assist</label>
               </div>
             </div>
-          </div> */}
+          </div>
           <div className="message-section">
             <h3 className="section-title">
               Message<span className="asteriskHighlight">*</span>
@@ -438,7 +438,8 @@ export default function Landing() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="HR Queries/General Inquiries/Grants Assist.."
+              // placeholder="HR Queries/General Inquiries/Grants Assist.."
+              placeholder="Write your message.."
               className="message-input"
               required
             />
