@@ -40,13 +40,19 @@ export default function Assists() {
             const text = await response.data; // Get the raw response text
             console.log('Raw response:', text); // Log the raw response
 
-            // Extract values from the concatenated JSON objects
-            const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
-            let match;
+            if(text.data){
+                fullMessage = text.data;
 
-            while ((match = regex.exec(text)) !== null) {
-                fullMessage += match[1] + ' '; // Concatenate the matched values
+            }else{
+                // Extract values from the concatenated JSON objects
+                const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
+                let match;
+
+                while ((match = regex.exec(text)) !== null) {
+                    fullMessage += match[1] + ' '; // Concatenate the matched values
+                }
             }
+          
 
             // Clean up the message
             fullMessage = fullMessage.trim(); // Trim whitespace
