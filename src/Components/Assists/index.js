@@ -42,7 +42,6 @@ export default function Assists() {
 
             if(text.data){
                 fullMessage = text.data;
-
             }else{
                 // Extract values from the concatenated JSON objects
                 const regex = /{"data": "(.*?)"}/g; // Regex to match the data values
@@ -53,7 +52,6 @@ export default function Assists() {
                 }
             }
           
-
             // Clean up the message
             fullMessage = fullMessage.trim(); // Trim whitespace
 
