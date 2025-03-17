@@ -80,9 +80,10 @@ export default function CommonHeader() {
         }
 
         try {
-            const response = await apiClient.post("/country_selection/",
-                { selected_country: countryValue }
-            );
+            const response = await apiClient.post("/cournty_selection", {
+                selected_country: countryValue,
+                user_id: userId
+            });
     
             console.log('Selected Country API Response:', response.data);
     
@@ -109,7 +110,9 @@ export default function CommonHeader() {
             setTimeout(() => UpdateSelectedCountry(countryValue), 100); // Slightly more delay to ensure state update
         }
     };
-        
+    
+    
+    
     const handleLogout = async () => {
         // Optionally, you can call an API to handle logout on the server side
         // await axios.post("https://app.infox.bot/api/logout/", {}, {
@@ -121,7 +124,6 @@ export default function CommonHeader() {
         // Clear local storage
         localStorage.removeItem("token");
         localStorage.removeItem("userProfile");
-        sessionStorage.clear();
 
         // Navigate to the login page after clearing local storage
         navigate('/login');
