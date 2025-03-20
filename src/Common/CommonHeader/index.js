@@ -73,7 +73,7 @@ export default function CommonHeader() {
     
     const UpdateSelectedCountry = async (countryValue) => {
         var userId = sessionStorage.getItem('user_id');
-        var selected_Country = sessionStorage.setItem('country', countryValue)
+        sessionStorage.setItem('country', countryValue)
         if(!userId) {
             userId = userID;
         }
