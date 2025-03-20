@@ -73,15 +73,15 @@ export default function CommonHeader() {
     
     const UpdateSelectedCountry = async (countryValue) => {
         var userId = sessionStorage.getItem('user_id');
+        var selected_Country = sessionStorage.setItem('country', countryValue)
         if(!userId) {
             userId = userID;
         }
 
         try {
-            const response = await apiClient.post("/cournty_selection", {
-                selected_country: countryValue,
-                user_id: userId
-            });
+            const response = await apiClient.post("/country_selection/",
+                { selected_country: countryValue }
+            );
     
             console.log('Selected Country API Response:', response.data);
     
@@ -119,6 +119,7 @@ export default function CommonHeader() {
         // Clear local storage
         localStorage.removeItem("token");
         localStorage.removeItem("userProfile");
+        sessionStorage.clear()
 
         // Navigate to the login page after clearing local storage
         navigate('/login');
