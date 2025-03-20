@@ -20,12 +20,14 @@ export default function Assists() {
     const handleEventStream = async (userQuery) => {
         const url = `/relay_chat/`;
         let fullMessage = '';
+        var selected_Country = sessionStorage.getItem('country')
 
         try {
 		
 	    const response = await apiClient.post(url, {
                 query: userQuery,
-                use_case: "grants"
+                use_case: "grants",
+                country: selected_Country 
             }, {
 		    headers: {
                     'Content-Type': 'application/json',
