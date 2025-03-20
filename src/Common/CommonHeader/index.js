@@ -69,11 +69,9 @@ export default function CommonHeader() {
 
 
     useEffect(() => {
-        console.log("Updated Selected Country:", selectedCountry);
     }, [selectedCountry]);
     
     const UpdateSelectedCountry = async (countryValue) => {
-        console.log('Calling Country API with:', countryValue);
         var userId = sessionStorage.getItem('user_id');
         if(!userId) {
             userId = userID;
@@ -95,13 +93,10 @@ export default function CommonHeader() {
         }
     };    
 
-    const handleCountryUpdate = (countryValue, shouldCallAPI) => {
-        console.log("Updating country selection:", countryValue);
-        
+    const handleCountryUpdate = (countryValue, shouldCallAPI) => {        
         // Ensure selected country state is updated before proceeding
         setSelectedCountry(prevCountry => {
             const updatedCountry = countryValue === "1" ? countries[0] : countries[1];
-            console.log("New Selected Country:", updatedCountry);
             return updatedCountry;
         });
     
@@ -163,7 +158,6 @@ export default function CommonHeader() {
                                     key={country.code}
                                     className="dropdown-item"
                                     onClick={() => {
-                                        console.log('Dropdown Clicked - New Country:', country);
                                         setSelectedCountry(country);
                                         handleCountryUpdate(country.value, true);
                                         setDropdownOpen(false);                                    }}
