@@ -22,12 +22,13 @@ export default function Assists() {
         let fullMessage = '';
         var selected_Country = sessionStorage.getItem('country')
 
+       
         try {
 		
 	    const response = await apiClient.post(url, {
                 query: userQuery,
                 use_case: "grants",
-                country: selected_Country 
+                country: selected_Country ?? "1"
             }, {
 		    headers: {
                     'Content-Type': 'application/json',
