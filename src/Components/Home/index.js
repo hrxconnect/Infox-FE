@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useNavigate, BrowserRouter, Route, Switch } from "react-router-dom";
 import './style.css'
-import logo from '../../Assets/logo.png';
+import logo from '../../Assets/logo_new.png';
 import { FaBalanceScale } from "react-icons/fa";
 import { LiaHandshakeSolid } from "react-icons/lia";
 import Banner from '../../Assets/banner.png'
@@ -18,7 +18,7 @@ export default function Home() {
                 </div>
                 <div className="sectionCards">
                     <div className="imgLogoSection">
-                        <img src={logo} height={30} width={100} alt="" />
+                        <img src={logo} width={100} alt="" />
                     </div>
                     <div className="topicCards">
                         <div className="topicCard card" onClick={() => navigate('/assists')}>

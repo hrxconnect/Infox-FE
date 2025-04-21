@@ -36,13 +36,26 @@
 }
 
 .topicCard {
-    width: 220px;
+    width: 240px;
+    height: 210px;
     cursor: pointer;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 1) !important;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
 }
 
 .card-title {
     margin-top: 1rem;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.card-text {
+    margin-top: 1rem;
+    font-size: 15px;
+    color: #828282;
 }
 
 .topicCard:hover {
