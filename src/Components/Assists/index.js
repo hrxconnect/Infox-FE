@@ -20,12 +20,15 @@ export default function Assists() {
     const handleEventStream = async (userQuery) => {
         const url = `/relay_chat/`;
         let fullMessage = '';
+        var selected_Country = sessionStorage.getItem('country')
 
+       
         try {
 		
 	    const response = await apiClient.post(url, {
                 query: userQuery,
-                use_case: "grants"
+                use_case: "grants",
+                country: selected_Country ?? "1"
             }, {
 		    headers: {
                     'Content-Type': 'application/json',
@@ -48,7 +51,7 @@ export default function Assists() {
                 let match;
 
                 while ((match = regex.exec(text)) !== null) {
-                    fullMessage += match[1] + ' '; // Concatenate the matched values
+                    fullMessage += match[1]; // Concatenate the matched values
                 }
             }
           
@@ -56,7 +59,7 @@ export default function Assists() {
             fullMessage = fullMessage.trim(); // Trim whitespace
 
             // Format the message for markdown
-            fullMessage = formatBotMessage(fullMessage); // Call the formatting function
+            // fullMessage = formatBotMessage(fullMessage); // This is getting called from ChatBox so no need to Call the formatting function again.
 
             setMessages(prev => [
                 ...prev.slice(0, -1),
